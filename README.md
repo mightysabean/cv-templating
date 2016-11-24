@@ -57,12 +57,13 @@ If you want to make an HTML-based CV, the syntax to use in the templates is the 
 
 In the LaTeX case, the syntax for templating is a customization based on [this snippet](http://flask.pocoo.org/snippets/55/) of [flask framework](http://flask.pocoo.org/).
 
-There are examples of each type in the root directory, [excvhtml.jinja](excvhtml.jinja) and [excvlatex.jinja](excvlatex.jinja). 
+There are examples of each type in the `example` directory, [excvhtml.jinja](excvhtml.jinja) in the `html` folder and [excvlatex.jinja](excvlatex.jinja) the `latex` folder. 
 
 See the tutorial based on these examples showing how to proceed. You can use the structure of files and directories as a seed for your strucuture, modifying the templates provided if it is necessary.
 
 ## License
 
+The example based on europasscv is subject to the LaTeX Project Public License Version 1.3.
 
 ## Next steps to do
 

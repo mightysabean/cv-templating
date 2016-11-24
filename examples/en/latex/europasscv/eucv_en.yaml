@@ -1,0 +1,9 @@
+# Main data file for europasscv example
+# Must contain the info used on the template.jinja or links to files where to get it (csv or another yaml).
+# This file has a combination of both and is complete to show the europasscv example. You must
+# modify this file, the internal structure and the external files...
+# Path of files must be relative to root directory of app mcv.py
+
+- persinf: file
+  - filename: "data/pers_info.yaml"
+-
