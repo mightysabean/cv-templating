@@ -5,37 +5,37 @@ Tools for automatic generation of curriculum vitae from data.
 
 ## Motivation
 
-Update an [Europass CV online](https://europass.cedefop.europa.eu/editors/en/cv/compose), or made it for the first time, is error and time consuming if you have several entries. Even worst if you need to put all your *resume* in other format (for instance in HTML).
+Update a [Europass CV online](https://europass.cedefop.europa.eu/editors/en/cv/compose), or made it for the first time, is error and time consuming if you have several entries. Even worst if you need to put all your *resume* in another format (for instance in HTML).
 
 ## Solution
 
-Using templates based in [jinja2](http://jinja.pocoo.org/docs/dev/) we can manage the generation of the CV easily from data conveniently stored.
+We can manage the generation of the CV quickly from data conveniently stored using templates based in [jinja2](http://jinja.pocoo.org/docs/dev/).
  
-In this solution I use data stored in plain text files, facilitating the use of any tool for modifying them. Also, it is very convinient for putting your CV information under control version. 
+In this solution, I use data stored in plain text files, facilitating the utilisation of any tool for modifying them. Also, it is very convenient for putting your CV information under control version. 
 
 ## What do you need
 
-To use this solution you need (to install see ):
+To use this solution you need (for installation see below):
 
 - Python (>2.7, >3.5) with modules yaml, jinja2 and csv installed.
-- A recent LaTeX distribution (I use texlive-2016) if you want to generate the CV in PDF format (mandatory if you want a europass CV).
+- A recent LaTeX distribution (I use texlive-2016) if you want to generate the CV in PDF format (mandatory if you want a Europass CV).
 
-It is possible that this solution works with previous versions of the tools, but I do not tested that.
+It is possible that this solution works with previous versions of the tools, but I did not test that.
 
-Also, if you want the Eurospass format (for PDF only), probably you need to download the last version of the [europasscv](https://github.com/gmazzamuto/europasscv) class document from github (thanks Giacomo Mazzamuto). It is already included in the texlive distribution, but the last version have some nice improvements.
+Also, if you want the Europass format (for PDF only), probably you need to download the last version of the [europasscv](https://github.com/gmazzamuto/europasscv) class document from GitHub (thanks, Giacomo Mazzamuto). Texlive distribution already includes the document class, but the last version has some nice improvements.
 
 ## Install requirements
 
-I do not explain how to install all the posibilities between operating systems and versions of libraries, but at least pointing out to how proceed.
+I do not explain how to install all the possibilities between operating systems and versions of libraries, but at least pointing out how to proceed.
 
 ### Python
 
-If you are on Linux or Mac, you already have python (probably a 2.7.x version, but if it is a 3.5.x version, it is allright). If you are Windows user then [follow this instructions] (for what flavour to install, 2 or 3, see [related info](https://wiki.python.org/moin/Python2orPython3)).
+If you are on Linux or Mac, you already have python (probably a 2.7.x version, but if it is a 3.5.x version, it is alright). If you are Windows user then [follow this instruction] (for what flavour to install, 2 or 3, see [related info](https://wiki.python.org/moin/Python2orPython3)).
 
 
 ### Python modules
 
-We need `yaml`, `csv` and `jinja2`. Probably they are already installed with your python distribution. If some of them is missing, the easyest way to install it is with:
+We need `yaml`, `csv` and `jinja2`. Probably they are already installed with your python distribution. If some of them are missing, the easiest way to install it is with:
 
 On Linux or OS X:
 ```sh
@@ -47,10 +47,19 @@ On Windows:
 python -m pip install yaml jinja2 csv
 ```
 
-If you have not `pip` installed, then please refer to the instructions of your platform and python distrubution for help [installing pip](https://packaging.python.org/installing/#requirements-for-installing-packages).
+If you have not `pip` installed, then please refer to the instructions for your platform and Python distribution for help [installing pip](https://packaging.python.org/installing/#requirements-for-installing-packages).
 
 ## Making the 'omelette'
 
+The information to feed the templates can be structured as you want, but it is preferable to follow some folder structure. For instance, probably is a good idea to have a folder for all the data (for example, you guest, exactly: `data`). Inside some file for general information, a folder for projects and inside it a file for each project, or a folder for each (if you want to store other info related to the project as photos) or if you have only a resume of projects maybe it is better to have only a `.csv` file. 
+
+If you want to make an HTML-based CV, the syntax to use in the templates is the [jinja standard](http://jinja.pocoo.org/docs/dev/templates/). 
+
+In the LaTeX case, the syntax for templating is a customization based on [this snippet](http://flask.pocoo.org/snippets/55/) of [flask framework](http://flask.pocoo.org/).
+
+There are examples of each type in the root directory, [excvhtml.jinja](excvhtml.jinja) and [excvlatex.jinja](excvlatex.jinja). 
+
+See the tutorial based on these examples showing how to proceed. You can use the structure of files and directories as a seed for your strucuture, modifying the templates provided if it is necessary.
 
 ## License
 
