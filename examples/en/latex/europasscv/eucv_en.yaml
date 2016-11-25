@@ -3,7 +3,8 @@
 # This file has a combination of both and is complete to show the europasscv example. You must
 # modify this file, the internal structure and the external files...
 # Path of files must be relative to root directory of app mcv.py
-
+- config_options:
+  - doc_options: english,a4paper,nologo
 - persinf: file
   - filename: "data/pers_info.yaml"
 -
