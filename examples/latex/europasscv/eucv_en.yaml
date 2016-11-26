@@ -4,7 +4,10 @@
 # modify this file, the internal structure and the external files...
 # Path of files must be relative to root directory of app mcv.py
 - config_options:
-  - doc_options: english,a4paper,nologo
+  - doc_options: "english,a4paper,nologo"
+  - packages:
+    - grffile: "space"
+#  - include_preamble:
 - persinf: file
   - filename: "data/pers_info.yaml"
 -
