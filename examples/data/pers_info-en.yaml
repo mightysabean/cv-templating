@@ -1,0 +1,13 @@
+# TODO: Cambiar datos por someone
+family_name: "Ramírez Perea"
+name: "Vicente"
+address: "Watertorenstraat, 25"
+postal_code: 1560
+village: "Hoeilaart"
+country: Belgium
+telephone: ""
+mobile: "+32 475 51 49 13"
+email:
+ - "vicente.ramirez.perea@gmail.com"
+ - "vicente.ramirez.perea@outlook.com"
+image_file: "picture1.png" #relative to data directory

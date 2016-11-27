@@ -3,5 +3,8 @@
 % !TEX encoding = UTF-8
 % !TEX program = pdflatex
 % !TEX spellcheck = en_GB
-\documentclass[((* doc_options *))]{europasscv}
+\documentclass[((( doc.config_options.doc_options )))]{europasscv}
+((* for package in doc.packages *))
+    \usepackage[package.value]{package}
+((* endfor *))
 \usepackage[english]{babel}
