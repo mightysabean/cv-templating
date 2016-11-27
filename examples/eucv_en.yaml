@@ -12,9 +12,8 @@ config:
 doc:
   doc_options: "english,a4paper,nologo"
   packages:
-    - babel: "english"
-    - grffile: "space"
-#  include_preamble_file:
+    - babel: "english" # Only packages that is interisting to change without changing template.
+  include_preamble: "" # Better putting in the template directly
 data:
   personal_info: "examples/data/pers_info-en.yaml"
   #professional_info: ''

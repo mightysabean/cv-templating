@@ -1,13 +1,21 @@
 # TODO: Cambiar datos por someone
+# Listas deben tener un sangrado de dos espacios respecto del nombre de la lista antes del guion.
 family_name: "Ramírez Perea"
 name: "Vicente"
-address: "Watertorenstraat, 25"
+address: "Watertorenstraat 25"
 postal_code: 1560
 village: "Hoeilaart"
 country: Belgium
 telephone: ""
 mobile: "+32 475 51 49 13"
-email:
- - "vicente.ramirez.perea@gmail.com"
- - "vicente.ramirez.perea@outlook.com"
+emails:
+  - "vicente.ramirez.perea@gmail.com"
+  - "vicente.ramirez.perea@outlook.com"
+homepages:
+  - "http://vicente.ramirezperea.es"
+ims:
+  - Skype: VicteAlias
+  - "Google Hangouts": "vicente.ramirez.perea@gmail.com"
+gender: Male
+
 image_file: "picture1.png" #relative to data directory

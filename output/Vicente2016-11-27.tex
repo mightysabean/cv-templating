@@ -5,10 +5,10 @@
 % !TEX spellcheck = en_GB
 
 
-\documentclass[((( doc_options )))]{europasscv}
-((* for package in packages *)) ((* for key, value in package.items() *))\usepackage[(((value)))]{(((key)))}    ((* endfor *))
-((* endfor *))
-((( include_preamble|escape_tex )))
+\documentclass[english,a4paper,nologo]{europasscv}
+ \usepackage[english]{babel}    
+
+
 
 \usepackage{hyperref}
 \usepackage{xcolor}
@@ -31,20 +31,21 @@
 % ============================================
 % BEGIN_FOLD Datos personales
 
-\ecvname{((( name|escape_tex ))) ((( family_name|escape_tex )))}
-\ecvaddress{((( address|escape_tex ))), ((( postal_code ))) ((( village|escape_tex ))) ((( country|escape_tex ))) }
-((* if mobile != '' *))\ecvmobile{((( mobile|escape_tex )))}((* endif *))
-((* if telephone != '' *))\ecvtelephone{((( telephone|escape_tex )))}((* endif *))
-((* for email in emails *))\ecvemail{((( email|escape_tex )))}
-((* endfor *))
-\ecvhomepage{((* for web in homepages *))((( web|escape_tex ))) ((* endfor *))}
+\ecvname{Vicente Ramírez Perea}
+\ecvaddress{Watertorenstraat 25, 1560 Hoeilaart Belgium }
+\ecvmobile{+32 475 51 49 13}
 
-((* for im in ims *))((* for key, value in im.items() *))\ecvim{((( key|escape_tex )))}{((( value|escape_tex )))}((* endfor *))
-((* endfor *))
+\ecvemail{vicente.ramirez.perea@gmail.com}
+\ecvemail{vicente.ramirez.perea@outlook.com}
+
+\ecvhomepage{http://vicente.ramirezperea.es }
+
+\ecvim{Skype}{VicteAlias}
+\ecvim{Google Hangouts}{vicente.ramirez.perea@gmail.com}
+
 \ecvdateofbirth{30 May 1970}
 \ecvnationality{Spanish}
 \ecvgender{Male}
 \ecvpicture[width=3.8cm,trim={0.4cm 0.9cm 0.5cm 0.4cm},clip]{figures/vrpFormal.png}
-
 
 
