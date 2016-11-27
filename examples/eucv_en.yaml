@@ -6,16 +6,16 @@
 config:
   base_dir: '/home/vicente/projects/pro/cv-templating'
   output_dir: 'output'
-  template_file: 'latex/europasscv/europasscv-someone.tex'
+  template_file: 'examples/latex/europasscv/europasscv-someone.tex'
   language: "en"
   type: latex
 doc:
-  config_options:
-    doc_options: "english,a4paper,nologo"
-    packages:
-      - babel: "english"
-      - grffile: "space"
-#    include_preamble_file:
-  personal_info: "data/pers_info.yaml"
-  professional_info: ''
-  academic_info:
+  doc_options: "english,a4paper,nologo"
+  packages:
+    - babel: "english"
+    - grffile: "space"
+#  include_preamble_file:
+data:
+  personal_info: "examples/data/pers_info-en.yaml"
+  #professional_info: ''
+  #academic_info:

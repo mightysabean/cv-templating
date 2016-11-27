@@ -5,6 +5,7 @@ import argparse
 import yaml
 import jinjatex
 import datetime
+import mcv_utils
 
 cml = argparse.ArgumentParser(
     description="This program genrate a .tex or .html file of a Curriculum Vitae using templates mades with jinja "
@@ -22,21 +23,27 @@ if __name__ == "__main__":
     config = yaml.load(open(args.config_file, 'r'))
     cf=config['config']
     lang='.'+cf['language']
-    output_dir= os.path.join(cf['base_dir'],cf['output_dir']) \
-        if cf['output_dir'] != '' or cf['output_dir'] is None \
-        else cf['base_dir']
-    if not os.path.exists(output_dir):
-        os.mkdir(output_dir)
+    output_dir=mcv_utils.output_dir(cf['base_dir'],cf['output_dir'])
+
     doc = config['doc']
-    # Cargar info de yaml de datos adicionales For each entry in dict doc
-    for d in doc:
-        print(d, doc.get(d))
-        if exist file para cada key, sustituir key with the info in file
+    # Cargar info de yaml de datos For each entry in dict data
+    data_files= config['data']
+    data = {}
+    for d in data_files:
+        f = os.path.join(cf['base_dir'],data_files.get(d))
+        # doc={**doc,**yaml.load(open(f,'r'))} # solo python>3.5
+        data = mcv_utils.merge_two_dicts(data, yaml.load(open(f, 'r')))
+    print(data)
 
 
 
     ext = 'tex' if cf['type'] == 'latex' else 'html'
-    outputfile=os.path.join(config.doc.pers_info.name + datetime.datetime.now() + '.' + ext)
-
+    outputfile=os.path.join(output_dir,data['name'] + datetime.datetime.strftime(datetime.datetime.now(),
+                                                                                 "%Y-%m-%d") + '.' + ext)
+    docdata=mcv_utils.merge_two_dicts(doc, data)
+    tex = jinjatex.render_tex(
+        cf['base_dir'],
+        cf['template_file'],  # relativo al directorio base
+        doc=docdata)
     with open(outputfile, 'w') as o:
-        o.write(jinjatex.render_tex(config.config.template, doc=doc))
+        o.write(tex)

@@ -29,9 +29,9 @@ def escape_tex(value):
 
 
 
-def render_tex(template_filename, doc):
+def render_tex(base, template_filename, doc):
     # make new syntax
-    texenv = jinja2.create_jinja_environment()
+    texenv = jinja2.Environment(loader=jinja2.FileSystemLoader(base))
     texenv.block_start_string = '((*'
     texenv.block_end_string = '*))'
     texenv.variable_start_string = '((('
@@ -41,4 +41,4 @@ def render_tex(template_filename, doc):
     texenv.filters['escape_tex'] = escape_tex
     # Render
     template = texenv.get_template(template_filename)
-    template.render(doc)
+    return template.render(doc)
