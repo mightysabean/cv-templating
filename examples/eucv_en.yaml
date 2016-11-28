@@ -1,0 +1,20 @@
+# Main data file for europasscv example
+# Must contain the info used on the template.jinja or links to files where to get it (csv or another yaml).
+# This file has a combination of both and is complete to show the europasscv example. You must
+# modify this file, the internal structure and the external files...
+# Path of files must be relative to root directory of app mcv.py
+config:
+  base_dir: '/home/vicente/projects/pro/cv-templating'
+  output_dir: 'output'
+  template_file: 'examples/latex/europasscv/europasscv-someone.tex'
+  language: "en"
+  type: latex
+doc:
+  doc_options: "english,a4paper,nologo"
+  packages:
+    - babel: "english" # Only packages that is interisting to change without changing template.
+  include_preamble: "" # Better putting in the template directly
+data:
+  personal_info: "examples/data/pers_info-en.yaml"
+  #professional_info: ''
+  #academic_info:
