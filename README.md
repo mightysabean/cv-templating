@@ -74,6 +74,7 @@ The example based on europasscv is subject to the LaTeX Project Public License V
 - example knitr / pandoc
 - tox, behave.
 - Dockerize.
+- Java, freemarker
 
 <!--TODO 
 - make links to final page in github
