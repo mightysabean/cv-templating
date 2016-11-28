@@ -68,7 +68,10 @@ See the [tutorial](tutorial.html) based on these examples showing how to proceed
 The example based on europasscv is subject to the LaTeX Project Public License Version 1.3.
 
 ## Next steps to do
-
+- example html
+- example word
+- example markdown
+- example knitr / pandoc
 - tox, behave.
 - Dockerize.
 
