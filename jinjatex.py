@@ -22,7 +22,6 @@ LATEX_SUBS = (
 )
 
 def escape_tex(value):
-    print(value)
     newval = value
     for pattern, replacement in LATEX_SUBS:
         newval = pattern.sub(replacement, newval)

@@ -16,7 +16,6 @@ homepages:
 ims:
   - Skype: VicteAlias
   - "Google Hangouts": "vicente.ramirez.perea@gmail.com"
-dateofbirth: "30/05/1970"
-nationality: Spanish
 gender: Male
-image_file: "../data/figures/vrpFormal.png" #relative to output directory
+
+image_file: "picture1.png" #relative to data directory

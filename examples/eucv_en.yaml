@@ -12,14 +12,9 @@ config:
 doc:
   doc_options: "english,a4paper,nologo"
   packages:
-    - babel: "english" # Only packages it is interisting to change without changing template.
-  #include_preamble: "" # Better putting in the template directly
-  finalurl: # For reference paper copies to last version of document online.
-    - en: "https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms"
-    - es: ""
-    - fr: ""
-    - nl: ""
+    - babel: "english" # Only packages that is interisting to change without changing template.
+  include_preamble: "" # Better putting in the template directly
 data:
-  pi: "examples/data/pers_info-en.yaml"  # personal info
+  personal_info: "examples/data/pers_info-en.yaml"
   #professional_info: ''
   #academic_info:
