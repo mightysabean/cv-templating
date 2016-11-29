@@ -35,8 +35,6 @@ if __name__ == "__main__":
         data = mcv_utils.merge_two_dicts(data, yaml.load(open(f, 'r')))
     print(data)
 
-
-
     ext = 'tex' if cf['type'] == 'latex' else 'html'
     outputfile=os.path.join(output_dir,data['name'] + datetime.datetime.strftime(datetime.datetime.now(),
                                                                                  "%Y-%m-%d") + '.' + ext)

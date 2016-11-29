@@ -41,10 +41,40 @@
 
 ((* for im in ims *))((* for key, value in im.items() *))\ecvim{((( key|escape_tex )))}{((( value|escape_tex )))}((* endfor *))
 ((* endfor *))
-\ecvdateofbirth{30 May 1970}
-\ecvnationality{Spanish}
-\ecvgender{Male}
+\ecvdateofbirth{((( dateofbirth|escape_tex )))}
+\ecvnationality{((( nationality|escape_tex )))}
+\ecvgender{((( gender|escape_tex )))}
 \ecvpicture[width=3.8cm,trim={0.4cm 0.9cm 0.5cm 0.4cm},clip]{figures/vrpFormal.png}
+\hypersetup{
+	pdfauthor={((( name|escape_tex ))) ((( family_name|escape_tex )))}, %NOTA template: Cambiar autor si toca
+	pdftitle={Curriculum Vitae}, %NOTA template: Título
+	%	pdfkeywords={xxxx}, %TODO: Keywords
+	pdfsubject={},
+	%    plainpages=false,
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq}
+	pdfpagelabels,
+	bookmarksopen=true,
+	bookmarksnumbered=true,
+	unicode=true,
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=OliveGreen, % Me gusta olive o teal
+	linkcolor=blue,
+	anchorcolor=blue,
+	filecolor=cyan,
+	menucolor=red,
+	runcolor=cyan,
+	pdfborder={0 0 0}}%,
+%	hyperfootnotes=true}
+% END_FOLD
 
-
+\begin{document}
+	\fancyfoot[C]{Last digital version of this CV at \\ \url{https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms} }
+	\begin{europasscv}
+		\ecvpersonalinfo
+		
+		
+		\ecvbigitem{Personal statement}{Multidisciplinar profesional ready to apply his knowledge and continue learning and improving.}
+		
+		\ecvsection{Work experience}
 
