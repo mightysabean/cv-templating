@@ -48,7 +48,6 @@
 \hypersetup{
 	pdfauthor={((( persinfo.fullname|escape_tex )))}, 
 	pdftitle={((( pdftitle )))}, 
-	%	pdfkeywords={xxxx}, %TODO: Keywords
 	pdfsubject={},
 	%    plainpages=false,
 	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq}
@@ -71,10 +70,12 @@
 \begin{document}
 	\fancyfoot[C]{Last digital version of this CV at \\ \url{((( finalurl[language][1] )))} }
 	\begin{europasscv}
+% Personal info
 		\ecvpersonalinfo
 				
 		\ecvbigitem{((( bigitem[0]|escape_tex )))}{((( bigitem[1]|escape_tex )))}
 
+% Work experience
 ((* if profinfo is defined *))
 		\ecvsection{Work experience}
 	((* for section in profinfo *))
@@ -85,6 +86,7 @@
 	((* endfor *))
 ((* endif *))
 
+% Education and training
 ((* if acadinfo is defined *))
 		\ecvsection{Education and training}
 	((* for section in acadinfo *))
@@ -95,6 +97,38 @@
 	((* endfor *))
 ((* endif *))
 
+% Personal skills
+((* if persskills is defined *))
+	\ecvsection{Personal skills}
+	((* if persskills.langs is defined *))
+		\ecvmothertongue{((( persskills.langs.mothertongue )))}
+		\ecvlanguageheader
+		((* for other in persskills.langs.others *))
+			\ecvlanguage{((( other.lang )))}{((( other.understanding.listening )))}{((( other.understanding.reading )))}{((( other.speaking.interaction )))}{((( other.speaking.production )))}{((( other.writing )))}
+			\ecvlanguagecertificate{((( other.certificate )))}
+		((* endfor *))
+		\ecvlanguagefooter
+	((* endif *))
+	((* if persskills.communicationskills is defined *))
+		\ecvblueitem{Communication skills}{((( persskills.communicationskills )))}
+	((* endif *))
+	((* if persskills.managerialskills is defined *))
+		\ecvblueitem{Organisational / managerial skills}{((( persskills.managerialskills )))}
+	((* endif *))
+	((* if persskills.jobrelatedskills is defined *))
+		\ecvblueitem{Job-related skills}{((( persskills.jobrelatedskills )))}
+	((* endif *))
+	((* if persskills.digitalcompetence is defined *))
+		\ecvdigitalcompetence{((( persskills.digitalcompetence.informationprocessing )))}{((( persskills.digitalcompetence.communication )))}{((( persskills.digitalcompetence.contentcreation )))}{((( persskills.digitalcompetence.safety )))}{((( persskills.digitalcompetence.problemsolving )))}
+	((* endif *))
+	((* if persskills.otherskills is defined *))
+		\ecvblueitem{Other skills}{((( persskills.otherskills )))}
+	((* endif *))
+	((* if persskills.drivinglicence is defined *))
+		\ecvblueitem{Driving licence}{((( persskills.drivinglicence )))}
+	((* endif *))
+((* endif *))
+
 \end{europasscv}
-% Link a Documento en otras lenguas
+% TODO Link a Documento en otras lenguas
 \end{document}

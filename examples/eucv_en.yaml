@@ -29,3 +29,4 @@ data:
   persinfo: "examples/data/pers_info-en.yaml"
   profinfo: "examples/data/prof_info-en.yaml"
   acadinfo: "examples/data/acad_info-en.yaml"
+  persskills: "examples/data/pers_skills-en.yaml"

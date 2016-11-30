@@ -10,8 +10,10 @@ Update a [Europass CV online](https://europass.cedefop.europa.eu/editors/en/cv/c
 ## Solution
 
 We can manage the generation of the CV quickly from data conveniently stored using templates based in [jinja2](http://jinja.pocoo.org/docs/dev/).
- 
-In this solution, I use data stored in plain text files, facilitating the utilisation of any tool for modifying them. Also, it is very convenient for putting your CV information under control version. 
+
+In this solution, I use data stored in plain text files, facilitating the utilisation of any tool for modifying them. Also, it is very convenient for putting your CV information under control version.
+
+Note: If you only need the europass format (in latex) in only one language, then probably is better that you edit a new document using the document class *europasscv* provided by tex distributions or getting the last version from [github repo](https://github.com/gmazzamuto/europasscv).
 
 ## What do you need
 

@@ -1,0 +1,74 @@
+langs:
+  mothertongue: Spanish
+  others:
+    -
+      lang: English
+      understanding:
+        listening: "B2"
+        reading: "B2"
+      speaking:
+        interaction: "B1"
+        production: "B1"
+      writing: "B2"
+      certificate: "English for science B1 taken in Degree in Physics"
+    -
+      lang: French
+      understanding:
+        listening: "B1"
+        reading: "B1"
+      speaking:
+        interaction: "B1"
+        production: "B1"
+      writing: "B1"
+      certificate: ""
+    -
+      lang: Valencian/Catalan
+      understanding:
+        listening: "B2"
+        reading: "B2"
+      speaking:
+        interaction: "B1"
+        production: "B1"
+      writing: "B1"
+      certificate: "High school degree"
+    -
+      lang: Dutch
+      understanding:
+        listening: "A1"
+        reading: "A1"
+      speaking:
+        interaction: "A1"
+        production: "A1"
+      writing: "A1"
+      certificate: "On-going CVO NT2 basic course"
+communicationskills: |
+  \begin{ecvitemize}
+  \item High communicative and written skills. Broad experience in technical presentations and public speaking. Good ability to adapt to various environments and organisations gained through my ample work experience.
+  \item Improved capacities for data visualisation.
+  \end{ecvitemize}
+managerialskills: |
+  \begin{ecvitemize}
+  \item I have major experience in team management and leadership acquired on developed works (manage 2 teams at the same time between 3 to 6 people each), including management and budgeting of projects.
+  \item I have a good sense of organization due to the works developed for meetings support and follow-up of interest groups in the past years.
+  \item I have a well self-learning culture due to the experience gained through various techniques and my current university studies.
+  \end{ecvitemize}
+jobrelatedskills: |
+  \begin{ecvitemize}
+  \item Ability to analyse complex documentation acquired through my work and self-learning experience.
+  \item I have knowledge of various programming languages and hability to learn new ones and I can adapt quickly to different and new work process. Without calling it \textit{agile}, in the past I worked with simmilar planning models (specially for internal works), althoug for public administration the \textit{v-model} or simpler ones (requirements-aceptance, not even test in some cases) were more often employed.
+  \end{ecvitemize}
+digitalcompetence: # Values for europasscv \ecvBasic \ecvIndependent \ecvProficient \ecvIndependent \ecvBasic (note capilatization)
+  informationprocessing: \ecvProficient
+  communication: \ecvProficient
+  contentcreation: \ecvProficient
+  safety: \ecvProficient
+  problemsolving: \ecvProficient
+otherskills: |
+  \begin{ecvitemize}
+  \item Amateur astronomer.
+  \item Design and implementation of home physics experiments.
+  \item Testing and measuring.
+  \item Robotics and automatisms.
+  \item Great knowledge of the current state of technology consumption.
+  \end{ecvitemize}
+drivinglicence: "A, B"
