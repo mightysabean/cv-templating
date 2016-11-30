@@ -85,6 +85,16 @@
 	((* endfor *))
 ((* endif *))
 
+((* if acadinfo is defined *))
+		\ecvsection{Education and training}
+	((* for section in acadinfo *))
+		\ecvtitlelevel{((( section.period )))}{((( section.title )))}{((( section.level )))}
+		((* for center in section.centers *))
+			\ecvitem{((( center.left )))}{((( center.right )))}
+		((* endfor *))
+	((* endfor *))
+((* endif *))
+
 \end{europasscv}
 % Link a Documento en otras lenguas
 \end{document}

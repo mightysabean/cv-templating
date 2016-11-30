@@ -28,4 +28,4 @@ doc:
 data:
   persinfo: "examples/data/pers_info-en.yaml"
   profinfo: "examples/data/prof_info-en.yaml"
-  #academic_info:
+  acadinfo: "examples/data/acad_info-en.yaml"
