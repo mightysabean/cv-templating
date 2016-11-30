@@ -1,0 +1,22 @@
+publications: |
+  \begin{ecvitemize}
+  \item V. Ramírez, E. Vargas (2010). Sobre el acceso a la información obtenida o elaborada por las Administraciones Públicas, la medición de la calidad de las observaciones y la creación de repositorios distribuidos de acceso centralizado. Congreso Nacional de Medio Ambiente -CONAMA 10, November 2010. ISBN 978-84-614-6112-7
+  \item E. Vargas, V. Ramírez (2010). La producción de bioetanol en Brasil y sus impactos medioambientales e hídricos. Congreso Nacional de Medio Ambiente -CONAMA 10, November 2010. ISBN 978-84-614-6112-7
+  \end{ecvitemize}
+  Named in the acknowledgments for revisions, managed data, and figures, generated graphs and tables:\newline
+  \begin{ecvitemize}
+  \item Escribano Francés, G., Quevauviller, P., San Martín González, E., Vargas Amelin, E., in review. Climate change policy and water resources in the EU and Spain. Environmental Science \& Policy.
+  \item Estrela Monreal, T., Vargas Amelin, E., 2012. Drought Management Plans in the European Union. The Case of Spain. Water Resour Manage 26, 1537–1553. doi:10.1007/s11269-011-9971-2.
+  \item Vargas Amelin, E., Pindado, P., 2014. The challenge of climate change in Spain: Water resources, agriculture and land. Journal of Hydrology, Climatic change impact on water: Overcoming data and science gaps 518, Part B, 243–249. doi:10.1016/j.jhydrol.2013.11.035.
+  \item Vargas Amelin, E., 2016. Effects of Climate Change in Mediterranean Water Resources and Their Economic Implications. UNED and Vrije Universiteit Brussels, Madrid and Brussels.
+  \end{ecvitemize}
+other: |
+  Individual economic supporter of:\newline
+  \begin{ecvitemize}
+  \item OpenCourseWare MIT.
+  \item Wikipedia.
+  \item Creative Commons Modelica Book on Kickstarter.
+  \end{ecvitemize}
+computerskills: |
+  In the last page of this CV there is a summary of the tools, languages and programs I have used in past years (\cref{fig}). %It is a short version with a link to a document with a more extended version.
+  Currently, my personal computer system is composed by one laptop with Ubuntu 16.04 with three VM (Ubuntu Mate 16.04 in French for C/C++ related development, Ubuntu 16.04 for Java development, and Windows 8.1 Pro), one server over Ubuntu 16.04 (for Gitlab and Jenkins over docker, and file server for the local network), one laptop with Windows 8.1, one Mac Mini, one Ubuntu Server 16.04 in remote location (for backup and intensive computation) and one Linode (virtual server with public IP for relay between networks and mobiles, VPN and test). Also, the system has one Raspberry Pi in the remote location for Wake on LAN the remote server, and two Raspberry Pi 2 at home for experimentation. The system can be manageable by one iPad, one iPhone and a phone with Android.
