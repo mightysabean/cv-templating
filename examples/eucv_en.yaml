@@ -10,6 +10,7 @@ config:
   template_file: 'examples/latex/europasscv/europasscv-someone.tex'
   language: "en"
   type: latex
+  person_name_key_for_filename: ["persinfo", "fullname"]
 doc:
   doc_options: "english,a4paper,nologo"
   packages:
