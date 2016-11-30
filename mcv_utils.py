@@ -29,3 +29,9 @@ def merge_dicts(*dict_args):
     for dictionary in dict_args:
         result.update(dictionary)
     return result
+
+def getVariableFromList(search_dict, l):
+    dc = search_dict.copy()
+    for k in l:
+        dc = dc.get(k)
+    return dc

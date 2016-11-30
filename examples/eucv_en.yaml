@@ -6,22 +6,26 @@
 # No debe tener lineas comentadas entre variables porque el parser puede dar error.
 config:
   base_dir: '/home/vicente/projects/pro/cv-templating'
-  output_dir: 'output'
+  output_dir: '../../cv/latex'
   template_file: 'examples/latex/europasscv/europasscv-someone.tex'
-  language: "en"
   type: latex
-  person_name_key_for_filename: ["persinfo", "fullname"]
+  person_name_for_filename: "VicenteRamirezPerea"
 doc:
   doc_options: "english,a4paper,nologo"
+  language: "en"
   packages:
     - babel: "english" # Only packages that is interisting to change without changing template.
-  finalurl: # For reference paper copies to last version of document online.
-    - en: "https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms"
-    - es: ""
-    - fr: ""
-    - nl: ""
+  finalurl: # For reference paper copies to last version of document online. Write language names on language of document. The first entry corresponds to language document.
+    en: [English, "https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms"]
+    es: [Spanish, ""]
+    fr: [French, ""]
+    nl: [Dutch, ""]
   include_preamble: "" # Better putting in the template directly
+  pdftitle: "Curriculum vitae"
+  bigitem:
+    - "Personal statement"  # Could be 'Job to apply'
+    - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
 data:
   persinfo: "examples/data/pers_info-en.yaml"
-  #professional_info: ''
+  profinfo: "examples/data/prof_info-en.yaml"
   #academic_info:

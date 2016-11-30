@@ -17,17 +17,13 @@ cml.add_argument("config_file", help="File .yaml with specifications of the data
                                 "contents. You have various examples of config files in the directory examples.")
 
 
-def getVariableFromList(search_dict, l):
-    dc = search_dict.copy()
-    for k in l:
-        dc = dc.get(k)
-    return dc
+
 
 if __name__ == "__main__":
     args=cml.parse_args()
     config = yaml.load(open(args.config_file, 'r'))
     cf=config['config']
-    lang='.'+cf['language']
+    #lang='.'+cf['language']
     output_dir=mcv_utils.output_dir(cf['base_dir'],cf['output_dir'])
 
     doc = config['doc']
@@ -41,7 +37,7 @@ if __name__ == "__main__":
     docdata = mcv_utils.merge_two_dicts(doc, data)
 
 
-    fullnameperson=getVariableFromList(search_dict=docdata,l=cf['person_name_key_for_filename'])
+    fullnameperson=cf['person_name_for_filename']
 
     ext = 'tex' if cf['type'] == 'latex' else 'html'
     outputfile=os.path.join(output_dir,fullnameperson + datetime.datetime.strftime(datetime.datetime.now(),
