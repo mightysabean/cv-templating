@@ -1,26 +1,27 @@
--
-  title: |
-    Degree in Physics (estimated end date 2017, 232 of 260 ECS completed~89\,\%)
-  period: "2001--"
-  level: |
-    ISCED~6, EQF~6 when finish. Currently equivalent to EQF~5 (Completed first three years, attested by
-    \href{https://drive.google.com/open?id=0B3n_KOODBfifdWZpODF6aVFOc0k}{certificate}).
+acadmain:
+  -
+    title: 
+      tex: |
+        Degree in Physics
+      text: |
+
+      html: |
+        Degree in Physics
+    period: "2001--"
+    level:
+      tex: |
+        ISCED~6, EQF~6 when finish. At present, equivalent to EQF~5
+      html: |
+        ISCED&nbsp;6, EQF&nbsp;6 when finish. At present, equivalent to EQF&nbsp;5
+    notes: 
+      tex: |
+        Estimated completion in 2017. Currently, 232 of 260~ECS completed~(89\,\%)
+      html: "Estimated completion in 2017. Currently, 232 of 260&nbsp;ECS completed (89&nbsp;%)"
+    certificate: ["Completed first three years, attested by certificate","https://drive.google.com/open?id=0B3n_KOODBfifdWZpODF6aVFOc0k"]
+    center: "Universidad Nacional de Educación a Distancia, UNED, Madrid (Spain)"
+acadother:
+  allcertificates: "https://drive.google.com/open?id=0B3n_KOODBfifNnpmOVNkVzRxZVU"
   centers:
-    -
-      left: ""
-      right: "Universidad Nacional de Educación a Distancia, UNED, Madrid"
--
-  title: |
-    Other courses, seminars and workshops
-  period: ""
-  level: ""
-  centers:
-    -
-      left: ""
-      right: |
-        Note: in the list below, \textit{certificate} or \textit{Statement of Accomplishment} indicate a hyperlink to
-        a digital document. If this CV is received in paper, all the certificates can be obtained through the following
-        link: \url{https://drive.google.com/open?id=0B3n_KOODBfifNnpmOVNkVzRxZVU}
     -
       left: "Universidad Internacional Menéndez Pelayo (Spain)"
       right: |

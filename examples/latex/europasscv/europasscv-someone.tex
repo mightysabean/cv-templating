@@ -132,13 +132,28 @@
 
 % Education and training
 ((* if acadinfo is defined *))
-		\ecvsection{Education and training}
-	((* for section in acadinfo *))
-		\ecvtitlelevel{((( section.period )))}{((( section.title )))}{((( section.level )))}
-		((* for center in section.centers *))
+	\ecvsection{Education and training}
+	((* if acadinfo.acadmain is defined *))
+		((* for section in acadinfo.acadmain *))
+			\ecvtitlelevel{((( section.period )))}{((( section.title.tex )))}{((( section.level.tex )))}
+			\ecvitem{}{((( section.center )))}
+			((* if section.notes.tex is defined *))
+				\ecvitem{}{((( section.notes.tex ))).}
+			((* endif *))
+			((* if section.certificate is defined *))
+				\ecvitem{}{\href{((( section.certificate[1] )))}{((( section.certificate[0] -)))}.}
+			((* endif *))
+		((* endfor *))
+	((* endif *))
+	%---------------------------------------------------
+	((* if acadinfo.acadother is defined *))
+		\ecvtitlelevel{}{Other courses, seminars and workshops}{}
+		\ecvitem{}{Note: in the list below, \textit{certificate} or \textit{Statement of Accomplishment} indicate a hyperlink to
+          a digital document. If this CV is received in paper, all the certificates can be obtained through the following link \url{((( acadinfo.acadother.allcertificates )))}}
+		((* for center in acadinfo.acadother.centers *))
 			\ecvitem{((( center.left )))}{((( center.right )))}
 		((* endfor *))
-	((* endfor *))
+	((* endif *))
 ((* endif *))
 
 % Personal skills
@@ -229,5 +244,6 @@
 \end{tabular}
 \end{figure}
 \end{europasscv}
-% TODO Link a Documento en otras lenguas
+% TODO Links a Documentos en otras lenguas
+% TODO links a certificados
 \end{document}
