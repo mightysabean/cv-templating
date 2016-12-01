@@ -33,7 +33,7 @@ if __name__ == "__main__":
     for d in data_files:
         f = os.path.join(cf['base_dir'],data_files.get(d))
         data.update({d: yaml.load(open(f, 'r'))})
-    print(data)
+    #print(data)
     docdata = mcv_utils.merge_two_dicts(doc, data)
 
 
