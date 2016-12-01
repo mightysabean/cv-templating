@@ -33,7 +33,7 @@
 % BEGIN_FOLD Datos personales
 
 \ecvname{((( persinfo.fullname|escape_tex )))}
-\ecvaddress{((( persinfo.address|escape_tex ))), ((( persinfo.postal_code ))) ((( persinfo.village|escape_tex ))) ((( persinfo.country|escape_tex ))) }
+\ecvaddress{((( persinfo.address|escape_tex ))), ((( persinfo.postal_code ))) ((( persinfo.village|escape_tex ))) ( (((- persinfo.country|escape_tex -))) ) }
 ((* if persinfo.mobile != '' *))\ecvmobile{((( persinfo.mobile|escape_tex )))}((* endif *))
 ((* if persinfo.telephone != '' *))\ecvtelephone{((( persinfo.telephone|escape_tex )))}((* endif *))
 ((* for email in persinfo.emails *))\ecvemail{((( email|escape_tex )))}
@@ -81,24 +81,52 @@
 		\ecvsection{Work experience}
 	((* for section in profinfo *))
 		\ecvtitle{((( section.period|escape_tex )))}{((( section.company|escape_tex )))}
-		((* for project in section.projects *))
-			\ecvitem{\textit{((( project.technologies )))}((* if project.figure is defined *))\newline
-				\includegraphics[]{((( project.figure )))}((* endif *))}{
-			\textbf{((( project.name )))}. 
-			((* if project.time is defined and project.time != '' *))( ((( project.time ))) ). ((* endif *))
-			((* if project.description is defined *))
-				((( project.description ))). 
-			((* else *))((* if project.maindesc is defined *))
-				((( project.maindesc ))) \newline
+		((* if section.infocompany is defined and section.infocompany != '' *))
+			\ecvitem{}{((( section.infocompany )))}
+		((* endif -*))
+		((*- if section.certificate is defined and section.certificate != '' *))
+			\ecvitem{}{ \href{((( section.certificate[1] )))}{((( section.certificate[0] )))}}
+		((* endif *))
+		((* if section.activities is defined and section.activities != '' *))
+			\ecvitem{Main activities and responsibilities:}{
 				\begin{ecvitemize}
-					((* for l in project.detaildesc *))
-					\item ((( l )))
-					((* endfor *))
-				\end{ecvitemize}((* endif *))
-			((* endif *))
-			((* if project.mainresponsabilities is defined and project.mainresponsabilities != '' *))\textit{Main responsabilities: ((( project.mainresponsabilities ))).}((* endif *))
-			((* if project.urls is defined *)) Refs.: ((* for url in project.urls *))((( comma() )))\href{((( url[1] )))}{((( url[0] )))}((* endfor *))((* endif *))}
-		((* endfor *))
+				((* for i in section.activities *))\item ((( i )))
+				((* endfor *))
+				\end{ecvitemize}
+				}
+		((* endif *))
+		((* if section.projects is defined *))
+		\ecvitem{Main projects}{}
+			((* for project in section.projects *))
+				((* if project.name is defined *))
+					\ecvitem{\textit{((( project.technologies )))}((* if project.figure is defined *))\newline
+						\includegraphics[]{((( project.figure )))}((* endif *))}{-
+					\textbf{((( project.name )))}. 
+				
+					((*- if project.time is defined and project.time != '' *)) ( (((- project.time -))) ). ((* endif *))
+					((* if project.description is defined and project.description != '' *))
+						((( project.description ))). 
+					((* else *))((* if project.maindesc is defined *))
+						((( project.maindesc ))) \newline
+						\begin{ecvitemize}
+							((* for l in project.detaildesc *))
+							\item ((( l )))
+							((* endfor *))
+						\end{ecvitemize}((* endif *))
+					((* endif *))
+					((* if project.mainresponsabilities is defined and project.mainresponsabilities != '' *))\textit{Main responsabilities}: ((( project.mainresponsabilities ))).((* endif *))
+					((* if project.urls is defined *)) 
+						Refs.: 
+						((* if project.urls|length > 1 *))
+							((* for url in project.urls *))((( comma() )))\href{((( url[1] )))}{((( url[0] )))}((* endfor *))
+						((* else *))
+							((* for url in project.urls *))\href{((( url[1] )))}{((( url[0] )))}((* endfor *))
+						((* endif *))
+					((* endif *))
+					}
+				((* endif *))
+			((* endfor *))
+		((* endif *))
 	((* endfor *))
 ((* endif *))
 

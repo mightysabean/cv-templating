@@ -6,6 +6,7 @@
 #urls:
 #  -
 - company: "Personal projects"
+  infocompany: ""
   period: "June 2014 -- Present"
   projects:
     -
@@ -70,150 +71,200 @@
 
 -
   company: "General manager at Ramper-Arqui, S. L. (Spain)"
+  infocompany: "Currently dormant company (without activity)."
+  activities:
+    - "Required activities dictated by law (preparation and presentation of corporate income tax and audit deposits)."
   period: "June 2011 -- Present"
-  projects:
-    -
-      left: ""
-      right: "Currently dormant company (without activity)."
-    -
-      left: ""
-      right: "Required activities dictated by law (preparation and presentation of corporate income tax and audit deposits)."
+
 -
   company: "Various positions at Evaluación de Recursos Naturales, S. A."
+  infocompany: "Environmental consulting firm. Valencia and Madrid (Spain)."
+  certificate: ["Certificate of employment", "https://drive.google.com/open?id=0B3n_KOODBfifV2R1b1VRazM4M00"]
+  activities:
+    - "Analyst, programmer, database analyst, web developer."
+    - "GIS user and developer."
+    - "Software Trainer."
+    - "Network administrator, computer maintainer."
+    - "Team manager."
+    - "Project budgeting."
+    - "Internal team quality reviewer."
+    - "Relations with customers."
+    - "Assistance to customers."
+    - "Water technician."
+    - "Drafting and development of technical reports."
+    - "Examine, study, extract and update legal reports and collaborate in drawing up law proposals."
+    - "Impart and disseminate results of studies."
+    - "Preparation and coordination of national and international tenders for open calls."
+    - "Assistance on drafting Terms of Reference for open calls and private contracts."
+    - "Photographer, cameraman, digital edition of contents for meetings and conferences."
   period: "July 2006 -- June 2014"
   projects:
     -
-      left: ""
-      right: |
-        \textbf{Environmental consulting firm}. Valencia and Madrid (Spain).
-        \href{https://drive.google.com/open?id=0B3n_KOODBfifV2R1b1VRazM4M00}{Certificate of employment}.
+      name: "Technical assistance to DG Water of the Spanish Ministry of Environment for coordinating the development of River Basin Management Plans"
+      description: ""
+      time: "2006-2012"
+      technologies: ""
+      mainresponsabilities: ""
+
     -
-      left: "Main activities and responsibilities:"
-      right: |
-        \begin{ecvitemize}
-        \item Analyst, programmer, database analyst, web developer.
-        \item GIS user and developer.
-        \item Software Trainer.
-        \item Network administrator, computer maintainer.
+      name: "PROTAGUS: Pilot project on water balances in the Tagus River Basin"
+      description: "EU funded grant"
+      time: "2013--2014, I left the company before the project was finished"
+      technologies: ""
+      mainresponsabilities: ""
 
-        \item Team manager.
-        \item Project budgeting.
-        \item Internal team quality reviewer.
-
-        \item Relations with customers.
-        \item Assistance to customers.
-
-        \item Water technician.
-
-        \item Drafting and development of technical reports.
-        \item Examine, study, extract and update legal reports and collaborate in drawing up law proposals.
-        \item Impart and disseminate results of studies.
-
-        \item Preparation and coordination of national and international tenders for open calls.
-        \item Assistance on drafting Terms of Reference for open calls and private contracts.
-
-        \item Photographer, cameraman, digital edition of contents for meetings and conferences.
-        \end{ecvitemize}
     -
-      left: "Main projects:"
-      right: |
-        \begin{ecvitemize}
-        \item Technical assistance to DG Water of the Spanish Ministry of Environment for coordinating the development of River Basin Management Plans (2006-2012).
-        \item PROTAGUS: Pilot project on water balances in the Tagus River Basin (2013-2014, I left the company before finishing the project). EU funded grant.
-        \item Preparatory Action on Development of Prevention Activities to Halt Desertification in Europe Halting desertification in Europe Halt-Hucar-Des (2011-2012). EU funded grant. \href{http://ec.europa.eu/environment/water/blueprint/pdf/HJD_Final\%20Technical\%20Report.pdf}{Final document.} %Monitoring and evaluation of data gathering and assessment. Coordination of the support from the rest of the technical team.
-        \item Technical assistance in international affairs of the DG Water of the Spanish Ministry of Environment (2006-2011).
-        \item Technical assistance to the General Secretariat of the National Water Council (2006-2011).
-        \item Collection of new information and update of the Reclaimed Water Plants database for the Hydrographic Studies Center, CEDEX Spain (2011-2014).
-        \item Technical assistance to the Water Unit of DGENV of the European Commission with meeting and documents preparation related to Water Industry Directives (2013-2014).
-        \end{ecvitemize}
+      name: "Preparatory Action on Development of Prevention Activities to Halt Desertification in Europe Halting desertification in Europe Halt-Hucar-Des"
+      description: "EU funded grant"
+      time: "2011--2012"
+      technologies: ""
+      mainresponsabilities: |
+        Monitoring and evaluation of data gathering and assessment, realization of water balance model, testing and
+        calibrating the model, analysis of results, generation of tables, figures, maps and graphs, coordination of
+        the support from the rest of the technical team.
+      urls:
+        - ["Final document","http://ec.europa.eu/environment/water/blueprint/pdf/HJD_Final Technical Report.pdf"]
+    -
+      name: "Technical assistance in international affairs of the DG Water of the Spanish Ministry of Environment"
+      description: ""
+      time: " 2006--2011"
+      technologies: ""
+      mainresponsabilities: ""
+
+    -
+      name: "Technical assistance to the General Secretariat of the National Water Council"
+      description: ""
+      time: "2006--2011"
+      technologies: ""
+      mainresponsabilities: ""
+    -
+      name: "Collection of new information and update of the Reclaimed Water Plants database for the Hydrographic Studies Center, CEDEX Spain"
+      description: ""
+      time: "2011--2014"
+      technologies: ""
+      mainresponsabilities: ""
+    -
+      name: "Technical assistance to the Water Unit of DGENV of the European Commission with meeting and documents preparation related to Water Industry Directives"
+      description: ""
+      time: "2013--2014"
+      technologies: ""
+      mainresponsabilities: ""
+
 -
   company: "Various positions at Agrupación Mediterránea de Ingeniería, S. A."
+  infocompany: "Engineering consulting firm. Valencia (Spain)."
+  certificate: ["Certificate of employment", "https://drive.google.com/open?id=0B3n_KOODBfifcG5sM0VScW9qcDQ"]
+  activities:
+    -  Analyst, programmer, GIS developer, database analyst and developer.
+    -  Relations with customers and project partners.
+    -  Team manager (simultaneously of two different kinds of teams shared between projects).
+    -  Water technician.
+    -  Project budgeting.
+    -  Internal team quality reviewer.
+    -  Drafting and development of technical reports.
+    -  Assistance to Department Director.
+    -  Preparation and coordination of national and international tenders for open calls.
+    -  Assistance on drafting Terms of Reference for open calls and private contracts.
   period: "January 1999 -- June 2006"
   projects:
     -
-      left: ""
-      right: |
-        \textbf{Engineering consulting firm}. Valencia (Spain).
-        \href{https://drive.google.com/open?id=0B3n_KOODBfifcG5sM0VScW9qcDQ}{Certificate of employment}.
+      name: "Implementation and control of the Water Quality Network in the Jucar River Basin Authority"
+      description: ""
+      time: "1999--2006"
     -
-      left: "Main activities and responsibilities:"
-      right: |
-        \begin{ecvitemize}
-        \item Analyst, programmer, GIS developer, database analyst and developer.
-        \item Relations with customers and project partners.
-        \item Team manager (simultaneously of two different kinds of teams shared between projects).
-        \item Water technician.
-        \item Project budgeting.
-        \item Internal team quality reviewer.
-        \item Drafting and development of technical reports.
-        \item Assistance to Department Director.
-        \item Preparation and coordination of national and international tenders for open calls.
-        \item Assistance on drafting Terms of Reference for open calls and private contracts.
-        \end{ecvitemize}
+      name: "Waste Water database and application for processing administrative files"
+      description: ""
+      time: "2003--2006"
     -
-      left: "Main projects:"
-      right: |
-        \begin{ecvitemize}
-        \item Implementation and control of the Water Quality Network in the Jucar River Basin Authority (1999-2006).
-        \item Waste Water database and application for processing administrative files (2003-2006).
-        \item Technical assistance for tracking projects and files in the Jucar River Basin Authority related to the ERDF programme (2000-2006). Development of a system for digitalising and management of documentation, providing a work flow of associated tasks.
-        \item Implementation of the Permanent Technical Secretariat of the Mediterranean Network of Basins Organisation (MENBO) (2003 to 2006).
-        \item Works for editing the Flood Risk Action Plan of the Valencian Region (2002-2003).
-        \item Software application to manage work certifications and bills (2003).
-        \item Software application to manage staff allocated work time by project and activity providing a link with the official accounting (2004-2005, internal work).
-        \item Software application to scan and index press releases information (2004).
-        \item Accounting and analysis on the different databases and software application existing in the Júcar River Basin Authority, with emphasis in duplicity (2005).
-        \item Software application for tracking administrative tasks related to public works files (2004-2005).
-        \item Software application for tracking budget of ERDF programme projects (2005-2006).
-        \item Software system for distributed parallel batch calculation using Hydrologic Modeling System (HEC-HMS) (2003).
-        \end{ecvitemize}
+      name: "Technical assistance for tracking projects and files in the Jucar River Basin Authority related to the ERDF programme"
+      description: "Development of a system for digitalising and management of documentation, providing a work flow of associated tasks"
+      time: "2000--2006"
+    -
+      name: "Implementation of the Permanent Technical Secretariat of the Mediterranean Network of Basins Organisation (MENBO)"
+      description: ""
+      time: "2003--2006"
+    -
+      name: "Works for editing the Flood Risk Action Plan of the Valencian Region"
+      description: ""
+      time: "2002--2003"
+    -
+      name: "Software application to manage work certifications and bills"
+      description: ""
+      time: "2003"
+    -
+      name: "Software application to manage staff allocated work time by project and activity providing a link with the official accounting"
+      description: "Internal work"
+      time: "2004--2005"
+    -
+      name: "Software application to scan and index press releases information"
+      description: ""
+      time: "2004"
+    -
+      name: "Accounting and analysis on the different databases and software application existing in the Júcar River Basin Authority, with emphasis in duplicity"
+      description: ""
+      time: "2005"
+    -
+      name: "Software application for tracking administrative tasks related to public works files"
+      description: ""
+      time: "2004--2005"
+    -
+      name: "Software application for tracking budget of ERDF programme projects"
+      description: ""
+      time: "2005--2006"
+    -
+      name: "Software system for distributed parallel batch calculation using Hydrologic Modeling System (HEC-HMS)"
+      description: ""
+      time: "2003"
 -
   company: "Various positions as freelancer"
+  infocompany: "Valencia and Madrid (Spain)."
   period: "March 1996 -- January 1999"
+  activities: 
+    -  Team leader.
+    -  Programmer, network administrator, computer maintainer, technical support.
+    -  Software Trainer.
+    -  3D modeler, designer.
   projects:
+    - 
+      name: "Develop and provide training on MS Project applied to civil engineering works to staff of Rover Alcisa S. A. company"
+      time: "1997--1998"
+      client: "Rover Alcisa, S. A."
+    - 
+      name: "Design and implement computer network and connections with remote offices"
+      time: "1998"
+      client: "Rover Alcisa, S. A."
     -
-      left: ""
-      right: "Valencia and Madrid (Spain)."
+      name: "Technical coordinator in the preparation of technical documentation for bids to contracts of civil and building works" 
+      time: "1996--1999"
+      client: "Rover Alcisa, S. A."
     -
-      left: "Main activities and responsibilities:"
-      right: |
-        \begin{ecvitemize}
-        \item Team leader.
-        \item Programmer, network administrator, computer maintainer, technical support.
-        \item Software Trainer.
-        \item 3D modeler, designer.
-        \end{ecvitemize}
+      name: "Assistance in the calculus of structures of edification" 
+      time: "1996--1999"
+      client: "Various customers"
     -
-      left: "Main projects:"
-      right: |
-        \begin{ecvitemize}
-        \item Develop and provide training on MS Project applied to civil engineering works to staff of Rover Alcisa S. A. company (1997-1998). For Rover Alcisa, S. A.
-        \item Design and implement computer network and connections with remote offices (1998). For Rover Alcisa, S. A.
-        \item Technical coordinator in the preparation of technical documentation for bids to contracts of civil and building works (1996-1999). For Rover Alcisa, S. A.
-        \item Assistance in the calculus of structures of edification (1996-1999). Various customers.
-        \item Develop a software application for study the resistance of concrete frames (1996). For Universidad Politécnica de Valencia.
-        \end{ecvitemize}
+      name: "Develop a software application for study the resistance of concrete frames"
+      time: "1996"
+      client: "Universidad Politécnica de Valencia"
 -
   company: "Various positions as student intern of Universidad Politécnica de Valencia"
+  infocompany: "Valencia (Spain)"
   period: "May 1992 -- February 1996"
+  activities:
+    - Programmer, network administrator, computer maintainer, technical support.
+    - Software Trainer.
   projects:
     -
-      left: ""
-      right: "Valencia (Spain)."
+      name: "Development of an automatic system to control constant humidity and temperature in test probes of concrete" 
+      time: "1995"
     -
-      left: "Main activities and responsibilities:"
-      right: |
-        \begin{ecvitemize}
-        \item Programmer, network administrator, computer maintainer, technical support.
-        \item Software Trainer.
-        \end{ecvitemize}
+      name: "Development of an automatic system to pull-out test on steel bars" 
+      time: "1994"
     -
-      left: "Main projects:"
-      right: |
-        \begin{ecvitemize}
-        \item Development of an automatic system to control constant humidity and temperature in test probes of concrete (1995).
-        \item Development of an automatic system to pull-out test on steel bars (1994).
-        \item Collaboration in the development of alveolar plates data logging system (1992-1994).
-        \item Collaboration in the development of postprocessing results of plates foundation software (1993).
-        \item Collaboration on the design, development and implementation of fatigue dynamic tests of concrete sleepers (1994).
-        \end{ecvitemize}
+      name: "Collaboration in the development of alveolar plates data logging system"
+      time: "1992--1994"
+    -
+      name: "Collaboration in the development of postprocessing results of plates foundation software"
+      time: "1993"
+    -
+      name: "Collaboration on the design, development and implementation of fatigue dynamic tests of concrete sleepers" 
+      time: "1994"
