@@ -4,6 +4,7 @@
 % !TEX program = pdflatex
 % !TEX spellcheck = en_GB
 
+((* set comma = joiner(", ") *))
 
 \documentclass[((( doc_options )))]{europasscv}
 ((* for package in packages *)) ((* for key, value in package.items() *))\usepackage[(((value)))]{(((key)))}    ((* endfor *))
@@ -81,7 +82,22 @@
 	((* for section in profinfo *))
 		\ecvtitle{((( section.period|escape_tex )))}{((( section.company|escape_tex )))}
 		((* for project in section.projects *))
-			\ecvitem{((( project.left )))}{((( project.right )))}
+			\ecvitem{\textit{((( project.technologies )))}((* if project.figure is defined *))\newline
+				\includegraphics[]{((( project.figure )))}((* endif *))}{
+			\textbf{((( project.name )))}. 
+			((* if project.time is defined and project.time != '' *))( ((( project.time ))) ). ((* endif *))
+			((* if project.description is defined *))
+				((( project.description ))). 
+			((* else *))((* if project.maindesc is defined *))
+				((( project.maindesc ))) \newline
+				\begin{ecvitemize}
+					((* for l in project.detaildesc *))
+					\item ((( l )))
+					((* endfor *))
+				\end{ecvitemize}((* endif *))
+			((* endif *))
+			((* if project.mainresponsabilities is defined and project.mainresponsabilities != '' *))\textit{Main responsabilities: ((( project.mainresponsabilities ))).}((* endif *))
+			((* if project.urls is defined *)) Refs.: ((* for url in project.urls *))((( comma() )))\href{((( url[1] )))}{((( url[0] )))}((* endfor *))((* endif *))}
 		((* endfor *))
 	((* endfor *))
 ((* endif *))

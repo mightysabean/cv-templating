@@ -1,58 +1,73 @@
+#name: ""
+#description: ""
+#time: ""
+#technologies: ""
+#mainresponsabilities: ""
+#urls:
+#  -
 - company: "Personal projects"
   period: "June 2014 -- Present"
   projects:
     -
-      left: |
-        \textit{Technologies: LaTeX, TexStudio, pdftk, Zotero, biblatex, Arara, Jenkins, git, bitbucket}
-      right: |
-        \textbf{PhD Thesis edition in Latex and management of bibliography}.
-        \url{https://drive.google.com/open?id=0B3n_KOODBfifYVI0UDFIaGNwRHc}.
-        More than 400 references managed, finally 267 used (\url{https://www.zotero.org/groups/thesis_elisa_vargas}).
+      name: "PhD Thesis edition in Latex and management of bibliography"
+      description: "More than 400 references managed, finally 267 used"
+      time: "February -- July 2016"
+      technologies: "LaTeX, TexStudio, pdftk, Zotero, biblatex, Arara, Jenkins, git, bitbucket"
+      mainresponsabilities: ""
+
+      urls:
+        - [thesis,"https://drive.google.com/open?id=0B3n_KOODBfifYVI0UDFIaGNwRHc"]
+        - [bibliography,"https://www.zotero.org/groups/thesis_elisa_vargas"]
     -
-      left: |
-        \textit{Technologies: Python, yaml, jinja2 (templating html), html, Google Analytics, pandoc, markdown,
-        git, Bitbucket, Github}
-      right: |
-        \textbf{Another static website generator (ongoing project)}. Migrating an existing website to HTML5 induced the
+      name: "Another static website generator"
+      description: "Migrating an existing website to HTML5 induced the
         development of the project. The aim is to create a script to be used by people with little knowledge of
         programming for generating and deploying a website. They would only need to know basic HTML (or markdown).
-        Based in templates and directory structure. \url{git@github.com:victe/astawebsige.git}.
+        Based in templates and directory structure"
+      time: "Ongoing project"
+      technologies: "Python, yaml, jinja2 (templating html), html, Google Analytics, pandoc, markdown,
+        git, Bitbucket, Github"
+      mainresponsabilities: ""
+      urls:
+        - [github repo, "git@github.com:victe/astawebsige.git"]
     -
-      left: |
-        \textit{Technologies: LaTeX, Texstudio, Python, yaml, jinja2 (templating LaTeX), git, Gitlab, Github}
-      right: |
-        \textbf{Automatic CV generator -europass included- (ongoing project)}. Completing a europass has limitations,
-        even with the Office templates (MS, Libre or Open). Especially if you want to reuse your data in other format,
+      name: "Automatic CV generator -europass included-"
+      description: "Completing a Europass has limitations,
+        even with the Office templates (MS, Libre or Open). Especially if you want to reuse your data in another format,
         or in different languages. The solution adopted is templating with jinja2 (for LaTeX or HTML). Other
-        possibilities are using Sweave + pandoc or knitr. For the europass format there are already various document
+        possibilities are to use Sweave + knitr or Java + Freemarker. For the europass format there are already various document
         classes in CTAN. The system stores data in yaml files, but it is easily trasformable to databases storage. I
-        selected yaml because it is easily modifiable in any place and it is not app dependant.
-        \url{git@github.com:victe/cv-templating.git}
+        selected yaml because it is easily modifiable in any place and it is not app dependant."
+      time: ""
+      technologies: "LaTeX, Texstudio, Python, yaml, jinja2 (templating LaTeX), git, Gitlab, Github"
+      mainresponsabilities: ""
+      urls:
+        - ["github repo", "git@github.com:victe/cv-templating.git"]
     -
-      left: |
-        \textit{Technologies: LaTeX, Texstudio, EjsS platform (formerly EJS), Java~8, git, Gitlab, Github}
-      right: |
-        \textbf{Simulations of experiments using Java}. Final project for my degree in physics (ongoing project,
-        Nov 2016 to Jun 2017). The objective is to build some virtual experiments of elastic pendulum as example of
-        chaotic systems using Easy Java Simulations platform (EjsS).
+      name: "Simulations of experiments using Java"
+      description: "Final project for my degree in physics. The objective is to build some virtual experiments of elastic pendulum as example of
+        chaotic systems using Easy Java Simulations platform (EjsS)"
+      time: "Ongoing project, Nov 2016 to Jun 2017)"
+      technologies: "EjjS platform (formerly EJS), Java~8, Eclipse, JD-GUI, git, Gitlab, Github, LaTeX, Texstudio"
+      mainresponsabilities: ""
     -
-      left: |
-        \textit{Technologies: detailed in project description}\newline
-        \includegraphics[]{figures/protoBar.jpg}
-      right: |
-        \textbf{Automatic testing system of some solid state physical properties of rod metals}. Final project for my
-        degree in physics (cancelled). Now I continue the work as a personal project. The goal is to build a low cost
-        experiment system for using it in classroom and remote controling it,  having implications on security
-        operation. \textit{Technologies: Programming:} Python, Flask, bokeh, PyCharm, pytest, conda, C++, Catch,
-        Eclipse, Git, BitBucket, Gitlab. \textit{Hardware and electronics:} Raspberry Pi, ADC, DAC, OAMP, IAMP, 1-WIRE,
-        Kelvin bridge, Qucs, MultiSIM, System Modeler. \textit{Measurement and calibration:} Oscilloscope, Source
-        current control, signal generator, balances and calibrated gauges, thermometers (solid-state digital and
-        analogue, platinum resistor, reference for calibration), piezoelectric sensors, voltmeters, ammeter.
-        \textit{Physical phenomena:} System Modeler, Wolfram Mathematica and IPython Notebooks. \textit{Analysis of
-        uncertainty:} theoretical with Wolfram Mathematica, simulations with System Modeler. Expression of uncertainty
-        following GUM guide and numerical derivation of uncertainties with an own module developed in R. \textit{Draw
-        up report and bibliography management:} LaTeX, Texstudio, Zotero, Biblatex. \textit{Graphical visualisation:}
-        ggplot, own function customisation in R. \textit{Management:} Trello, Google Keep.
+      name: "Automatic testing system of some solid state physical properties of rod metals"
+
+      maindesc: "Final project for my degree in physics (cancelled). Now I continue the work as a personal project. The goal is to build a low cost experiment system for using it in classroom and remote controling it, having implications on security operation. Technologies: "
+      detaildesc:
+      - "Programming: Python, Flask, bokeh, PyCharm, pytest, conda, C++, Catch, Eclipse, Git, BitBucket, Gitlab."
+      - "Hardware and electronics: Raspberry Pi, ADC, DAC, OAMP, IAMP, 1-WIRE, Kelvin bridge, Qucs, MultiSIM, System Modeler."
+      - "Measurement and calibration: Oscilloscope, Source current control, signal generator, balances and calibrated gauges, thermometers (solid-state digital and analogue, platinum resistor, reference for calibration), piezoelectric sensors, voltmeters, ammeter."
+      - "Physical phenomena: System Modeler, Wolfram Mathematica and IPython Notebooks."
+      - "Analysis of uncertainty: theoretical with Wolfram Mathematica, simulations with System Modeler. Expression of uncertainty following GUM guide and numerical derivation of uncertainties with an own module developed in R."
+      - "Drawing up report and bibliography management: LaTeX, Texstudio, Zotero, Biblatex."
+      - "Graphical visualisation: ggplot, own function customisation in R, Bokeh."
+      - "Management: Trello, Google Keep."
+      time: "Novembre 2015 -- June 2016"
+      technologies: "Technologies: detailed in project description"
+      mainresponsabilities: ""
+      figure: "figures/protoBar.jpg"
+
 -
   company: "General manager at Ramper-Arqui, S. L. (Spain)"
   period: "June 2011 -- Present"

@@ -1,0 +1,135 @@
+% arara: pdflatex: { shell: yes}
+% arara: pdflatex: { shell: yes}
+% !TEX encoding = UTF-8
+% !TEX program = pdflatex
+% !TEX spellcheck = en_GB
+
+
+\documentclass[english,a4paper,nologo]{europasscv}
+ \usepackage[english]{babel}    
+
+
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+
+\usepackage{cleveref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+
+% Used to force environment together. The environment must be established after the tex is generated, providing a way to control the appearance.
+\newenvironment{absolutelynopagebreak}
+{\par\nobreak\vfil\penalty0\vfilneg
+	\vtop\bgroup}
+{\par\xdef\tpd{\the\prevdepth}\egroup
+	\prevdepth=\tpd}
+% Cambiar Footnote to be shown on every page needs to uncomment next line and provide \fancyfoot after \begin{document}
+\ecvfootnote{}  
+
+% ============================================
+% BEGIN_FOLD Datos personales
+
+\ecvname{Vicente Ramírez Perea}
+\ecvaddress{Watertorenstraat 25, 1560 Hoeilaart Belgium }
+\ecvmobile{+32 475 51 49 13}
+
+\ecvemail{vicente.ramirez.perea@gmail.com}
+\ecvemail{vicente.ramirez.perea@outlook.com}
+
+\ecvhomepage{http://vicente.ramirezperea.es }
+
+\ecvim{Skype}{VicteAlias}
+\ecvim{Google Hangouts}{vicente.ramirez.perea@gmail.com}
+
+\ecvdateofbirth{30/05/1970}
+\ecvnationality{Spanish}
+\ecvgender{Male}
+\ecvpicture[width=3.8cm,trim={0.4cm 0.9cm 0.5cm 0.4cm},clip]{../data/figures/vrpFormal.png}
+\hypersetup{
+	pdfauthor={Vicente Ramírez Perea}, 
+	pdftitle={Curriculum vitae}, 
+	%	pdfkeywords={xxxx}, %TODO: Keywords
+	pdfsubject={},
+	%    plainpages=false,
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq}
+	pdfpagelabels,
+	bookmarksopen=true,
+	bookmarksnumbered=true,
+	unicode=true,
+	colorlinks=true,
+	citecolor=blue,
+	urlcolor=OliveGreen, % Requiere xcolors
+	linkcolor=blue,
+	anchorcolor=blue,
+	filecolor=cyan,
+	menucolor=red,
+	runcolor=cyan,
+	pdfborder={0 0 0}}%,
+%	hyperfootnotes=true}
+% END_FOLD
+
+\begin{document}
+	\fancyfoot[C]{Last digital version of this CV at \\ \url{https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms} }
+	\begin{europasscv}
+		\ecvpersonalinfo
+				
+		\ecvbigitem{Personal statement}{Multidisciplinar profesional ready to apply his knowledge and continue learning and improving.}
+
+
+		\ecvsection{Work experience}
+	
+		\ecvtitle{June 2014 -- Present}{Personal projects}
+		
+			\ecvitem{\textit{Technologies: LaTeX, TexStudio, pdftk, Zotero, biblatex, Arara, Jenkins, git, bitbucket}
+}{\textbf{PhD Thesis edition in Latex and management of bibliography}.
+\url{https://drive.google.com/open?id=0B3n_KOODBfifYVI0UDFIaGNwRHc}.
+More than 400 references managed, finally 267 used (\url{https://www.zotero.org/groups/thesis_elisa_vargas}).
+}
+		
+			\ecvitem{\textit{Technologies: Python, yaml, jinja2 (templating html), html, Google Analytics, pandoc, markdown,
+git, Bitbucket, Github}
+}{\textbf{Another static website generator (ongoing project)}. Migrating an existing website to HTML5 induced the
+development of the project. The aim is to create a script to be used by people with little knowledge of
+programming for generating and deploying a website. They would only need to know basic HTML (or markdown).
+Based in templates and directory structure. \url{git@github.com:victe/astawebsige.git}.
+}
+		
+			\ecvitem{\textit{Technologies: LaTeX, Texstudio, Python, yaml, jinja2 (templating LaTeX), git, Gitlab, Github}
+}{\textbf{Automatic CV generator -europass included- (ongoing project)}. Completing a europass has limitations,
+even with the Office templates (MS, Libre or Open). Especially if you want to reuse your data in other format,
+or in different languages. The solution adopted is templating with jinja2 (for LaTeX or HTML). Other
+possibilities are using Sweave + pandoc or knitr. For the europass format there are already various document
+classes in CTAN. The system stores data in yaml files, but it is easily trasformable to databases storage. I
+selected yaml because it is easily modifiable in any place and it is not app dependant.
+\url{git@github.com:victe/cv-templating.git}
+}
+		
+			\ecvitem{\textit{Technologies: LaTeX, Texstudio, EjsS platform (formerly EJS), Java~8, git, Gitlab, Github}
+}{\textbf{Simulations of experiments using Java}. Final project for my degree in physics (ongoing project,
+Nov 2016 to Jun 2017). The objective is to build some virtual experiments of elastic pendulum as example of
+chaotic systems using Easy Java Simulations platform (EjsS).
+}
+		
+			\ecvitem{\textit{Technologies: detailed in project description}\newline
+\includegraphics[]{figures/protoBar.jpg}
+}{\textbf{Automatic testing system of some solid state physical properties of rod metals}. Final project for my
+degree in physics (cancelled). Now I continue the work as a personal project. The goal is to build a low cost
+experiment system for using it in classroom and remote controling it,  having implications on security
+operation. \textit{Technologies: Programming:} Python, Flask, bokeh, PyCharm, pytest, conda, C++, Catch,
+Eclipse, Git, BitBucket, Gitlab. \textit{Hardware and electronics:} Raspberry Pi, ADC, DAC, OAMP, IAMP, 1-WIRE,
+Kelvin bridge, Qucs, MultiSIM, System Modeler. \textit{Measurement and calibration:} Oscilloscope, Source
+current control, signal generator, balances and calibrated gauges, thermometers (solid-state digital and
+analogue, platinum resistor, reference for calibration), piezoelectric sensors, voltmeters, ammeter.
+\textit{Physical phenomena:} System Modeler, Wolfram Mathematica and IPython Notebooks. \textit{Analysis of
+uncertainty:} theoretical with Wolfram Mathematica, simulations with System Modeler. Expression of uncertainty
+following GUM guide and numerical derivation of uncertainties with an own module developed in R. \textit{Draw
+up report and bibliography management:} LaTeX, Texstudio, Zotero, Biblatex. \textit{Graphical visualisation:}
+ggplot, own function customisation in R. \textit{Management:} Trello, Google Keep.}
+		
+	
+
+
+\end{europasscv}
+\end{document}
