@@ -5,11 +5,12 @@
 # Path of files must be relative to root directory of app mcv.py
 # No debe tener lineas comentadas entre variables porque el parser puede dar error.
 config:
-  base_dir: '/home/vicente/projects/pro/cv-templating'
-  output_dir: '../../cv/latex'
-  template_file: 'examples/latex/europasscv/europasscv-someone.tex'
+  base_dir: '/home/vicente/projects/cv/mcv'
+  output_dir: 'output/latex'
+  template_file: 'templates/europasscv-someone.tex'
   type: latex
   person_name_for_filename: "VicenteRamirezPerea"
+  
 doc:
   doc_options: "english,a4paper,nologo"
   language: "en"
@@ -25,9 +26,10 @@ doc:
   bigitem:
     - "Personal statement"  # Could be 'Job to apply'
     - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
+  figures_directory: "../../data/figures"  # Relative to output_dir
 data:
-  persinfo: "examples/data/pers_info-en.yaml"
-  profinfo: "examples/data/prof_info-en.yaml"
-  acadinfo: "examples/data/acad_info-en.yaml"
-  persskills: "examples/data/pers_skills-en.yaml"
-  additinfo: "examples/data/addit_info-en.yaml"
+  persinfo: "data/pers_info-en.yaml"
+  profinfo: "data/prof_info-en.yaml"
+  acadinfo: "data/acad_info-en.yaml"
+  persskills: "data/pers_skills-en.yaml"
+  additinfo: "data/addit_info-en.yaml"

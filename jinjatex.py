@@ -11,7 +11,8 @@ import jinja2
 # \end{document}
 # This snippet by Clemens Kaposi can be used freely for anything you like. Consider it public domain.
 
-# Partialy extracted (changing template syntax and escape_tex) from http://flask.pocoo.org/snippets/55/
+# Extracted from http://flask.pocoo.org/snippets/55/
+# Source claims public domain
 LATEX_SUBS = (
     (re.compile(r'\\'), r'\\textbackslash'),
     (re.compile(r'([{}_#%&$])'), r'\\\1'),
