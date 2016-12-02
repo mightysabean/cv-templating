@@ -1,7 +1,8 @@
 ============================================================================
+
 MIT License
 
-cv-templating, mcv.py
+cv-templating, mcv.py, part of mcv_utils.py, examples and tutorials.
 
 Copyright (c) 2016 Vicente Ramírez Perea
 
@@ -24,12 +25,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 =============================================================================
+
 LaTeX Project Public License Version 1.3.
 
 Document class europasscv
 
 
 =============================================================================
+
 UNKNOWN LICENCE
 
 Code in jinjatex.py is probably public domain as stated in the source.
