@@ -12,7 +12,8 @@ config:
   template_base_dir: 'examples/latex/europasscv.tex'
   template_type: latex
   output_filename: "Someone"
-  
+  arara: true
+
 doc:
   doc_options: "english,a4paper,nologo"
   pdftitle: "Curriculum vitae"

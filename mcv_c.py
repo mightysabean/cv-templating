@@ -1,4 +1,5 @@
 import os
+import subprocess
 import datetime
 import yaml
 import mcv_utils
@@ -53,9 +54,10 @@ class CVGenerator():
         self.__date = datetime.datetime.strftime(
                             datetime.datetime.now(),
                             "%Y-%m-%d-T-%H-%M")
-        self.__fullOutFileName = os.path.join(self.__fullOutputDir,
-                                              self.__outFile + self.__date + self.__extensions.get(self.__templateType))
-
+        self.__fullOutFileNameWOExt = os.path.join(self.__fullOutputDir,
+                                            self.__outFile + self.__date )
+        self.fullOutFileName = os.path.join(self.__fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
+        self.fullPDFFileName = self.fullOutFileName + '.pdf'
 
     def __extractData(self):
         """Extract data from data YAML files referenced in data section in config file"""
@@ -72,12 +74,20 @@ class CVGenerator():
 
     def render(self):
         """Produce the destination file from template and data. Chose what method to use from template type."""
-        renders = {'html': self.render_html, 'latex': self.render_latex}
-        self.__streamProduced = renders.get(self.__templateType, "")
 
-        with open(self.__fullOutFileName, 'w') as o:
+
+        if self.__templateType=='latex':
+            self.__streamProduced = self.render_latex()
+        elif self.__templateType=='html':
+            self.__streamProduced = self.render_html()
+
+
+        with open(self.fullOutFileName, 'w') as o:
             o.write(self.__streamProduced)
 
+        if self.__templateType=='latex' and self.__cf['arara']:
+            p = subprocess.Popen(['arara', self.fullOutFileName], cwd=self.__fullOutputDir)
+            p.wait()
 
     def render_latex(self):
         """"""

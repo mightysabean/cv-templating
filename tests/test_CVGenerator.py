@@ -55,3 +55,9 @@ def test_check_not_found_template_raise_exception():
     t_cf_f = {'base_dir':pathtest,'template_dir':None, 'output_dir':'output/latex', 'template_file':'', 'template_type':'', 'output_filename':''}
     with pytest.raises(RuntimeError):
         loadMinimalCase(pathtest, minimalConfigFile).check_config_data(t_cf_f)
+
+def test_pdf_is_generated():
+    # arara: true in config file and arara must be installed
+    cvg = loadMinimalCase(pathtest,minimalConfigFile)
+    cvg.render()
+    assert os.path.isfile(cvg.fullPDFFileName)
