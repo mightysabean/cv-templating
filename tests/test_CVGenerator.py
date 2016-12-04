@@ -1,7 +1,9 @@
 import os
+import glob
 import pytest
 import mcv_c
 import yaml
+import mcv
 
 pathtest = os.path.dirname(os.path.realpath(__file__))
 minimalConfigFile = os.path.join(pathtest, 'eucv_en_latex_min.yaml')
@@ -13,18 +15,19 @@ def loadMinimalCase(pathtest, minimalConfigFile):
     config['config']['base_dir'] = pathtest
     return mcv_c.CVGenerator(config)
 
-# def test_render(self):
-#     """Test that method render works with a minimal example"""
-#     self.fail()
-#
-# def test_render_latex(self):
-#     self.fail()
-#
-# def test_render_html(self):
-#     self.fail()
-#
-# def test___init__(self):
-#     self.fail()
+
+def test_file_config_not_exists_then_raise_runtime_error():
+    with pytest.raises(RuntimeError):
+        mcv.main("ocnwonvcWOIFNWOVN")
+
+
+def test_file_config_open():
+    """Given minimal config file, open the file and get some info."""
+
+    with open(minimalConfigFile, 'r') as mcf:
+        l = mcf.readline().split(sep=' ')[5]
+        assert l == 'test.\n'
+
 
 def test_check_absence_of_one_of_the_config_sections_raises_exception():
     """Check RuntimeError if not all sections in config dict"""
@@ -60,4 +63,21 @@ def test_pdf_is_generated():
     # arara: true in config file and arara must be installed
     cvg = loadMinimalCase(pathtest,minimalConfigFile)
     cvg.render()
-    assert os.path.isfile(cvg.fullPDFFileName)
+    name = cvg.fullPDFFileName
+    assert os.path.exists(name) == True
+    if (cvg.fullOutFileNameWOExt is not None) and (cvg.fullOutFileNameWOExt != '') and (cvg.fullOutFileNameWOExt != '/'):
+        for f in glob.glob(cvg.fullOutFileNameWOExt + '*'):
+            os.remove(f)
+
+# def test_render(self):
+#     """Test that method render works with a minimal example"""
+#     self.fail()
+#
+# def test_render_latex(self):
+#     self.fail()
+#
+# def test_render_html(self):
+#     self.fail()
+#
+# def test___init__(self):
+#     self.fail()

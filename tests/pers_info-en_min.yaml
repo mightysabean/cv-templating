@@ -2,7 +2,7 @@
 # Listas deben tener un sangrado de dos espacios respecto del nombre de la lista antes del guion.
 family_name: "Familyname"
 name: "Name"
-fullname: "Faminlyname, name"
+fullname: "Family_name, name"
 address: "One Address street"
 postal_code: 00000
 village: "The Village"
@@ -19,6 +19,5 @@ ims:
   - Skype: SomeoneExample
   - "Google Hangouts": "someone@example.com"
 dateofbirth: "29/02/1900"
-nationality: "Nacionality"
+nationality: "Nationality"
 gender: Undetermined
-image_file: "bobo.png" #relative to output directory where the final file will be. TODO check if not from data.

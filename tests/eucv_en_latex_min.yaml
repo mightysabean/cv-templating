@@ -8,8 +8,8 @@
 config:
   base_dir: '' # you must change this to the directory where you have your data and templates structure
   output_dir: 'output/latex'
-  template_file: 'examples/latex/europasscv.tex'
-  template_base_dir: 'examples/latex/europasscv.tex'
+  template_base_dir: ''
+  template_file: 'min_test.tex' # must be relative to template_base_dir
   template_type: latex
   output_filename: "Someone"
   arara: true

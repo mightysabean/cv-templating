@@ -39,12 +39,21 @@ class CVGenerator():
     def __mapConfigData(self, cf):
         """Assign values from config section in config file to private variables"""
         # TODO raise exception and finish if something is missing
-        self.__templateBaseDir = cf['template_base_dir']
-        self.__templateFile = cf['template_file']
-        self.__templateType = cf['template_type'].lower()  # TODO check if valid type
-        if self.__templateType not in self.__validTemplateTypes:
-            raise RuntimeError('Unknown type of template type. Valid types are %s .', self.__validTemplateTypes)
+
+
+        # base
         self.__baseDir = cf['base_dir']
+
+        # template
+        # address of template dir relative to base dir
+        self.__templateBaseDir = os.path.join(self.__baseDir, cf['template_base_dir'])
+
+        # address of template file relative to base dir
+        self.__templateFile = cf['template_file']
+
+        self.__templateType = cf['template_type'].lower()
+
+        # output
         self.__outputDir = cf['output_dir']
         self.__fullOutputDir = os.path.join(
             self.__baseDir,
@@ -54,10 +63,10 @@ class CVGenerator():
         self.__date = datetime.datetime.strftime(
                             datetime.datetime.now(),
                             "%Y-%m-%d-T-%H-%M")
-        self.__fullOutFileNameWOExt = os.path.join(self.__fullOutputDir,
+        self.fullOutFileNameWOExt = os.path.join(self.__fullOutputDir,
                                             self.__outFile + self.__date )
-        self.fullOutFileName = os.path.join(self.__fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
-        self.fullPDFFileName = self.fullOutFileName + '.pdf'
+        self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
+        self.fullPDFFileName = self.fullOutFileNameWOExt + '.pdf'
 
     def __extractData(self):
         """Extract data from data YAML files referenced in data section in config file"""
@@ -115,12 +124,16 @@ class CVGenerator():
         if not os.path.exists(cf['base_dir']):
             raise RuntimeError('base_dir %s in config file does not exists' % cf['base_dir'])
 
+        # Valid template_type
+        if cf['template_type'] not in self.__validTemplateTypes:
+            raise RuntimeError('Unknown type of template type. Valid types are %s .', self.__validTemplateTypes)
+
         # Exists output_dir
         if not os.path.exists(os.path.join(cf['base_dir'], cf['output_dir'])):
             raise RuntimeError(
                 'base_dir + output_dir (%s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
 
         # Exists template_file
-        # if not os.path.exists(os.path.join(cf['base_dir'], cf['template_dir'], cf['template_file'])):
-        #     raise RuntimeError(
-        #         'base_dir + template_dir + template_file (%s + %s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
+        if not os.path.exists(os.path.join(cf['base_dir'], cf['template_base_dir'], cf['template_file'])):
+            raise RuntimeError(
+                'base_dir + template_dir + template_file (%s + %s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
