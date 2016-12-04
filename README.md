@@ -40,6 +40,12 @@ There are examples of each type in the `examples` directory, `excvhtml.jinja` in
 
 See the [tutorial](tutorial.html) based on these examples showing how to proceed. You can use the structure of files and directories as a seed for your strucuture, modifying the templates provided as necessary.
 
+Atention!: If the specified combination of base directory and output directory does not exists, then the program makes a new one if the user has permission to do that.
+
+## Problems and bugs
+
+If you find something wrong, please write an [issue](https://github.com/victe/cv-templating/issues) in the repo. I do not have many time to spend in this project, but I will try to respond to all your enquiries (maybe not so fast, please be indulgent with me). 
+
 ## License
 
 The example based on europasscv is subject to the LaTeX Project Public License Version 1.3.

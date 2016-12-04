@@ -20,4 +20,4 @@ ims:
 dateofbirth: "30/05/1970"
 nationality: Spanish
 gender: Male
-image_file: "../data/figures/vrpFormal.png" #relative to output directory where the final file will be.
+image_file: "../../data/figures/vrpFormal.png" #relative to output directory where the final file will be.

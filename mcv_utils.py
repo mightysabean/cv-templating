@@ -7,16 +7,6 @@ def getVariableFromList(search_dict, l):
         dc = dc.get(k)
     return dc
 
-# MIT Licence
-def output_dir(base, dir):
-    """Full path a directorio de salida. Si no existe se crea"""
-    f= os.path.join(base, dir) \
-        if dir != '' or dir is None \
-        else base
-    if not os.path.exists(f):
-        os.mkdir(f)
-    return f
-
 def fullname(name, family):
     return name + ' ' + family
 

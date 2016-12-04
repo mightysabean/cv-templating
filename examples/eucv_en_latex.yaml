@@ -1,15 +1,17 @@
-# Main data file for europasscv example
-# Must contain the info used on the template.jinja or links to files where to get it (csv or another yaml).
-# This file has a combination of both and is complete to show the europasscv example. You must
-# modify this file, the internal structure and the external files...
-# Path of files must be relative to root directory of app mcv.py
-# No debe tener lineas comentadas entre variables porque el parser puede dar error.
+# Main config file for europasscv example.
+# Must contain the info used on the template.jinja.
+# Path of files must be relative to base_dir directory (see below config section).
+# Please, avoid comments between variables, especially in list and arrays.
+# This is a YAML file. Please, see xxx to get an understanding of the format.
+# In the text tutorial are explained the main things you must be aware.
+
 config:
-  base_dir: '/home/vicente/projects/cv/mcv'
+  base_dir: '/home/username/projects/cv/mcv' # you must change this to the directory where you have your data and templates structure
   output_dir: 'output/latex'
-  template_file: 'templates/europasscv-someone.tex'
-  type: latex
-  person_name_for_filename: "VicenteRamirezPerea"
+  template_file: 'examples/latex/europasscv.tex'
+  template_base_dir: 'examples/latex/europasscv.tex'
+  template_type: latex
+  output_filename: "Someone"
   
 doc:
   doc_options: "english,a4paper,nologo"
@@ -27,6 +29,7 @@ doc:
     - "Personal statement"  # Could be 'Job to apply'
     - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
   figures_directory: "../../data/figures"  # Relative to output_dir
+
 data:
   persinfo: "data/pers_info-en.yaml"
   profinfo: "data/prof_info-en.yaml"

@@ -1,0 +1,22 @@
+# Minimal config file for test.
+# Must contain the info used on the template.jinja.
+# Path of files must be relative to base_dir directory (see below config section).
+# Please, avoid comments between variables, especially in list and arrays.
+# This is a YAML file. Please, see xxx to get an understanding of the format.
+# In the text tutorial are explained the main things you must be aware.
+
+config:
+  base_dir: '' # you must change this to the directory where you have your data and templates structure
+  output_dir: 'output/latex'
+  template_file: 'examples/latex/europasscv.tex'
+  template_base_dir: 'examples/latex/europasscv.tex'
+  template_type: latex
+  output_filename: "Someone"
+  
+doc:
+  doc_options: "english,a4paper,nologo"
+  pdftitle: "Curriculum vitae"
+
+data:
+  persinfo: "pers_info-en_min.yaml"
+

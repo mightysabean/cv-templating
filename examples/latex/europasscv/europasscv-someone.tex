@@ -45,7 +45,7 @@
 \ecvdateofbirth{((( persinfo.dateofbirth|escape_tex )))}
 \ecvnationality{((( persinfo.nationality|escape_tex )))}
 \ecvgender{((( persinfo.gender|escape_tex )))}
-\ecvpicture[width=3.8cm,trim={0.4cm 0.9cm 0.5cm 0.4cm},clip]{((( persinfo.image_file )))}
+\ecvpicture[width=3.4cm,trim={0.4cm 0.9cm 0.5cm 0.4cm},clip]{((( persinfo.image_file )))}
 \hypersetup{
 	pdfauthor={((( persinfo.fullname|escape_tex )))}, 
 	pdftitle={((( pdftitle )))}, 
@@ -76,10 +76,12 @@
 				
 		\ecvbigitem{((( bigitem[0]|escape_tex )))}{((( bigitem[1]|escape_tex )))}
 
-% Work experience
+% Work experience -------------------------------------------------------------
 ((* if profinfo is defined *))
+% BEGIN_FOLD Work experience
 		\ecvsection{Work experience}
 	((* for section in profinfo *))
+% BEGIN_FOLD ((( section.company|escape_tex )))
 		\ecvtitle{((( section.period|escape_tex )))}{((( section.company|escape_tex )))}
 		((* if section.infocompany is defined and section.infocompany != '' *))
 			\ecvitem{}{((( section.infocompany )))}
@@ -89,7 +91,7 @@
 		((* endif *))
 		((* if section.activities is defined and section.activities != '' *))
 			\ecvitem{Main activities and responsibilities:}{
-				\begin{ecvitemize}
+				\begin{ecvitemize}\small
 				((* for i in section.activities *))\item ((( i )))
 				((* endfor *))
 				\end{ecvitemize}
@@ -100,15 +102,15 @@
 			((* for project in section.projects *))
 				((* if project.name is defined *))
 					\ecvitem{\textit{((( project.technologies )))}((* if project.figure is defined *))\newline
-						\includegraphics[]{((( project.figure )))}((* endif *))}{-
-					\textbf{((( project.name )))}. 
+						\includegraphics[]{(((- figures_directory -)))/((( project.figure )))}((* endif *))}{-
+					\textit{((( project.name )))}. 
 				
 					((*- if project.time is defined and project.time != '' *)) ( (((- project.time -))) ). ((* endif *))
 					((* if project.description is defined and project.description != '' *))
 						((( project.description ))). 
 					((* else *))((* if project.maindesc is defined *))
-						((( project.maindesc ))) \newline
-						\begin{ecvitemize}
+						((( project.maindesc ))) 
+						\begin{ecvitemize}\footnotesize
 							((* for l in project.detaildesc *))
 							\item ((( l )))
 							((* endfor *))
@@ -127,11 +129,17 @@
 				((* endif *))
 			((* endfor *))
 		((* endif *))
+% END_FOLD ((( section.company|escape_tex )))
+    ((* if section.forcepageafter is defined and section.forcepageafter == true *))
+      \newpage
+    ((* endif *))
 	((* endfor *))
+% END_FOLD Work experience
 ((* endif *))
 
 % Education and training
 ((* if acadinfo is defined *))
+% BEGIN_FOLD Education and training
 	\ecvsection{Education and training}
 	((* if acadinfo.acadmain is defined *))
 		((* for section in acadinfo.acadmain *))
@@ -154,10 +162,12 @@
 			\ecvitem{((( center.left )))}{((( center.right )))}
 		((* endfor *))
 	((* endif *))
+% END_FOLD Education and training
 ((* endif *))
 
 % Personal skills
 ((* if persskills is defined *))
+% BEGIN_FOLD Personal skills
 	\ecvsection{Personal skills}
 	((* if persskills.langs is defined *))
 		\ecvmothertongue{((( persskills.langs.mothertongue )))}
@@ -186,10 +196,12 @@
 	((* if persskills.drivinglicence is defined *))
 		\ecvblueitem{Driving licence}{((( persskills.drivinglicence )))}
 	((* endif *))
+% END_FOLD Personal skills
 ((* endif *))
 
 % Additional information
 ((* if additinfo is defined *))
+% BEGIN_FOLD Additional information
 	\ecvsection{Additional information}
 	((* if additinfo.publications is defined *))
 	\ecvblueitem{Publications}{((( additinfo.publications )))}
@@ -200,6 +212,7 @@
 	((* if additinfo.computerskills is defined *))
 	\ecvblueitem{Computer skills}{((( additinfo.computerskills )))}
 	((* endif *))
+% END_FOLD Additional information
 ((* endif *))
 
 % Figures
@@ -210,9 +223,9 @@
 	\begin{tabular}{p{0.5\textwidth} p{0.5\textwidth}}
 		\toprule
 		\raisebox{-\totalheight}{
-			\includegraphics[width=0.5\textwidth]{figures/Computing.pdf}} &
+			\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Computing.pdf}} &
 		\raisebox{-\totalheight}{
-			\includegraphics[width=0.5\textwidth]{figures/Data.pdf}} \\
+			\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Data.pdf}} \\
 		
 	
 	\bottomrule
@@ -228,14 +241,14 @@
 	\toprule
 	
 	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{figures/Systems.pdf}} 	&
+		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Systems.pdf}} 	&
 	
 	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{figures/Office tools.pdf}}  \\
+		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Office tools.pdf}}  \\
 	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{figures/Professional.pdf}} &
+		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Professional.pdf}} &
 	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{figures/Management and communication.pdf}} 	
+		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Management and communication.pdf}} 	
 	
 	\\
 	

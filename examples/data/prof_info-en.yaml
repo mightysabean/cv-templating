@@ -67,7 +67,7 @@
       time: "Novembre 2015 -- June 2016"
       technologies: "Technologies: detailed in project description"
       mainresponsabilities: ""
-      figure: "figures/protoBar.jpg"
+      figure: "protoBar.jpg"
 
 -
   company: "General manager at Ramper-Arqui, S. L. (Spain)"
@@ -98,6 +98,7 @@
     - "Assistance on drafting Terms of Reference for open calls and private contracts."
     - "Photographer, cameraman, digital edition of contents for meetings and conferences."
   period: "July 2006 -- June 2014"
+  forcepageafter: true
   projects:
     -
       name: "Technical assistance to DG Water of the Spanish Ministry of Environment for coordinating the development of River Basin Management Plans"
