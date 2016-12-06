@@ -1,9 +1,12 @@
 import os
+import shutil
+import tempfile
 import subprocess
 import datetime
 import yaml
 import mcv_utils
 import jinjatex
+
 
 class CVGenerator():
     """Generator of cv from templates in jinja"""
@@ -11,8 +14,12 @@ class CVGenerator():
     __validTemplateTypes = ('html', 'latex')
     __extensions = {
         'html': '.html',
-        'latex': '.tex'
+        'latex': '.tex',
     }
+    __artifactExtensions = dict.copy(__extensions)
+    __artifactExtensions.update({
+        'pdf': '.pdf'
+    })
     __requiredSections = ('config', 'doc', 'data')
     __requiredKeysInConfigSection = (
         'base_dir','output_dir', 'template_file', 'template_base_dir', 'template_type', 'output_filename'
@@ -53,6 +60,13 @@ class CVGenerator():
 
         self.__templateType = cf['template_type'].lower()
 
+        # temp directory
+        if tempfile.gettempdir() == os.getcwd():
+            self.__tempDir = os.path.join(os.getcwd(), 'tmp')
+            os.mkdir(self.__tempDir)
+        else:
+            self.__tempDir = tempfile.gettempdir()
+
         # output
         self.__outputDir = cf['output_dir']
         self.__fullOutputDir = os.path.join(
@@ -63,8 +77,11 @@ class CVGenerator():
         self.__date = datetime.datetime.strftime(
                             datetime.datetime.now(),
                             "%Y-%m-%d-T-%H-%M")
-        self.fullOutFileNameWOExt = os.path.join(self.__fullOutputDir,
-                                            self.__outFile + self.__date )
+        self.__OutFileNameWOExt = self.__outFile + self.__date
+        self.fullTmpFileNameWOExt = os.path.join(self.__tempDir, self.__OutFileNameWOExt)
+        self.fullTmpFileName = os.path.join(self.fullTmpFileNameWOExt + self.__extensions.get(self.__templateType))
+        self.fullTmpPDFFileName = self.fullTmpFileNameWOExt + '.pdf'
+        self.fullOutFileNameWOExt = os.path.join(self.__outputDir, self.__OutFileNameWOExt)
         self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
         self.fullPDFFileName = self.fullOutFileNameWOExt + '.pdf'
 
@@ -83,20 +100,24 @@ class CVGenerator():
 
     def render(self):
         """Produce the destination file from template and data. Chose what method to use from template type."""
-
-
         if self.__templateType=='latex':
             self.__streamProduced = self.render_latex()
         elif self.__templateType=='html':
             self.__streamProduced = self.render_html()
 
 
-        with open(self.fullOutFileName, 'w') as o:
+        with open(self.fullTmpFileName, 'w') as o:
             o.write(self.__streamProduced)
 
         if self.__templateType=='latex' and self.__cf['arara']:
-            p = subprocess.Popen(['arara', self.fullOutFileName], cwd=self.__fullOutputDir)
+            p = subprocess.Popen(['arara', self.fullTmpFileName], cwd=self.__tempDir)
             p.wait()
+
+        self.copy_artifacts_to_output()
+
+
+        return True
+
 
     def render_latex(self):
         """"""
@@ -105,6 +126,17 @@ class CVGenerator():
 
     def render_html(self):
         """"""
+
+
+    def copy_artifacts_to_output(self):
+        """Copy results in temp to output dir"""
+        artifactsGenerated=[]
+
+        for type, ext in self.__artifactExtensions.items():
+            try:
+                artifactsGenerated.append(shutil.copy(self.fullTmpFileNameWOExt + ext, self.__fullOutputDir))
+            except:
+                pass
 
     def check_config_sections(self, dictconfig):
         """Check config section has the three main sections"""

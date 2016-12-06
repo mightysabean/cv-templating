@@ -60,14 +60,18 @@ def test_check_not_found_template_raise_exception():
         loadMinimalCase(pathtest, minimalConfigFile).check_config_data(t_cf_f)
 
 def test_pdf_is_generated():
-    # arara: true in config file and arara must be installed
+    """ If arara: true in config file with arara installed then check PDF is generated.
+    If there are resources (images for instance) specified, check they are copied to output dir and folder."""
     cvg = loadMinimalCase(pathtest,minimalConfigFile)
     cvg.render()
     name = cvg.fullPDFFileName
     assert os.path.exists(name) == True
-    if (cvg.fullOutFileNameWOExt is not None) and (cvg.fullOutFileNameWOExt != '') and (cvg.fullOutFileNameWOExt != '/'):
-        for f in glob.glob(cvg.fullOutFileNameWOExt + '*'):
-            os.remove(f)
+
+    # # Assure to send to remove a string not very dangerous
+    # if (cvg.fullOutFileNameWOExt is not None) and (cvg.fullOutFileNameWOExt != '') and (cvg.fullOutFileNameWOExt != '/'):
+    #     for f in glob.glob(cvg.fullOutFileNameWOExt + '*'):
+    #         os.remove(f)
+
 
 # def test_render(self):
 #     """Test that method render works with a minimal example"""
