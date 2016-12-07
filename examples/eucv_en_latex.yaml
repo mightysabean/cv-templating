@@ -26,7 +26,7 @@ doc:
   include_preamble: "" # Better putting in the template directly
   pdftitle: "Curriculum vitae"
   bigitem:
-    - "Personal statement"  # Could be 'Job to apply'
+    - "Personal statement"  # # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
     - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
   figures_directory: "../../data/figures"  # Relative to output_dir
 
