@@ -5,7 +5,7 @@ Tools for automatic generation of curriculum vitae from data.
 
 ## Motivation
 
-Update a [Europass CV online](https://europass.cedefop.europa.eu/editors/en/cv/compose), or made it for the first time, is error and time consuming if you have several entries. Even worst if you need to put all your *resume* in another format (for instance in HTML) or in another language.
+Update a [Europass CV online](https://europass.cedefop.europa.eu/editors/en/cv/compose), or made it for the first time, is error prone and time consuming if you have several entries. Even worst if you need to put all your *resume* in another format (for instance in HTML) or in another language.
 
 ## Solution
 
@@ -13,7 +13,7 @@ We can manage the generation of the CV quickly from data conveniently stored usi
 
 In this solution, I use data stored in plain text files, facilitating the utilisation of any tool for modifying them. Also, it is very convenient for putting your CV information under control version.
 
-Note: If you only need the europass format (in latex) in only one language, then probably is better that you edit a new document using the document class *europasscv* provided by tex distributions or getting the last version from [github repo](https://github.com/gmazzamuto/europasscv).
+Note: If you only need your *curriculum vitae* in only one language and only using one format (for instance the europass format uning latex), then probably is better that you edit a new document using the document class *europasscv* provided by tex distributions or getting the last version from [github repo](https://github.com/gmazzamuto/europasscv).
 
 ## What do you need
 
