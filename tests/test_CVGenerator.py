@@ -72,7 +72,9 @@ def test_pdf_is_generated():
     #     for f in glob.glob(cvg.fullOutFileNameWOExt + '*'):
     #         os.remove(f)
 
-
+def test_check_resources_exists_raises_exception():
+    with pytest.raises(RuntimeError):
+        mcv_c.CVGenerator.check_resources_exists('','0651130.0515acd21caa54wrvc')
 # def test_render(self):
 #     """Test that method render works with a minimal example"""
 #     self.fail()

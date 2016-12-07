@@ -4,7 +4,7 @@ family_name: "Familyname"
 name: "Name"
 fullname: "Family_name, name"
 address: "One Address street"
-postal_code: 00000
+postal_code: "00000"
 village: "The Village"
 country: "The Country"
 telephone: "+01 234 567 890"
@@ -21,3 +21,4 @@ ims:
 dateofbirth: "29/02/1900"
 nationality: "Nationality"
 gender: Undetermined
+image_file: "figures/bobo.png" #relative to output directory where the final file will be.

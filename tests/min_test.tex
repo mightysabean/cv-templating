@@ -28,13 +28,13 @@
 \ecvdateofbirth{((( persinfo.dateofbirth|escape_tex )))}
 \ecvnationality{((( persinfo.nationality|escape_tex )))}
 \ecvgender{((( persinfo.gender|escape_tex )))}
-
+\ecvpicture[width=3.4cm]{((( persinfo.image_file )))}
 \begin{document}
 
 	\begin{europasscv}
 % Personal info
 		\ecvpersonalinfo
-
-\end{europasscv}
+        \ecvbigitem{((( bigitem[0]|escape_tex )))}{((( bigitem[1]|escape_tex )))}
+    \end{europasscv}
 
 \end{document}

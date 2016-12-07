@@ -13,11 +13,19 @@ config:
   template_type: latex
   output_filename: "Someone"
   arara: true
+  resources: # Will be copied to de tmp dir inside the directories specified by name of variable:
+    build: # Will be copied to de tmp dir ONLY. They are resources needed to build the document:
+      figures:
+        - "../examples/data/figures/bobo.png" # Relative to base directory
+      build_directory: # to be copied to the same folder where the template document will build
+    #output: # Will be copied to de output folder inside a directory with the name as the variable
 
 doc:
   doc_options: "english,a4paper,nologo"
   pdftitle: "Curriculum vitae"
-
+  bigitem:
+    - "Personal statement"  # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
+    - "Something good about Bobo."
 data:
   persinfo: "pers_info-en_min.yaml"
 

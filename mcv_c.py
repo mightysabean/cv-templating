@@ -85,6 +85,33 @@ class CVGenerator():
         self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
         self.fullPDFFileName = self.fullOutFileNameWOExt + '.pdf'
 
+        # resources
+        self.__resources = cf['resources']
+        self.check_resources_exists(self.__cf)
+
+
+    def __copyResourcesToTemp(self, cf):
+        self.__resources=cf['resources']
+        for d, fs in self.__resources.items():
+            if not os.path.exists(os.path.join(self.__tempDir,d)):
+                os.mkdir(os.path.join(self.__tempDir, d))
+            for f in fs:
+                shutil.copy(
+                    os.path.join(self.__baseDir, f),
+                    os.path.join(self.__tempDir, d, os.path.basename(f)))
+
+
+    def __copyResourcesFromTempToOutput(self, cf):
+        self.__resources=cf['resources']
+        for d, fs in self.__resources.items():
+            if not os.path.exists(os.path.join(self.__outputDir,d)):
+                os.mkdir(os.path.join(self.__outputDir,d))
+            for f in fs:
+                shutil.copy(
+                    os.path.join(self.__tempDir, d, os.path.basename(f)),
+                    os.path.join(self.__outputDir, d, os.path.basename(f)))
+
+
     def __extractData(self):
         """Extract data from data YAML files referenced in data section in config file"""
         # TODO raise exception and finish if something is missing or no data
@@ -109,12 +136,14 @@ class CVGenerator():
         with open(self.fullTmpFileName, 'w') as o:
             o.write(self.__streamProduced)
 
+        self.__copyResourcesToTemp(self.__cf)
+
         if self.__templateType=='latex' and self.__cf['arara']:
             p = subprocess.Popen(['arara', self.fullTmpFileName], cwd=self.__tempDir)
             p.wait()
 
         self.copy_artifacts_to_output()
-
+        self.__copyResourcesFromTempToOutput(self.__cf)
 
         return True
 
@@ -169,3 +198,10 @@ class CVGenerator():
         if not os.path.exists(os.path.join(cf['base_dir'], cf['template_base_dir'], cf['template_file'])):
             raise RuntimeError(
                 'base_dir + template_dir + template_file (%s + %s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
+
+
+    def check_resources_exists(self, cf):
+        for r, fs in cf['resources'].items():
+            for f in fs:
+                if not os.path.exists(os.path.join(cf['base_dir'], f)):
+                    raise RuntimeError("%s did not finded in resource section %s" % (f, r))
