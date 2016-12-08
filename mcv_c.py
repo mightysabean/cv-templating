@@ -104,7 +104,7 @@ class CVGenerator():
 
 
     def __copy_resources(self, src_dir, dest_dir, rscs):
-        """Copy resources to temp directory, to specified folder or adjoin the template"""
+        """Copy resources to temp directory for building, or to output for accompanying results"""
 
         for src, dest in rscs:
 
