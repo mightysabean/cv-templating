@@ -1,18 +1,11 @@
-#name: ""
-#description: ""
-#time: ""
-#technologies: ""
-#mainresponsabilities: ""
-#urls:
-#  -
 - company: "Personal projects"
   infocompany: ""
-  period: "June 2014 -- Present"
+  period: "June 2020(;-D) -- Present"
   projects:
     -
-      name: "PhD Thesis edition in Latex and management of bibliography"
-      description: "More than 400 references managed, finally 267 used"
-      time: "February -- July 2016"
+      name: "PhD Thesis very long"
+      description: "Very boring thesis about the same theme of the another ones"
+      time: "February 2025-- July 2021"
       technologies: "LaTeX, TexStudio, pdftk, Zotero, biblatex, Arara, Jenkins, git, bitbucket"
       mainresponsabilities: ""
 
@@ -22,250 +15,47 @@
     -
       name: "Another static website generator"
       description: "Migrating an existing website to HTML5 induced the
-        development of the project. The aim is to create a script to be used by people with little knowledge of
-        programming for generating and deploying a website. They would only need to know basic HTML (or markdown).
-        Based in templates and directory structure"
+        development of the project..."
       time: "Ongoing project"
       technologies: "Python, yaml, jinja2 (templating html), html, Google Analytics, pandoc, markdown,
         git, Bitbucket, Github"
       mainresponsabilities: ""
       urls:
         - [github repo, "git@github.com:victe/astawebsige.git"]
-    -
-      name: "Automatic CV generator -europass included-"
-      description: "Completing a Europass has limitations,
-        even with the Office templates (MS, Libre or Open). Especially if you want to reuse your data in another format,
-        or in different languages. The solution adopted is templating with jinja2 (for LaTeX or HTML). Other
-        possibilities are to use Sweave + knitr or Java + Freemarker. For the europass format there are already various document
-        classes in CTAN. The system stores data in yaml files, but it is easily trasformable to databases storage. I
-        selected yaml because it is easily modifiable in any place and it is not app dependant."
-      time: ""
-      technologies: "LaTeX, Texstudio, Python, yaml, jinja2 (templating LaTeX), git, Gitlab, Github"
-      mainresponsabilities: ""
-      urls:
-        - ["github repo", "git@github.com:victe/cv-templating.git"]
-    -
-      name: "Simulations of experiments using Java"
-      description: "Final project for my degree in physics. The objective is to build some virtual experiments of elastic pendulum as example of
-        chaotic systems using Easy Java Simulations platform (EjsS)"
-      time: "Ongoing project, Nov 2016 to Jun 2017)"
-      technologies: "EjjS platform (formerly EJS), Java~8, Eclipse, JD-GUI, git, Gitlab, Github, LaTeX, Texstudio"
-      mainresponsabilities: ""
-    -
-      name: "Automatic testing system of some solid state physical properties of rod metals"
-
-      maindesc: "Final project for my degree in physics (cancelled). Now I continue the work as a personal project. The goal is to build a low cost experiment system for using it in classroom and remote controling it, having implications on security operation. Technologies: "
-      detaildesc:
-      - "Programming: Python, Flask, bokeh, PyCharm, pytest, conda, C++, Catch, Eclipse, Git, BitBucket, Gitlab."
-      - "Hardware and electronics: Raspberry Pi, ADC, DAC, OAMP, IAMP, 1-WIRE, Kelvin bridge, Qucs, MultiSIM, System Modeler."
-      - "Measurement and calibration: Oscilloscope, Source current control, signal generator, balances and calibrated gauges, thermometers (solid-state digital and analogue, platinum resistor, reference for calibration), piezoelectric sensors, voltmeters, ammeter."
-      - "Physical phenomena: System Modeler, Wolfram Mathematica and IPython Notebooks."
-      - "Analysis of uncertainty: theoretical with Wolfram Mathematica, simulations with System Modeler. Expression of uncertainty following GUM guide and numerical derivation of uncertainties with an own module developed in R."
-      - "Drawing up report and bibliography management: LaTeX, Texstudio, Zotero, Biblatex."
-      - "Graphical visualisation: ggplot, own function customisation in R, Bokeh."
-      - "Management: Trello, Google Keep."
-      time: "Novembre 2015 -- June 2016"
-      technologies: "Technologies: detailed in project description"
-      mainresponsabilities: ""
-      figure: "protoBar.jpg"
-
--
-  company: "General manager at Ramper-Arqui, S. L. (Spain)"
-  infocompany: "Currently dormant company (without activity)."
-  activities:
-    - "Required activities dictated by law (preparation and presentation of corporate income tax and audit deposits)."
-  period: "June 2011 -- Present"
-
--
-  company: "Various positions at Evaluación de Recursos Naturales, S. A."
-  infocompany: "Environmental consulting firm. Valencia and Madrid (Spain)."
-  certificate: ["Certificate of employment", "https://drive.google.com/open?id=0B3n_KOODBfifV2R1b1VRazM4M00"]
-  activities:
-    - "Analyst, programmer, database analyst, web developer."
-    - "GIS user and developer."
-    - "Software Trainer."
-    - "Network administrator, computer maintainer."
-    - "Team manager."
-    - "Project budgeting."
-    - "Internal team quality reviewer."
-    - "Relations with customers."
-    - "Assistance to customers."
-    - "Water technician."
-    - "Drafting and development of technical reports."
-    - "Examine, study, extract and update legal reports and collaborate in drawing up law proposals."
-    - "Impart and disseminate results of studies."
-    - "Preparation and coordination of national and international tenders for open calls."
-    - "Assistance on drafting Terms of Reference for open calls and private contracts."
-    - "Photographer, cameraman, digital edition of contents for meetings and conferences."
-  period: "July 2006 -- June 2014"
-  forcepageafter: true
-  projects:
-    -
-      name: "Technical assistance to DG Water of the Spanish Ministry of Environment for coordinating the development of River Basin Management Plans"
-      description: ""
-      time: "2006-2012"
-      technologies: ""
-      mainresponsabilities: ""
-
-    -
-      name: "PROTAGUS: Pilot project on water balances in the Tagus River Basin"
-      description: "EU funded grant"
-      time: "2013--2014, I left the company before the project was finished"
-      technologies: ""
-      mainresponsabilities: ""
-
-    -
-      name: "Preparatory Action on Development of Prevention Activities to Halt Desertification in Europe Halting desertification in Europe Halt-Hucar-Des"
-      description: "EU funded grant"
-      time: "2011--2012"
-      technologies: ""
-      mainresponsabilities: |
-        Monitoring and evaluation of data gathering and assessment, realization of water balance model, testing and
-        calibrating the model, analysis of results, generation of tables, figures, maps and graphs, coordination of
-        the support from the rest of the technical team.
-      urls:
-        - ["Final document","http://ec.europa.eu/environment/water/blueprint/pdf/HJD_Final Technical Report.pdf"]
-    -
-      name: "Technical assistance in international affairs of the DG Water of the Spanish Ministry of Environment"
-      description: ""
-      time: " 2006--2011"
-      technologies: ""
-      mainresponsabilities: ""
-
-    -
-      name: "Technical assistance to the General Secretariat of the National Water Council"
-      description: ""
-      time: "2006--2011"
-      technologies: ""
-      mainresponsabilities: ""
-    -
-      name: "Collection of new information and update of the Reclaimed Water Plants database for the Hydrographic Studies Center, CEDEX Spain"
-      description: ""
-      time: "2011--2014"
-      technologies: ""
-      mainresponsabilities: ""
-    -
-      name: "Technical assistance to the Water Unit of DGENV of the European Commission with meeting and documents preparation related to Water Industry Directives"
-      description: ""
-      time: "2013--2014"
-      technologies: ""
-      mainresponsabilities: ""
-
--
-  company: "Various positions at Agrupación Mediterránea de Ingeniería, S. A."
-  infocompany: "Engineering consulting firm. Valencia (Spain)."
-  certificate: ["Certificate of employment", "https://drive.google.com/open?id=0B3n_KOODBfifcG5sM0VScW9qcDQ"]
-  activities:
-    -  Analyst, programmer, GIS developer, database analyst and developer.
-    -  Relations with customers and project partners.
-    -  Team manager (simultaneously of two different kinds of teams shared between projects).
-    -  Water technician.
-    -  Project budgeting.
-    -  Internal team quality reviewer.
-    -  Drafting and development of technical reports.
-    -  Assistance to Department Director.
-    -  Preparation and coordination of national and international tenders for open calls.
-    -  Assistance on drafting Terms of Reference for open calls and private contracts.
-  period: "January 1999 -- June 2006"
-  projects:
-    -
-      name: "Implementation and control of the Water Quality Network in the Jucar River Basin Authority"
-      description: ""
-      time: "1999--2006"
-    -
-      name: "Waste Water database and application for processing administrative files"
-      description: ""
-      time: "2003--2006"
-    -
-      name: "Technical assistance for tracking projects and files in the Jucar River Basin Authority related to the ERDF programme"
-      description: "Development of a system for digitalising and management of documentation, providing a work flow of associated tasks"
-      time: "2000--2006"
-    -
-      name: "Implementation of the Permanent Technical Secretariat of the Mediterranean Network of Basins Organisation (MENBO)"
-      description: ""
-      time: "2003--2006"
-    -
-      name: "Works for editing the Flood Risk Action Plan of the Valencian Region"
-      description: ""
-      time: "2002--2003"
-    -
-      name: "Software application to manage work certifications and bills"
-      description: ""
-      time: "2003"
-    -
-      name: "Software application to manage staff allocated work time by project and activity providing a link with the official accounting"
-      description: "Internal work"
-      time: "2004--2005"
-    -
-      name: "Software application to scan and index press releases information"
-      description: ""
-      time: "2004"
-    -
-      name: "Accounting and analysis on the different databases and software application existing in the Júcar River Basin Authority, with emphasis in duplicity"
-      description: ""
-      time: "2005"
-    -
-      name: "Software application for tracking administrative tasks related to public works files"
-      description: ""
-      time: "2004--2005"
-    -
-      name: "Software application for tracking budget of ERDF programme projects"
-      description: ""
-      time: "2005--2006"
-    -
-      name: "Software system for distributed parallel batch calculation using Hydrologic Modeling System (HEC-HMS)"
-      description: ""
-      time: "2003"
 -
   company: "Various positions as freelancer"
-  infocompany: "Valencia and Madrid (Spain)."
+  infocompany: "Some place in the World."
   period: "March 1996 -- January 1999"
   activities: 
-    -  Team leader.
     -  Programmer, network administrator, computer maintainer, technical support.
     -  Software Trainer.
     -  3D modeler, designer.
+    -  A lot of more things.
   projects:
     - 
-      name: "Develop and provide training on MS Project applied to civil engineering works to staff of Rover Alcisa S. A. company"
+      name: "Develop and provide training on something to staff of Some company"
       time: "1997--1998"
-      client: "Rover Alcisa, S. A."
+      client: "Some, co."
     - 
       name: "Design and implement computer network and connections with remote offices"
       time: "1998"
-      client: "Rover Alcisa, S. A."
+      client: "Some, co."
     -
-      name: "Technical coordinator in the preparation of technical documentation for bids to contracts of civil and building works" 
-      time: "1996--1999"
-      client: "Rover Alcisa, S. A."
-    -
-      name: "Assistance in the calculus of structures of edification" 
-      time: "1996--1999"
-      client: "Various customers"
-    -
-      name: "Develop a software application for study the resistance of concrete frames"
+      name: "Develop a software application for study something"
       time: "1996"
-      client: "Universidad Politécnica de Valencia"
+      client: "Another, co."
 -
-  company: "Various positions as student intern of Universidad Politécnica de Valencia"
-  infocompany: "Valencia (Spain)"
+  company: "Various positions as student intern of the Best University"
+  infocompany: "Sunny place"
   period: "May 1992 -- February 1996"
+  forcepageafter: true
   activities:
     - Programmer, network administrator, computer maintainer, technical support.
     - Software Trainer.
   projects:
     -
-      name: "Development of an automatic system to control constant humidity and temperature in test probes of concrete" 
+      name: "Development of an automatic system to control the uncontrolable" 
       time: "1995"
     -
-      name: "Development of an automatic system to pull-out test on steel bars" 
-      time: "1994"
-    -
-      name: "Collaboration in the development of alveolar plates data logging system"
-      time: "1992--1994"
-    -
-      name: "Collaboration in the development of postprocessing results of plates foundation software"
-      time: "1993"
-    -
-      name: "Collaboration on the design, development and implementation of fatigue dynamic tests of concrete sleepers" 
+      name: "Development of an automatic system to control something a little controlable" 
       time: "1994"

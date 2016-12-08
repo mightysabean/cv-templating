@@ -6,29 +6,30 @@
 # In the text tutorial are explained the main things you must be aware.
 
 config:
-  base_dir: '/home/username/projects/cv/mcv' # you must change this to the directory where you have your data and templates structure
+  base_dir: '/home/vicente/projects/pro/cv-templating/examples' # you must change this to the directory where you have your data and templates structure.
   output_dir: 'output/latex'
-  template_base_dir: 'examples/latex/'
-  template_file: 'europasscv.tex'
+  template_base_dir: 'latex/europasscv'
+  template_file: 'europasscv-someone.tex'
   template_type: latex
   output_filename: "Someone"
   arara: true
+  resources: # Will be copied to de tmp dir inside the directories specified by name of variable. Must be this exact name of variable.
+    build: # ( src Relative to base directory, dst relative to tmp directory to build if it is the case)
+      - ["data/figures/bobo.png", "figures/bobo.png"]
+      - ["latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to tmp folder
+    output: # Will be copied to de output folder inside a directory with the name as the variable. Must be this exact name of variable.
+      - ["data/figures/bobo.png", "figures/bobo.png"]
+      - ["latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to output folder
+
 doc:
   doc_options: "english,a4paper,nologo"
   language: "en"
   packages:
     - babel: "english" # Only packages that is interisting to change without changing template.
-  finalurl: # For reference paper copies to last version of document online. Write language names on language of document. The first entry corresponds to language document.
-    en: [English, "https://drive.google.com/open?id=0B3n_KOODBfifNk1Gak1NbExmYms"]
-    es: [Spanish, ""]
-    fr: [French, ""]
-    nl: [Dutch, ""]
-  include_preamble: "" # Better putting in the template directly
   pdftitle: "Curriculum vitae"
   bigitem:
     - "Personal statement"  # # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
-    - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
-  figures_directory: "../../data/figures"  # Relative to output_dir
+    - "Something good about Bobo."
 
 data:
   persinfo: "data/pers_info-en.yaml"

@@ -9,7 +9,7 @@
 \documentclass[((( doc_options )))]{europasscv}
 ((* for package in packages *)) ((* for key, value in package.items() *))\usepackage[(((value)))]{(((key)))}    ((* endfor *))
 ((* endfor *))
-((( include_preamble|escape_tex )))
+
 
 \usepackage{hyperref}
 \usepackage{xcolor}
@@ -69,7 +69,7 @@
 % END_FOLD
 
 \begin{document}
-	\fancyfoot[C]{Last digital version of this CV at \\ \url{((( finalurl[language][1] )))} }
+
 	\begin{europasscv}
 % Personal info
 		\ecvpersonalinfo
@@ -215,48 +215,7 @@
 % END_FOLD Additional information
 ((* endif *))
 
-% Figures
-\begin{figure}
-	\caption{\textbf{Graphical representation of the evolution of my use of computer tools grouped by category}. Horizontal axis shows years.
-		The intensity of the colours indicates time since the last use. More intense colour means more recent use and more faint indicates it was used longer time ago. The level expressed next to the name of the tools between parenthesis is a self-assessment considering the intensity of use during that period of time, the last time I used it, and my confidence with the tool. Graduation is $N\rightarrow Novice$, $I\rightarrow Intermediate$, $A\rightarrow Advanced$, and in some cases $L\rightarrow left~ out$. There is no \textit{Expert} level in my case, because I consider that implies continuous and almost exclusively use of such tool. In the graphs, some tools can be used in distinct Types and Categories with distinct self-assessment level of expertise.}
-	\label{fig}
-	\begin{tabular}{p{0.5\textwidth} p{0.5\textwidth}}
-		\toprule
-		\raisebox{-\totalheight}{
-			\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Computing.pdf}} &
-		\raisebox{-\totalheight}{
-			\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Data.pdf}} \\
-		
-	
-	\bottomrule
-	
-	\end{tabular}
 
-\end{figure}
-\begin{figure}
-	\caption{\textbf{\cref{fig} cont.}. Horizontal axis shows years.
-		The intensity of the colours indicates time since the last use. More intense colour means more recent use and more faint indicates it was used longer time ago. The level expressed next to the name of the tools between parenthesis is a self-assessment considering the intensity of use during that period of time, the last time I used it, and my confidence with the tool. Graduation is $N\rightarrow Novice$, $I\rightarrow Intermediate$, $A\rightarrow Advanced$, and in some cases $L\rightarrow left~ out$. There is no \textit{Expert} level in my case, because I consider that implies continuous and almost exclusively use of such tool. In the graphs, some tools can be used in distinct Types and Categories with distinct self-assessment level of expertise.}
-	
-\begin{tabular}{p{0.5\textwidth} p{0.5\textwidth}}
-	\toprule
-	
-	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Systems.pdf}} 	&
-	
-	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Office tools.pdf}}  \\
-	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Professional.pdf}} &
-	\raisebox{-\totalheight}{
-		\includegraphics[width=0.5\textwidth]{(((- figures_directory -)))/Management and communication.pdf}} 	
-	
-	\\
-	
-	\bottomrule
-	
-\end{tabular}
-\end{figure}
 \end{europasscv}
-% TODO Links a Documentos en otras lenguas
-% TODO links a certificados
+
 \end{document}

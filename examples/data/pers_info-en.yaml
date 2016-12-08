@@ -1,23 +1,25 @@
 # TODO: Cambiar datos por someone
 # Listas deben tener un sangrado de dos espacios respecto del nombre de la lista antes del guion.
-family_name: "Ramírez Perea"
-name: "Vicente"
-fullname: "Vicente Ramírez Perea"
-address: "Watertorenstraat 25"
-postal_code: 1560
-village: "Hoeilaart"
-country: Belgium
-telephone: ""
-mobile: "+32 475 51 49 13"
+family_name: "Familyname"
+name: "Name"
+fullname: "Family_name, name"
+address: "One Address street"
+postal_code: "00000"
+village: "The Village"
+country: "The Country"
+telephone: "+01 234 567 890"
+mobile: "+01 234 567 890"
 emails:
-  - "vicente.ramirez.perea@gmail.com"
-  - "vicente.ramirez.perea@outlook.com"
+  - "someone@example.com"
+  - "name.familyname@example.com"
 homepages:
-  - "http://vicente.ramirezperea.es"
+  - "http://someone.example.com"
+  - "http://www.example.com/someone"
 ims:
-  - Skype: VicteAlias
-  - "Google Hangouts": "vicente.ramirez.perea@gmail.com"
-dateofbirth: "30/05/1970"
-nationality: Spanish
-gender: Male
-image_file: "../../data/figures/vrpFormal.png" #relative to output directory where the final file will be.
+  - Skype: SomeoneExample
+  - "Google Hangouts": "someone@example.com"
+dateofbirth: "29/02/1900"
+nationality: "Nationality"
+gender: Undetermined
+image_file: "figures/bobo.png" #relative to output directory where the final file will be.
+profession: "Dark wizard"
