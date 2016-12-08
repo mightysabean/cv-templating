@@ -89,7 +89,9 @@ class CVGenerator():
         self.fullTmpFileName = os.path.join(self.fullTmpFileNameWOExt + self.__extensions.get(self.__templateType))
         self.fullTmpPDFFileName = self.fullTmpFileNameWOExt + '.pdf'
         self.fullOutFileNameWOExt = os.path.join(self.__outputDir, self.__OutFileNameWOExt)
-        #self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
+        self.fullOutFileName = os.path.join(
+            self.__full_output_dir,
+            self.__OutFileNameWOExt + self.__extensions.get(self.__templateType))
         self.fullPDFFileName = os.path.join(self.__full_output_dir,self.__OutFileNameWOExt + '.pdf')
 
 
@@ -162,7 +164,7 @@ class CVGenerator():
         self.__copy_resources(self.__baseDir, self.__tempDir, self.__resources_to_build)
 
         if self.__templateType=='latex' and self.__cf['arara']:
-            p = subprocess.Popen(['arara', self.fullTmpFileName], cwd=self.__tempDir)
+            p = subprocess.Popen(['arara', '-v', self.fullTmpFileName], cwd=self.__tempDir)
             p.wait()
 
         self.copy_artifacts_to_output()
@@ -219,12 +221,15 @@ class CVGenerator():
         # Exists output_dir
         if not os.path.exists(os.path.join(cf['base_dir'], cf['output_dir'])):
             raise RuntimeError(
-                'base_dir + output_dir (%s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
+                'base_dir + output_dir (%s + %s) in config file is not valid. If not exists, please make it.' %
+                (cf['base_dir'], cf['output_dir']))
 
         # Exists template_file
         if not os.path.exists(os.path.join(cf['base_dir'], cf['template_base_dir'], cf['template_file'])):
             raise RuntimeError(
-                'base_dir + template_dir + template_file (%s + %s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
+                'base_dir + template_dir + template_file (%s + %s + %s) in config file '
+                'is not valid. If not exists, please make it.' %
+                (cf['base_dir'], cf['template_base_dir'], cf['template_file']))
 
 
     def check_resources_exists(self):
@@ -232,8 +237,3 @@ class CVGenerator():
             for f in fs:
                 if not os.path.exists(os.path.join(self.__baseDir, f)):
                     raise RuntimeError("%s did not finded as pointed in resource section %s" % (f, r))
-        # for f in self.__resources_to_same_build_dir:
-        #     print(os.path.join(self.__baseDir, f))
-        #
-        #     if not (os.path.exists(os.path.join(self.__baseDir, f)) or os.path.isdir(os.path.join(self.__baseDir, f))):
-        #         raise RuntimeError("%s did not finded as pointed in resource section build_directory" % f)
