@@ -5,27 +5,27 @@
 # This is a YAML file. Please, see xxx to get an understanding of the format.
 # In the text tutorial are explained the main things you must be aware.
 
-config:
-  base_dir: '' # you must change this to the directory where you have your data and templates structure
-  output_dir: 'output/latex'
-  template_base_dir: ''
-  template_file: 'min_test.tex' # must be relative to template_base_dir
-  template_type: latex
-  output_filename: "Someone"
-  arara: true
-  resources: # Will be copied to de tmp dir inside the directories specified by name of variable:
-    build: # Will be copied to de tmp dir ONLY. They are resources needed to build the document:
-      figures:
-        - "../examples/data/figures/bobo.png" # Relative to base directory
-      build_directory: # to be copied to the same folder where the template document will build
-    #output: # Will be copied to de output folder inside a directory with the name as the variable
-
-doc:
+config:  # Must be this exact name of variable.
+  base_dir: '' # you must change this to the directory where you have your data and templates structure. Must be this exact name of variable.
+  output_dir: 'output/latex'  # Must be this exact name of variable.
+  template_base_dir: ''  # Must be this exact name of variable.
+  template_file: 'min_test.tex' # must be relative to template_base_dir. Must be this exact name of variable.
+  template_type: latex  # Must be this exact name of variable.
+  output_filename: "Someone"  # Must be this exact name of variable.
+  arara: true  # Must be this exact name of variable.
+  resources: # Will be copied to de tmp dir inside the directories specified by name of variable. Must be this exact name of variable.
+    build: # ( src Relative to base directory, dst relative to tmp directory to build if it is the case)
+      - ["../examples/data/figures/bobo.png", "figures/bobo.png"]
+      - ["../examples/latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to tmp folder
+    output: # Will be copied to de output folder inside a directory with the name as the variable. Must be this exact name of variable.
+      - ["../examples/data/figures/bobo.png", "figures/bobo.png"]
+      - ["../examples/latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to output folder
+doc:  # Must be this exact name of variable.
   doc_options: "english,a4paper,nologo"
   pdftitle: "Curriculum vitae"
   bigitem:
     - "Personal statement"  # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
     - "Something good about Bobo."
-data:
+data:  # Must be this exact name of variable.
   persinfo: "pers_info-en_min.yaml"
 

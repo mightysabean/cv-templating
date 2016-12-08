@@ -1,5 +1,7 @@
 import os
 import shutil
+from distutils.dir_util import copy_tree
+from distutils.dir_util import mkpath
 import tempfile
 import subprocess
 import datetime
@@ -24,6 +26,7 @@ class CVGenerator():
     __requiredKeysInConfigSection = (
         'base_dir','output_dir', 'template_file', 'template_base_dir', 'template_type', 'output_filename'
     )
+    __nonRequiredKeysInConfigSection = ('arara', "resources")
 
     def __init__(self,config):
         """Constructor for CVGenerator"""
@@ -68,48 +71,69 @@ class CVGenerator():
             self.__tempDir = tempfile.gettempdir()
 
         # output
-        self.__outputDir = cf['output_dir']
-        self.__fullOutputDir = os.path.join(
-            self.__baseDir,
-            self.__outputDir
-        )
         self.__outFile = cf['output_filename']
         self.__date = datetime.datetime.strftime(
-                            datetime.datetime.now(),
-                            "%Y-%m-%d-T-%H-%M")
+            datetime.datetime.now(),
+            "%Y-%m-%d-T-%H-%M")
         self.__OutFileNameWOExt = self.__outFile + self.__date
+
+        self.__outputDir = cf['output_dir']
+        self.__full_output_dir = os.path.join(
+            self.__baseDir,
+            self.__outputDir,
+            self.__OutFileNameWOExt
+        )
+
+
         self.fullTmpFileNameWOExt = os.path.join(self.__tempDir, self.__OutFileNameWOExt)
         self.fullTmpFileName = os.path.join(self.fullTmpFileNameWOExt + self.__extensions.get(self.__templateType))
         self.fullTmpPDFFileName = self.fullTmpFileNameWOExt + '.pdf'
         self.fullOutFileNameWOExt = os.path.join(self.__outputDir, self.__OutFileNameWOExt)
-        self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
-        self.fullPDFFileName = self.fullOutFileNameWOExt + '.pdf'
+        #self.fullOutFileName = os.path.join(self.fullOutFileNameWOExt + self.__extensions.get(self.__templateType))
+        self.fullPDFFileName = os.path.join(self.__full_output_dir,self.__OutFileNameWOExt + '.pdf')
+
 
         # resources
         self.__resources = cf['resources']
-        self.check_resources_exists(self.__cf)
+        self.__resources_to_build = self.__resources['build']
+        # self.__resources_to_same_build_dir = self.__resources_to_build['build_directory']
+        # self.__resources_to_build.pop('build_directory')
+        self.__resources_to_output = self.__resources['output']
+
+#        self.check_resources_exists()
 
 
-    def __copyResourcesToTemp(self, cf):
-        self.__resources=cf['resources']
-        for d, fs in self.__resources.items():
-            if not os.path.exists(os.path.join(self.__tempDir,d)):
-                os.mkdir(os.path.join(self.__tempDir, d))
-            for f in fs:
-                shutil.copy(
-                    os.path.join(self.__baseDir, f),
-                    os.path.join(self.__tempDir, d, os.path.basename(f)))
+    def __copy_resources(self, src_dir, dest_dir, rscs):
+        """Copy resources to temp directory, to specified folder or adjoin the template"""
+
+        for src, dest in rscs:
+
+            ffsrc = os.path.join(src_dir, src)
+            if not (os.path.exists(ffsrc) or os.path.isdir(ffsrc)):
+                raise RuntimeError("Do not find %s", )
+            if os.path.isdir(ffsrc):
+                copy_tree(ffsrc, os.path.join(dest_dir, dest))
+            else:
+                fdestdir = os.path.join(dest_dir, os.path.dirname(dest))
+                if not os.path.isdir(fdestdir):
+                    mkpath(fdestdir)
+                shutil.copy(ffsrc, os.path.join(fdestdir,os.path.basename(dest)))
+        return True
 
 
-    def __copyResourcesFromTempToOutput(self, cf):
-        self.__resources=cf['resources']
-        for d, fs in self.__resources.items():
+    def __copy_resources_from_temp_to_output(self):
+
+        for d, fs in self.__resources_to_output.items():
             if not os.path.exists(os.path.join(self.__outputDir,d)):
                 os.mkdir(os.path.join(self.__outputDir,d))
             for f in fs:
-                shutil.copy(
-                    os.path.join(self.__tempDir, d, os.path.basename(f)),
-                    os.path.join(self.__outputDir, d, os.path.basename(f)))
+                if os.path.isdir(f):
+                    copy_tree(os.path.join(self.__tempDir, d, os.path.basename(f)),
+                        os.path.join(self.__outputDir, d, os.path.basename(f)))
+                else:
+                    shutil.copy(
+                        os.path.join(self.__tempDir, d, os.path.basename(f)),
+                        os.path.join(self.__outputDir, d, os.path.basename(f)))
 
 
     def __extractData(self):
@@ -132,18 +156,17 @@ class CVGenerator():
         elif self.__templateType=='html':
             self.__streamProduced = self.render_html()
 
-
         with open(self.fullTmpFileName, 'w') as o:
             o.write(self.__streamProduced)
 
-        self.__copyResourcesToTemp(self.__cf)
+        self.__copy_resources(self.__baseDir, self.__tempDir, self.__resources_to_build)
 
         if self.__templateType=='latex' and self.__cf['arara']:
             p = subprocess.Popen(['arara', self.fullTmpFileName], cwd=self.__tempDir)
             p.wait()
 
         self.copy_artifacts_to_output()
-        self.__copyResourcesFromTempToOutput(self.__cf)
+        self.__copy_resources(self.__baseDir, self.__full_output_dir, self.__resources_to_output)
 
         return True
 
@@ -160,10 +183,14 @@ class CVGenerator():
     def copy_artifacts_to_output(self):
         """Copy results in temp to output dir"""
         artifactsGenerated=[]
-
+        if not os.path.isdir(self.__full_output_dir):
+            mkpath(self.__full_output_dir)
         for type, ext in self.__artifactExtensions.items():
             try:
-                artifactsGenerated.append(shutil.copy(self.fullTmpFileNameWOExt + ext, self.__fullOutputDir))
+                artifactsGenerated.append(
+                    shutil.copy(
+                        self.fullTmpFileNameWOExt + ext,
+                        self.__full_output_dir))
             except:
                 pass
 
@@ -200,8 +227,13 @@ class CVGenerator():
                 'base_dir + template_dir + template_file (%s + %s + %s) in config file is not valid. If not exists, please make it.' % cf['config'])
 
 
-    def check_resources_exists(self, cf):
-        for r, fs in cf['resources'].items():
+    def check_resources_exists(self):
+        for r, fs in self.__resources_to_build.items():
             for f in fs:
-                if not os.path.exists(os.path.join(cf['base_dir'], f)):
-                    raise RuntimeError("%s did not finded in resource section %s" % (f, r))
+                if not os.path.exists(os.path.join(self.__baseDir, f)):
+                    raise RuntimeError("%s did not finded as pointed in resource section %s" % (f, r))
+        # for f in self.__resources_to_same_build_dir:
+        #     print(os.path.join(self.__baseDir, f))
+        #
+        #     if not (os.path.exists(os.path.join(self.__baseDir, f)) or os.path.isdir(os.path.join(self.__baseDir, f))):
+        #         raise RuntimeError("%s did not finded as pointed in resource section build_directory" % f)
