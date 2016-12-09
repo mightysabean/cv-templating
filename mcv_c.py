@@ -180,7 +180,12 @@ class CVGenerator():
 
     def render_html(self):
         """"""
+        import jinja2
+        env = jinja2.Environment(loader=jinja2.FileSystemLoader(self.__templateBaseDir), lstrip_blocks=True, trim_blocks=True)
+        # Render
+        template = env.get_template(self.__templateFile)
 
+        return template.render(self.__docdata)
 
     def copy_artifacts_to_output(self):
         """Copy results in temp to output dir"""

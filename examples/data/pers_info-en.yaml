@@ -3,23 +3,31 @@
 family_name: "Familyname"
 name: "Name"
 fullname: "Family_name, name"
-address: "One Address street"
-postal_code: "00000"
+#address: "One Address street"
+#postal_code: "00000"
 village: "The Village"
 country: "The Country"
-telephone: "+01 234 567 890"
-mobile: "+01 234 567 890"
+#telephone: "+01 234 567 890"
+#mobile: "+01 234 567 890"
 emails:
   - "someone@example.com"
   - "name.familyname@example.com"
 homepages:
   - "http://someone.example.com"
   - "http://www.example.com/someone"
-ims:
-  - Skype: SomeoneExample
-  - "Google Hangouts": "someone@example.com"
+networks:  # List, [network name, username, icon file, url]
+  - ["Skype", "SomeoneExample", "", "http://www.skype.com"]
+  - ["Google Hangouts", "someone@example.com", "", ""]
+  - ["Hipchat", "Wordless", "", ""]
 dateofbirth: "29/02/1900"
 nationality: "Nationality"
 gender: Undetermined
 image_file: "figures/bobo.png" #relative to output directory where the final file will be.
 profession: "Dark wizard"
+about: |
+  I am, of course, the <strong>best in the world</strong> in the things I do. I was born sometime ago in a place where 
+  there is the convention to not born alone, your mother were there with you. My mother tall me, 
+  that it's the last time you born alone (homage to <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
+  When I was a little kid, I also start to walk alone. When I was a teenager, 
+  you know... After that, I never start a startup, I never be the best in anything, so, if you want to hire me, you must know
+  I know me. 

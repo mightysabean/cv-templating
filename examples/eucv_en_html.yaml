@@ -1,0 +1,35 @@
+# Main config file for europasscv example.
+# Must contain the info used on the template.jinja.
+# Path of files must be relative to base_dir directory (see below config section).
+# Please, avoid comments between variables, especially in list and arrays.
+# This is a YAML file. Please, see xxx to get an understanding of the format.
+# In the text tutorial are explained the main things you must be aware.
+
+config:
+  base_dir: '/home/vicente/projects/pro/cv-templating/examples' # you must change this to the directory where you have your data and templates structure
+  output_dir: 'output/html'
+  template_base_dir: 'html'
+  template_file: 'flat_en.html'
+  template_type: html
+  output_filename: "Someone"
+  resources: # Will be copied to de tmp dir inside the directories specified by name of variable. Must be this exact name of variable.
+    build: # ( src Relative to base directory, dst relative to tmp directory to build if it is the case)
+      - ["data/figures/bobo.png", "images/bobo.png"]
+      - ["html/flat_en_resources", ""]  # It can be a directory, if dst is empty "" files will be copied to tmp folder
+    output: # Will be copied to de output folder inside a directory with the name as the variable. Must be this exact name of variable.
+      - ["data/figures/bobo.png", "images/bobo.png"]
+      - ["html/flat_en_resources", "css"]  # It can be a directory, if dst is empty "" files will be copied to output folder
+
+doc:
+  language: "en"
+  title: "Curriculum vitae"
+  bigitem:
+    - "Personal statement"  # # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
+    - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
+
+data:
+  persinfo: "data/pers_info-en.yaml"
+  profinfo: "data/prof_info-en.yaml"
+  acadinfo: "data/acad_info-en.yaml"
+  persskills: "data/pers_skills-en.yaml"
+  additinfo: "data/addit_info-en.yaml"
