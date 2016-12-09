@@ -23,8 +23,10 @@
 ((* endfor *))
 \ecvhomepage{((* for web in persinfo.homepages *))((( web|escape_tex ))) ((* endfor *))}
 
-((* for im in persinfo.ims *))((* for key, value in im.items() *))\ecvim{((( key|escape_tex )))}{((( value|escape_tex )))}((* endfor *))
+((* if persinfo.networks is defined *))
+((* for im in persinfo.networks *))((* for key, value in im.items() *))\ecvim{((( key|escape_tex )))}{((( value|escape_tex )))}((* endfor *))
 ((* endfor *))
+((* endif *))
 \ecvdateofbirth{((( persinfo.dateofbirth|escape_tex )))}
 \ecvnationality{((( persinfo.nationality|escape_tex )))}
 \ecvgender{((( persinfo.gender|escape_tex )))}
