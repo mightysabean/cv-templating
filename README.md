@@ -13,18 +13,20 @@ We can manage the generation of the CV quickly from data conveniently stored usi
 
 In this solution, I use data stored in plain text files, facilitating the utilisation of any tool for modifying them. Also, it is very convenient for putting your CV information under control version.
 
-Note: If you only need your *curriculum vitae* in only one language and only using one format (for instance the europass format uning latex), then probably is better that you edit a new document using the document class *europasscv* provided by tex distributions or getting the last version from [github repo](https://github.com/gmazzamuto/europasscv).
+Note 1: If you only need your *curriculum vitae* in only one language and only using one format (for instance the europass format uning latex), then probably is better that you edit a new document using the document class *europasscv* provided by tex distributions or getting the last version from [github repo](https://github.com/gmazzamuto/europasscv).
+
+Note 2: There are many other solutions to manage CV. But I want not a standard and so rigid system.
 
 ## What do you need
 
 To use this solution you need (see [installation of requirements](requirements.html) if it is needed):
 
-- Python (>2.7, >3.5) with modules yaml, jinja2, argparse, datetime and os installed. (Probably already installed with you Python).
+- Python (>2.7, >3.5) with modules yaml, jinja2, argparse, datetime and os installed. (Probably already installed with your Python).
 - A recent LaTeX distribution (I use texlive-2016) if you want to generate the CV in PDF format (mandatory if you want a Europass CV).
 
-It is possible that this solution works with previous versions of the tools, but I did not test that.
+It is possible that this solution works with previous versions of Python or Texlive, but I did not test that.
 
-Also, if you want the Europass format (for PDF only), probably you need to download the last version of the [europasscv](https://github.com/gmazzamuto/europasscv) class document from GitHub (thanks, Giacomo Mazzamuto). Texlive distribution already includes the document class, but the last version has some nice improvements.
+Also, if you want the Europass format (for PDF only), probably you need to download the last version of the [europasscv](https://github.com/gmazzamuto/europasscv) class document from GitHub (thanks, Giacomo Mazzamuto). Texlive distribution already includes the document class, but the lastest version has some nice improvements. In the example directory there is a version of november 2016.
 
 ## Making the 'omelette'
 
@@ -54,18 +56,15 @@ The rest of the code, examples and tutorial follows MIT [licence](license.html) 
 
 ## Next steps to do
 
+- refactor
 - example html.
 - example Word (workaround make html and load in Word).
 - example markdown.
 - example knitr.
-- tutorial converting with pandoc.
+- tutorial: converting with pandoc.
 - tox, behave.
 - Dockerize.
-- Java, freemarker.
 
-<!--TODO 
-- make links to final page in github
--->
 
 ## Notes
 
