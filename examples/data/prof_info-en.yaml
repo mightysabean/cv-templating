@@ -1,5 +1,6 @@
 - company: "Personal projects"
   infocompany: ""
+  url: "http://the.company.site"
   period: "June 2020(;-D) -- Present"
   projects:
     -
@@ -23,9 +24,12 @@
       urls:
         - [github repo, "git@github.com:victe/astawebsige.git"]
 -
-  company: "Various positions as freelancer"
+  company: "Freelancer"
   infocompany: "Some place in the World."
   period: "March 1996 -- January 1999"
+  position: "The boss"
+  summary: "A lot of work to others and myself, let's see..."
+  url: "http://the.freelancer.company"
   activities: 
     -  Programmer, network administrator, computer maintainer, technical support.
     -  Software Trainer.
@@ -45,7 +49,8 @@
       time: "1996"
       client: "Another, co."
 -
-  company: "Various positions as student intern of the Best University"
+  company:  "The Best University"
+  position: "Various positions as student intern"
   infocompany: "Sunny place"
   period: "May 1992 -- February 1996"
   forcepageafter: true

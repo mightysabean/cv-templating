@@ -108,38 +108,56 @@
         </section>
     {% endif %}
     
-    <section id="work" class="row">
-        <aside class="col-sm-3">
-        <h3>Work</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <h4 class="strike-through">
-        <span>Pied Piper</span>
-        <span class="date">
-        2013-12-01 — 2014-12-01
-        </span>
-        </h4>
-        <div class="website pull-right">
-        <a href="http://piedpiper.com/">http://piedpiper.com</a>
-        </div>
-        <div class="position">
-        CEO/President
-        </div>
-        <div class="summary">
-        <p>Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.</p>
-        </div>
-        <h4>Highlights</h4>
-        <ul class="highlights">
-        <li class="bullet">Build an algorithm for artist to detect if their music was violating copy right infringement laws</li>
-        <li class="bullet">Successfully won Techcrunch Disrupt</li>
-        <li class="bullet">Optimized an algorithm that holds the current world record for Weisman Scores</li>
-        </ul>
-        </div>
-        </div>
-        </div>
-    </section>
+    {% if profinfo is defined %}
+       {% for section in profinfo %}
+            <section id="work" class="row">
+                <aside class="col-sm-3">
+                    {% if loop.index == 1 %}
+                        <h3>Work</h3>
+                    {% endif %}
+                </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="strike-through">
+                                <span>{{ section.company }}</span>
+                                <span class="date">
+                                {{ section.period }}
+                                </span>
+                            </h4>
+                            {% if section.url is defined %}
+                                <div class="website pull-right">
+                                    <a href="{{ section.url }}">{{ section.url }}</a>
+                                </div>
+                            {% endif %}
+                            {% if section.position is defined %}
+                                <div class="position">
+                                    {{ section.position }}
+                                </div>
+                            {% endif %}
+                            {% if section.summary is defined %}
+                                <div class="summary">
+                                    <p>{{ section.summary }}</p>
+                                </div>
+                            {% endif %}
+                            {% if section.projects is defined %}
+                                <h4>Highlights</h4>
+                                <ul class="highlights">
+                                    {% for p in section.projects %}
+                                        <li class="bullet">{{ p.name }} ({{- p.time -}})</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+        
+    {% endif %}
+
+    
     <section id="volunteer" class="row">
         <aside class="col-sm-3">
         <h3>Volunteer</h3>
