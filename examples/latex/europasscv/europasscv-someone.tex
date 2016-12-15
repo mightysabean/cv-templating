@@ -40,7 +40,7 @@
 ((* endfor *))
 \ecvhomepage{((* for web in persinfo.homepages *))((( web|escape_tex ))) ((* endfor *))}
 ((* if persinfo.networks is defined *))
-((* for im in persinfo.networks *))((* for key, value in im.items() *))\ecvim{((( key|escape_tex )))}{((( value|escape_tex )))}((* endfor *))
+((* for network in persinfo.networks *))\ecvim{((( network[0] )))}{((( network[1] )))}
 ((* endfor *))
 ((* endif *))
 \ecvdateofbirth{((( persinfo.dateofbirth|escape_tex )))}
@@ -146,7 +146,8 @@
 		((* for section in acadinfo.acadmain *))
 			\ecvtitlelevel{((( section.period )))}{((( section.title.tex )))}{((( section.level.tex )))}
 			\ecvitem{}{((( section.center )))}
-			((* if section.notes.tex is defined *))
+
+			((* if section.notes is defined and section.notes.tex is defined *))
 				\ecvitem{}{((( section.notes.tex ))).}
 			((* endif *))
 			((* if section.certificate is defined *))
@@ -179,20 +180,20 @@
 		((* endfor *))
 		\ecvlanguagefooter
 	((* endif *))
-	((* if persskills.communicationskills is defined *))
-		\ecvblueitem{Communication skills}{((( persskills.communicationskills )))}
+	((* if persskills.communicationskills is defined and persskills.communicationskills.tex is defined*))
+		\ecvblueitem{Communication skills}{((( persskills.communicationskills.tex )))}
 	((* endif *))
-	((* if persskills.managerialskills is defined *))
-		\ecvblueitem{Organisational / managerial skills}{((( persskills.managerialskills )))}
+	((* if persskills.managerialskills is defined and persskills.managerialskills.tex is defined *))
+		\ecvblueitem{Organisational / managerial skills}{((( persskills.managerialskills.tex )))}
 	((* endif *))
-	((* if persskills.jobrelatedskills is defined *))
-		\ecvblueitem{Job-related skills}{((( persskills.jobrelatedskills )))}
+	((* if persskills.jobrelatedskills is defined and persskills.jobrelatedskills.tex is defined *))
+		\ecvblueitem{Job-related skills}{((( persskills.jobrelatedskills.tex )))}
 	((* endif *))
 	((* if persskills.digitalcompetence is defined *))
 		\ecvdigitalcompetence{((( persskills.digitalcompetence.informationprocessing )))}{((( persskills.digitalcompetence.communication )))}{((( persskills.digitalcompetence.contentcreation )))}{((( persskills.digitalcompetence.safety )))}{((( persskills.digitalcompetence.problemsolving )))}
 	((* endif *))
-	((* if persskills.otherskills is defined *))
-		\ecvblueitem{Other skills}{((( persskills.otherskills )))}
+	((* if persskills.otherskills is defined and persskills.otherskills.tex is defined*))
+		\ecvblueitem{Other skills}{((( persskills.otherskills.tex )))}
 	((* endif *))
 	((* if persskills.drivinglicence is defined *))
 		\ecvblueitem{Driving licence}{((( persskills.drivinglicence )))}
@@ -204,11 +205,11 @@
 ((* if additinfo is defined *))
 % BEGIN_FOLD Additional information
 	\ecvsection{Additional information}
-	((* if additinfo.publications is defined *))
-	\ecvblueitem{Publications}{((( additinfo.publications )))}
+	((* if additinfo.publications is defined and additinfo.publications.tex is defined *))
+		\ecvblueitem{Publications}{((( additinfo.publications.tex )))}
 	((* endif *))
-	((* if additinfo.other is defined *))
-	\ecvblueitem{Other}{((( additinfo.other )))}
+	((* if additinfo.other is defined and additinfo.other.tex is defined *))
+	\ecvblueitem{Other}{((( additinfo.other.tex )))}
 	((* endif *))
 	((* if additinfo.computerskills is defined *))
 	\ecvblueitem{Computer skills}{((( additinfo.computerskills )))}

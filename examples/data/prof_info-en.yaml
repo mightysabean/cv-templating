@@ -7,19 +7,13 @@
       name: "PhD Thesis very long"
       description: "Very boring thesis about the same theme of the another ones"
       time: "February 2025-- July 2021"
-      technologies: "LaTeX, TexStudio, pdftk, Zotero, biblatex, Arara, Jenkins, git, bitbucket"
       mainresponsabilities: ""
 
-      urls:
-        - [thesis,"https://drive.google.com/open?id=0B3n_KOODBfifYVI0UDFIaGNwRHc"]
-        - [bibliography,"https://www.zotero.org/groups/thesis_elisa_vargas"]
     -
       name: "Another static website generator"
       description: "Migrating an existing website to HTML5 induced the
         development of the project..."
       time: "Ongoing project"
-      technologies: "Python, yaml, jinja2 (templating html), html, Google Analytics, pandoc, markdown,
-        git, Bitbucket, Github"
       mainresponsabilities: ""
       urls:
         - [github repo, "git@github.com:victe/astawebsige.git"]

@@ -156,199 +156,80 @@
         {% endfor %}
         
     {% endif %}
-
+    {% if acadinfo is defined %}
+        <section id="education" class="row">
+            {% for title in acadinfo.acadmain %}
+            <aside class="col-sm-3">
+                <h3>Education</h3>
+            </aside>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="strike-through">
+                        <span>{{ title.center }}</span>
+                        <span class="date">
+                        {{ title.period }}
+                        </span>
+                        </h4>
+                        <div class="area">
+                            {{ title.title.html }}
+                        </div>
+                        <div class="studyType">
+                            {{ title.level.html }}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </section>
+    {% endif %}
+    {% if persskills.langs is defined %}
+        <section id="languages" class="row">
+            <aside class="col-sm-3">
+                <h3>Languages</h3>
+            </aside>
+            <div class="col-sm-9">
+            <div class="row">
+            <div class="col-sm-6">
+            <div class="language">
+                <p><strong>Mother tongue:</strong> {{ persskills.langs.mothertongue }}</p>
+                {% for lang in persskills.langs.others %}
+                    <p><strong>{{ lang.lang }}</strong>: {{ lang.globallevel }}</p>
+                {% endfor %}
+            </div>
+            <p>{{ persskills.langs.mothertonge }}</p>
+            </div>
+            </div>
+            </div>
+        </section>
+    {% endif %}
     
-    <section id="volunteer" class="row">
-        <aside class="col-sm-3">
-        <h3>Volunteer</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <h4 class="strike-through">
-        <span>CoderDojo</span>
-        <span class="date">
-        2012-01-01 — 2013-01-01
-        </span>
-        </h4>
-        <div class="website pull-right">
-        <a href="http://coderdojo.com/">http://coderdojo.com/</a>
-        </div>
-        <div class="position">
-        Teacher
-        </div>
-        <div class="summary">
-        <p>Global movement of free coding clubs for young people.</p>
-        </div>
-        <h4>Highlights</h4>
-        <ul class="highlights">
-        <li class="bullet">Awarded 'Teacher of the Month'</li>
-        </ul>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="education" class="row">
-        <aside class="col-sm-3">
-        <h3>Education</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <h4 class="strike-through">
-        <span>University of Oklahoma</span>
-        <span class="date">
-        2011-06-01 — 2014-01-01
-        </span>
-        </h4>
-        <div class="area">
-        Information Technology
-        </div>
-        <div class="studyType">
-        Bachelor
-        </div>
-        <h4>Courses</h4>
-        <ul class="courses">
-        <li>DB1101 - Basic SQL</li>
-        <li>CS2011 - Java Introduction</li>
-        </ul>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="awards" class="row">
-        <aside class="col-sm-3">
-        <h3>Awards</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <h4 class="strike-through">
-        <span>Digital Compression Pioneer Award</span>
-        </h4>
-        <div class="date pull-right">
-        <em>Awarded</em>
-        2014-11-01
-        </div>
-        <div class="awarder">
-        <em>by</em>
-        <strong>Techcrunch</strong>
-        </div>
-        <div class="summary">
-        There is no spoon.
-        </div>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="publications" class="row">
-        <aside class="col-sm-3">
-        <h3>Publications</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <h4 class="strike-through">
-        <span>Video compression for 3d media</span>
-        <span class="date">
-        2014-10-01
-        </span>
-        </h4>
-        <div class="website pull-right">
-        <a href="http://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)"></a>
-        </div>
-        <div class="publisher">
-        <em>Published by</em>
-        <strong>Hooli</strong>
-        </div>
-        <div class="summary">
-        <p>Innovative middle-out compression algorithm that changes the way we store data.</p>
-        </div>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="skills" class="row">
-        <aside class="col-sm-3">
-        <h3>Skills</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-6">
-        <div class="name">
-        <h4>Web Development</h4>
-        </div>
-        <ul class="keywords">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Javascript</li>
-        </ul>
-        </div>
-        <div class="col-sm-6">
-        <div class="name">
-        <h4>Compression</h4>
-        </div>
-        <ul class="keywords">
-        <li>Mpeg</li>
-        <li>MP4</li>
-        <li>GIF</li>
-        </ul>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="languages" class="row">
-        <aside class="col-sm-3">
-        <h3>Languages</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-6">
-        <div class="language">
-        <strong>English</strong>
-        </div>
-        <div class="fluency">
-        Native speaker
-        </div>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="interests" class="row">
-        <aside class="col-sm-3">
-        <h3>Interests</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-6">
-        <div class="name">
-        <h4>Wildlife</h4>
-        </div>
-        <ul class="keywords">
-        <li>Ferrets</li>
-        <li>Unicorns</li>
-        </ul>
-        </div>
-        </div>
-        </div>
-    </section>
-    <section id="references" class="row">
-        <aside class="col-sm-3">
-        <h3>References</h3>
-        </aside>
-        <div class="col-sm-9">
-        <div class="row">
-        <div class="col-sm-12">
-        <blockquote class="reference">
-        <p>It is my pleasure to recommend Richard, his performance working as a consultant for Main St. Company proved that he will be a valuable addition to any company.</p>
-        <p class="name">
-        <strong>— Erlich Bachman</strong>
-        </p>
-        </blockquote>
-        </div>
-        </div>
-        </div>
-    </section>
+    {% if references is defined %}
+        {% for item in references %}
+            <section id="references" class="row">
+            <aside class="col-sm-3">
+            {% if loop.index==1 %}
+                <h3>References</h3>
+            {% endif %}
+            </aside>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <blockquote class="reference">
+                            <p>{{ item.text.html }}</p>
+                            <p class="name">
+                            <strong>— {{ item.name }}</strong>
+                            </p>
+                        </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    {% endif %}
+    
 </div>
 
 

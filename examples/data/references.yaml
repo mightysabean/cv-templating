@@ -1,0 +1,14 @@
+-
+  name: A. Best Tutor
+  text: 
+    tex: |
+      To recommend \textit{Somebody} of \textit{Somewhere} is very easy. I just wrote this lines... and I forgot them.
+    html: |
+      To recommend <emph>Somebody</emph> of <emph>Somewhere</emph> is very easy. I just wrote this lines... and I forgot them.
+-
+  name: A. Best Boss
+  text: 
+    tex: |
+      \textit{Somebody} of \textit{Somewhere} is the worst employee I had ever have. If nobody hires him/her/it maybe I hope him/her/it comes back.
+    html: |
+      <emph>Somebody</emph> of <emph>Somewhere</emph> is the worst employee I had ever have. If nobody hire him/her/it maybe I hope him/her/it comes back.

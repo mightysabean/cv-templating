@@ -68,13 +68,15 @@ class CVGenerator():
             self.__tempDir = os.path.join(os.getcwd(), 'tmp')
             os.mkdir(self.__tempDir)
         else:
-            self.__tempDir = tempfile.gettempdir()
+            self.__tempDir = os.path.join(tempfile.gettempdir(),'mcv')
+            if not os.path.exists(self.__tempDir):
+                os.mkdir(self.__tempDir)
 
         # output
         self.__outFile = cf['output_filename']
         self.__date = datetime.datetime.strftime(
             datetime.datetime.now(),
-            "%Y-%m-%d-T-%H-%M")
+            "%Y-%m-%d-T-%H-%M-%S")
         self.__OutFileNameWOExt = self.__outFile + self.__date
 
         self.__outputDir = cf['output_dir']

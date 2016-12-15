@@ -33,3 +33,4 @@ data:
   acadinfo: "data/acad_info-en.yaml"
   persskills: "data/pers_skills-en.yaml"
   additinfo: "data/addit_info-en.yaml"
+  references: "data/references.yaml"

@@ -10,7 +10,8 @@ langs:
         interaction: "B1"
         production: "B1"
       writing: "B2"
-      certificate: "English for science B1 taken in Degree in Physics"
+      certificate: "My expensive certificate from another company doing that"
+      globallevel: "Good"
     -
       lang: French
       understanding:
@@ -21,54 +22,34 @@ langs:
         production: "B1"
       writing: "B1"
       certificate: ""
-    -
-      lang: Valencian/Catalan
-      understanding:
-        listening: "B2"
-        reading: "B2"
-      speaking:
-        interaction: "B1"
-        production: "B1"
-      writing: "B1"
-      certificate: "High school degree"
-    -
-      lang: Dutch
-      understanding:
-        listening: "A1"
-        reading: "A1"
-      speaking:
-        interaction: "A1"
-        production: "A1"
-      writing: "A1"
-      certificate: "On-going CVO NT2 basic course"
-communicationskills: |
-  \begin{ecvitemize}
-  \item High communicative and written skills. Broad experience in technical presentations and public speaking. Good ability to adapt to various environments and organisations gained through my ample work experience.
-  \item Improved capacities for data visualisation.
-  \end{ecvitemize}
-managerialskills: |
-  \begin{ecvitemize}
-  \item I have major experience in team management and leadership acquired on developed works (manage 2 teams at the same time between 3 to 6 people each), including management and budgeting of projects.
-  \item I have a good sense of organization due to the works developed for meetings support and follow-up of interest groups in the past years.
-  \item I have a well self-learning culture due to the experience gained through various techniques and my current university studies.
-  \end{ecvitemize}
-jobrelatedskills: |
-  \begin{ecvitemize}
-  \item Ability to analyse complex documentation acquired through my work and self-learning experience.
-  \item I have knowledge of various programming languages and hability to learn new ones and I can adapt quickly to different and new work process. Without calling it \textit{agile}, in the past I worked with simmilar planning models (specially for internal works), althoug for public administration the \textit{v-model} or simpler ones (requirements-aceptance, not even test in some cases) were more often employed.
-  \end{ecvitemize}
-digitalcompetence: # Values for europasscv \ecvBasic \ecvIndependent \ecvProficient \ecvIndependent \ecvBasic (note capilatization)
-  informationprocessing: \ecvProficient
-  communication: \ecvProficient
+      globallevel: "Medium"
+communicationskills:
+  tex: |
+    \begin{ecvitemize}
+    \item Creative speeks until face came blue.
+    \item I know how to push the buttons of my \textit{cleverphone} to communicate my pizza order.
+    \end{ecvitemize}
+managerialskills:
+  tex: |
+    \begin{ecvitemize}
+    \item I have major experience in ant team management inside terrarium.
+    \item I have a good sense of organization due to the necessity of putting one feet after the other to not fall when I walk. Running for another day.
+    \end{ecvitemize}
+jobrelatedskills:
+  tex: |
+    \begin{ecvitemize}
+    \item I have not idea that this is for a job.
+    \item I think I have no skills at all, less related to anything. Maybe I have one, or not.
+    \end{ecvitemize}
+digitalcompetence: # Values for europasscv \ecvBasic \ecvIndependent \ecvProficient (note capilatization)
+  informationprocessing: \ecvBasic
+  communication: \ecvIndependent
   contentcreation: \ecvProficient
-  safety: \ecvProficient
-  problemsolving: \ecvProficient
-otherskills: |
-  \begin{ecvitemize}
-  \item Amateur astronomer.
-  \item Design and implementation of home physics experiments.
-  \item Testing and measuring.
-  \item Robotics and automatisms.
-  \item Great knowledge of the current state of technology consumption.
-  \end{ecvitemize}
-drivinglicence: "A, B"
+  safety: \ecvIndependent
+  problemsolving: \ecvBasic
+otherskills: 
+  tex: |
+    \begin{ecvitemize}
+    \item Amateur cookies maker.
+    \end{ecvitemize}
+drivinglicence: "A, B, C, D, 001203kj, ... All except tricycle."
