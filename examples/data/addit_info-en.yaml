@@ -1,15 +1,15 @@
 publications:
   tex: |
     \begin{ecvitemize}
-    \item N. Family\_name, O. Other (2020). How to write a Thesis and do not forget to make coffe. IZZZ zzz-98-765-4321-0
-    \item A. B. Tutor, N. Family\_name (2025). Forgeting the appointment, a review of the different excuses a tutor or student might have made. 
+    \item N. Family\_name, O. Other (2020). How to write a Thesis and not forget to make coffe. IZZZ zzz-98-765-4321-0
+    \item A. B. Tutor, N. Family\_name (2025). Forgeting on appointment, a review of the different excuses a tutor or student might have made. 
     \end{ecvitemize}
 other:
   tex: |
     Individual economic supporter of:\newline
     \begin{ecvitemize}
     \item Cookie association of some place in the space.
-    \item Put those suits to work at least a time in life association.
+    \item \textit{Put those suits to work at least once in life} association.
     \end{ecvitemize}
 computerskills: |
-  I have minimal computer skills. The computers are little things (or big ones) that do things programatically. In the other side, I am totally a random machine. When you ask me for Alice, I can perfectly answer for Bob or Cat or anything else or nothing at all. The minimal aptitud I have to do computer skills is related with my capacity to push the button of the coffe machine.
+  I have minimal computer skills. The computers are little things (or big ones) that do things programatically. On the other side, I am totally a random machine. When you ask me for Alice, I can perfectly answer for Bob or Cat or anything else or nothing at all. The minimal aptitud I have related to computer skills is with my capacity to push the button of the coffee machine.

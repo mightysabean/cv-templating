@@ -26,19 +26,19 @@ langs:
 communicationskills:
   tex: |
     \begin{ecvitemize}
-    \item Creative speeks until face came blue.
-    \item I know how to push the buttons of my \textit{cleverphone} to communicate my pizza order.
+    \item Creative speeches until my face came blue.
+    \item I know how to push the buttons of my \textit{cleverphone} to place my pizza order.
     \end{ecvitemize}
 managerialskills:
   tex: |
     \begin{ecvitemize}
     \item I have major experience in ant team management inside terrarium.
-    \item I have a good sense of organization due to the necessity of putting one feet after the other to not fall when I walk. Running for another day.
+    \item I have a good sense of organization due to the necessity of putting one foot after the other so I don't fall when I walk. Running for another day.
     \end{ecvitemize}
 jobrelatedskills:
   tex: |
     \begin{ecvitemize}
-    \item I have not idea that this is for a job.
+    \item I have no idea that this is for a job.
     \item I think I have no skills at all, less related to anything. Maybe I have one, or not.
     \end{ecvitemize}
 digitalcompetence: # Values for europasscv \ecvBasic \ecvIndependent \ecvProficient (note capilatization)

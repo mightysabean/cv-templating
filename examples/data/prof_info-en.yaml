@@ -5,7 +5,7 @@
   projects:
     -
       name: "PhD Thesis very long"
-      description: "Very boring thesis about the same theme of the another ones"
+      description: "Very boring thesis about the same topic as the other ones"
       time: "February 2025-- July 2021"
       mainresponsabilities: ""
 
@@ -22,7 +22,7 @@
   infocompany: "Some place in the World."
   period: "March 1996 -- January 1999"
   position: "The boss"
-  summary: "A lot of work to others and myself, let's see..."
+  summary: "A lot of work for others and myself, let's see..."
   url: "http://the.freelancer.company"
   activities: 
     -  Programmer, network administrator, computer maintainer, technical support.
