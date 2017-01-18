@@ -9,7 +9,7 @@ config:
   base_dir: '/home/vicente/projects/pro/cv-templating/examples' # you must change this to the directory where you have your data and templates structure.
   output_dir: 'output/latex'
   template_base_dir: 'latex/europasscv'
-  template_file: 'europasscv-someone.tex'
+  template_file: 'europasscv-someone.tex' # Relative to template_base_dir
   template_type: latex
   output_filename: "Someone"
   arara: true
