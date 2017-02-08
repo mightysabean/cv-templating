@@ -36,8 +36,9 @@ The content and name of the variables inside the other two section is up to you.
 
 ### Latex
 
-!!!El formato de plantilla europasscv no es completo. Usando la clase hay más campos que los empleados.
+!!!El formato de plantilla europasscv de ejemplo no es completo. Usando la clase hay más campos que los empleados.
 !!! Se usa la versión de europasscv que viene instalada con Texlive 2016. La nueva versión en Github es mejor pero hay que cambiar xxx por yyy para que se compile. 
+
 ### HTML
 
 Note: if the final objective of the html file generate is to be putted in a web page, then I suggest you don't put any sensible information in the CV. For instance, the html example provided do not include the address and telephone. For the email, it is better to add an obfuscating trap for bots, or use a new dedicated account with a good spam filter. For good spam filter I mean that it is configurable, because in this case, it is better not to have false positives, althogth that implies getting more spam in the main mail folder (but you don't want to lose some contractor request in the darkness of the spam folder).
@@ -50,9 +51,9 @@ Note: if the final objective of the html file generate is to be putted in a web 
 
 - When the value of your variable does not appears in the document generated, check if you has not forgotten putting your variable inside the markers used in your template (for html {{ variable }} and for latex ((( variable ))) ).
 
-- If you need to write a variable inside parenthesis see for example *country* in europasscv example.
+- If you need to write a variable inside parenthesis see for example *country* in europasscv or html template examples.
 
-- If you need to store some of your data already formated, then better if you make a subdivision of that data putting using the name of the format as name of the variable subdivision. See xxx for an example. In that case is preferable that the variable in YAML will be stored using the | format. That permits to write in several lines using the final syntax.
+- If you need to store some of your data already formated, then better if you make a subdivision of that data using the name of the format as name of the variable subdivision. See xxx for an example. In that case is preferable that the variable in YAML will be stored using the | format. That permits to write in several lines using the final syntax. As you are writing final code syntax, you must not escape never the variable in the template. For instance see personal skills.
 
 
 
