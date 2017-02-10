@@ -1,57 +1,77 @@
+import datetime
 import os
 import shutil
+import subprocess
+import tempfile
 from distutils.dir_util import copy_tree
 from distutils.dir_util import mkpath
-import tempfile
-import subprocess
-import datetime
+
 import yaml
-import mcv_utils
+
 import jinjatex
+from mcv import mcvutils
 
 
 class CVGenerator():
-    """Generator of cv from templates in jinja"""
+    """Generator of CV from templates in jinja2"""
 
     __validTemplateTypes = ('html', 'latex')
+
     __extensions = {
         'html': '.html',
         'latex': '.tex',
     }
+
     __artifactExtensions = dict.copy(__extensions)
+
     __artifactExtensions.update({
         'pdf': '.pdf'
     })
+
     __requiredSections = ('config', 'doc', 'data')
+
     __requiredKeysInConfigSection = (
         'base_dir','output_dir', 'template_file', 'template_base_dir', 'template_type', 'output_filename'
     )
+
     __nonRequiredKeysInConfigSection = ('arara', "resources")
 
-    def __init__(self,config):
-        """Constructor for CVGenerator"""
 
-        # config section
-        self.check_config_sections(config)
-        self.__cf = config['config']
-        self.check_config_data(self.__cf)
-        self.__mapConfigData(self.__cf)
+    def __init__(self, config):
+        """Constructor for CVGenerator
 
-        # Doc section
-        self.__doc = config['doc']
+            :param config YAML file or stream with 3 requiered sections for config the task, the document and data for the template."""
 
-        # Data section
+        # Config section --------------------------------------------------------------------------------------------
+
+        # Check no errors in config file
+        self.check_config_file_sections(config)
+
+        # Map values of config section to private variables of class CVGenerator for use easy in code
+        self.__map_config_section(config['config'])
+        self.__check_config_section_data()
+
+        # Doc section -----------------------------------------------------------------------------------------------
+        # Do not check in generic use. If customize code, this is the place to insert some checks that depends of the
+        # type of document and specific use of it.
+
+        # Add info of document section to context
+        self.__doc = config['doc']  # TODO juntar aquí, no dejar para el merge de después
+
+        # Data section  # TODO refactor to mcvdata
         self.__data_files = config['data']
         self.__data = self.__extractData()
-        self.__docdata = mcv_utils.merge_two_dicts(self.__doc, self.__data)
+        # Add data to context
+        self.__docdata = mcvutils.merge_two_dicts(self.__doc, self.__data)  # Ocultar
 
 
-    def __mapConfigData(self, cf):
+    def __map_config_section(self, cf):
         """Assign values from config section in config file to private variables"""
-        # TODO raise exception and finish if something is missing
+        # TODO raise run time exception and finish if something is missing
 
+        self.__cf = cf
 
-        # base
+        # base directory
         self.__baseDir = cf['base_dir']
 
         # template
@@ -203,40 +223,40 @@ class CVGenerator():
             except:
                 pass
 
-    def check_config_sections(self, dictconfig):
+    def check_config_file_sections(self, dictconfig):
         """Check config section has the three main sections"""
         for k in self.__requiredSections:
             if k not in dictconfig:
                 raise RuntimeError("Config file must have these sections: %s" % ", ".join(self.__requiredSections))
 
-    def check_config_data(self, cf):
+    def __check_config_section_data(self):
         """Check data in config section is correct"""
 
         # All main section keys are in config section
         for k in self.__requiredKeysInConfigSection:
-            if k not in cf:
+            if k not in self.__cf:
                 raise RuntimeError("Config file must have the key: %s" % k)
 
         # Exists base_dir
-        if not os.path.exists(cf['base_dir']):
-            raise RuntimeError('base_dir %s in config file does not exists' % cf['base_dir'])
+        if not os.path.exists(self.__cf['base_dir']):
+            raise RuntimeError('base_dir %s in config file does not exists' % self.__cf['base_dir'])
 
         # Valid template_type
-        if cf['template_type'] not in self.__validTemplateTypes:
+        if self.__cf['template_type'] not in self.__validTemplateTypes:
             raise RuntimeError('Unknown type of template type. Valid types are %s .', self.__validTemplateTypes)
 
         # Exists output_dir
-        if not os.path.exists(os.path.join(cf['base_dir'], cf['output_dir'])):
+        if not os.path.exists(os.path.join(self.__cf['base_dir'], self.__cf['output_dir'])):
             raise RuntimeError(
                 'base_dir + output_dir (%s + %s) in config file is not valid. If not exists, please make it.' %
-                (cf['base_dir'], cf['output_dir']))
+                (self.__cf['base_dir'], self.__cf['output_dir']))
 
         # Exists template_file
-        if not os.path.exists(os.path.join(cf['base_dir'], cf['template_base_dir'], cf['template_file'])):
+        if not os.path.exists(os.path.join(self.__cf['base_dir'], self.__cf['template_base_dir'], self.__cf['template_file'])):
             raise RuntimeError(
                 'base_dir + template_dir + template_file (%s + %s + %s) in config file '
                 'is not valid. If not exists, please make it.' %
-                (cf['base_dir'], cf['template_base_dir'], cf['template_file']))
+                (self.__cf['base_dir'], self.__cf['template_base_dir'], self.__cf['template_file']))
 
 
     def check_resources_exists(self):
@@ -244,3 +264,4 @@ class CVGenerator():
             for f in fs:
                 if not os.path.exists(os.path.join(self.__baseDir, f)):
                     raise RuntimeError("%s did not finded as pointed in resource section %s" % (f, r))
+

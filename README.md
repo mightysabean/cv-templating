@@ -56,7 +56,8 @@ The rest of the code, examples and tutorial follows MIT [licence](license.html) 
 
 ## Next steps to do
 
-- refactor
+- refactor.
+- example using inheritance of template.
 - example html.
 - example Word (workaround make html and load in Word).
 - example markdown.
