@@ -2,6 +2,8 @@ import os
 
 import yaml
 
+from mcv.mcvutils import fileext
+
 
 class CVData():
     """Data extractor to feed CVGenerator
@@ -26,11 +28,23 @@ class CVData():
     def __extractData(self):
         """Extract data from data YAML files referenced in data section in config file"""
         # TODO raise exception and finish if something is missing or no data
-        data = {}
+        datadict = {}
         for d in self.__data_files:
             f = os.path.join(
                 self.__baseDir,
                 self.__data_files.get(d)
             )
-            data.update({d: yaml.load(open(f, 'r'))})
-        return data
+            # Add otros formatos de archivo si se necesita.
+            if fileext(f) == 'csv':
+                datadictsinglefile = {d: self.__csv2dict(f)}
+            else:
+                datadictsinglefile = {d: yaml.load(open(f, 'r'))}
+
+            datadict.update(datadictsinglefile)
+        return datadict
+
+    def __csv2dict(self, f):
+        """Convert data in csv format to YAML list.
+
+        No se hacen comprobaciones de correccion del csv"""
+
