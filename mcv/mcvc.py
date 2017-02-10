@@ -10,6 +10,7 @@ import yaml
 
 import jinjatex
 from mcv import mcvutils
+from mcv.mcvdata import CVData
 
 
 class CVGenerator():
@@ -56,13 +57,14 @@ class CVGenerator():
         # type of document and specific use of it.
 
         # Add info of document section to context
-        self.__doc = config['doc']  # TODO juntar aquí, no dejar para el merge de después
+        self.__docdata = config['doc']
 
-        # Data section  # TODO refactor to mcvdata
+        # Data section
         self.__data_files = config['data']
-        self.__data = self.__extractData()
+        data = CVData(self.__baseDir, self.__data_files)
+
         # Add data to context
-        self.__docdata = mcvutils.merge_two_dicts(self.__doc, self.__data)  # Ocultar
+        self.__docdata.update(data.get())
 
 
     def __map_config_section(self, cf):
@@ -160,17 +162,6 @@ class CVGenerator():
                         os.path.join(self.__outputDir, d, os.path.basename(f)))
 
 
-    def __extractData(self):
-        """Extract data from data YAML files referenced in data section in config file"""
-        # TODO raise exception and finish if something is missing or no data
-        data = {}
-        for d in self.__data_files:
-            f = os.path.join(
-                self.__baseDir,
-                self.__data_files.get(d)
-            )
-            data.update({d: yaml.load(open(f, 'r'))})
-        return data
 
 
     def render(self):
