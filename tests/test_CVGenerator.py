@@ -40,6 +40,7 @@ def test_check_absence_of_one_of_the_config_sections_raises_exception():
     with pytest.raises(RuntimeError):
         load_case(pathtest, minimalConfigFileLatex).check_config_file_sections(t_config_f)
 
+
 def test_check_config_variables_in_config_section_raise_exception():
     """Check RuntimeError if not all sections in config dict"""
     t_cf_f = {'base_dir':'a','template_dir':'b'} # faltan 'output_dir', 'template_file', 'template_type', 'output_filename'
@@ -47,6 +48,7 @@ def test_check_config_variables_in_config_section_raise_exception():
         m = load_case(pathtest, minimalConfigFileLatex)
         m._CVGenerator__cf.pop('output_dir', None)
         m._CVGenerator__check_config_section_data()
+
 
 def test_check_bad_base_dir_raise_exception():
     """Check RuntimeError if not all sections in config dict"""
@@ -56,6 +58,7 @@ def test_check_bad_base_dir_raise_exception():
         m._CVGenerator__cf = t_cf_f
         m._CVGenerator__check_config_section_data()
 
+
 def test_check_bad_base_dir_plus_output_dir_raise_exception():
     """Check RuntimeError if not all sections in config dict"""
     t_cf_f = {'base_dir':pathtest,'template_dir':'b', 'output_dir':None, 'template_file':'', 'template_type':'', 'output_filename':''}
@@ -63,6 +66,7 @@ def test_check_bad_base_dir_plus_output_dir_raise_exception():
         m = load_case(pathtest, minimalConfigFileLatex)
         m._CVGenerator__cf = t_cf_f
         m._CVGenerator__check_config_section_data()
+
 
 def test_check_not_found_template_raise_exception():
     """Check RuntimeError if not all sections in config dict"""
@@ -72,6 +76,7 @@ def test_check_not_found_template_raise_exception():
         m._CVGenerator__cf = t_cf_f
         m._CVGenerator__check_config_section_data()
 
+
 def test_pdf_is_generated():
     """ If arara: true in config file with arara installed then check PDF is generated.
     If there are resources (images for instance) specified, check they are copied to output dir and folder."""
@@ -80,6 +85,7 @@ def test_pdf_is_generated():
     name = cvg.fullPDFFileName
     assert os.path.exists(name) == True
 
+
 def test_html_example_is_generated():
     config = yaml.load(open(examples_config_file_html, 'r'))
     cvg= mcvc.CVGenerator(config)
@@ -87,9 +93,18 @@ def test_html_example_is_generated():
     name= cvg.fullOutFileName
     assert os.path.exists(name) == True
 
+
 def test_latex_example_is_generated():
     config = yaml.load(open(examples_config_file_latex, 'r'))
     cvg= mcvc.CVGenerator(config)
     cvg.render()
     name= cvg.fullOutFileName
     assert os.path.exists(name) == True
+
+
+def test_data_csvfile_is_loaded():
+
+    config = yaml.load(open(minimalConfigFileLatex, 'r'))
+    config['config']['base_dir'] = pathtest
+    cvg = mcvc.CVGenerator(config)
+    cvg._CVGenerator__docdata['acadinfocurses'][1]['name'] == "4065 the csv"
