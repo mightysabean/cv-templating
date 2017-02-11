@@ -5,7 +5,7 @@ import subprocess
 from distutils.dir_util import mkpath
 from distutils.dir_util import copy_tree
 import jinjatex
-
+from mcv.mcvutils import copy_resources
 
 
 class Process:
@@ -15,7 +15,7 @@ class Process:
     def __init__(self, taskconfig, docdata):
         self.taskconfig = taskconfig
         self.docdata = docdata
-
+        self.streamProduced = ''
 
     def render(self):
         """Produce the destination file from template and data. Chose what method to use from template type."""
@@ -27,14 +27,14 @@ class Process:
         with open(self.taskconfig.fullTmpFileName, 'w') as o:
             o.write(self.streamProduced)
 
-        self.__copy_resources(self.taskconfig.baseDir, self.taskconfig.tempDir, self.taskconfig.resources_to_build)
+        copy_resources(self.taskconfig.baseDir, self.taskconfig.tempDir, self.taskconfig.resources_to_build)
 
         if self.taskconfig.templatetype == 'latex' and self.taskconfig.cf['arara']:
             p = subprocess.Popen(['arara', '-v', self.taskconfig.fullTmpFileName], cwd=self.taskconfig.tempDir)
             p.wait()
 
         self.copy_artifacts_to_output()
-        self.__copy_resources(self.taskconfig.baseDir, self.taskconfig.full_output_dir, self.taskconfig.resources_to_output)
+        copy_resources(self.taskconfig.baseDir, self.taskconfig.full_output_dir, self.taskconfig.resources_to_output)
 
         return True
 
@@ -54,36 +54,17 @@ class Process:
 
     def copy_artifacts_to_output(self):
         """Copy results in temp to output dir"""
-        artifactsGenerated = []
+        artifacts_generated = []
         if not os.path.isdir(self.taskconfig.full_output_dir):
             mkpath(self.taskconfig.full_output_dir)
-        for type, ext in self.taskconfig.artifactExtensions.items():
+        for art_type, ext in self.taskconfig.artifactExtensions.items():
             try:
-                artifactsGenerated.append(
+                artifacts_generated.append(
                     shutil.copy(
                         self.taskconfig.fullTmpFileNameWOExt + ext,
                         self.taskconfig.full_output_dir))
-            except:
-                pass
-
-
-    def __copy_resources(self, src_dir, dest_dir, rscs):
-        """Copy resources to temp directory for building, or to output for accompanying results"""
-
-        for src, dest in rscs:
-
-            ffsrc = os.path.join(src_dir, src)
-            if not (os.path.exists(ffsrc) or os.path.isdir(ffsrc)):
-                raise RuntimeError("Do not find %s", )
-            if os.path.isdir(ffsrc):
-                copy_tree(ffsrc, os.path.join(dest_dir, dest))
-            else:
-                fdestdir = os.path.join(dest_dir, os.path.dirname(dest))
-                if not os.path.isdir(fdestdir):
-                    mkpath(fdestdir)
-                shutil.copy(ffsrc, os.path.join(fdestdir, os.path.basename(dest)))
-        return True
-
+            except Exception as e:
+                print()
 
     def __copy_resources_from_temp_to_output(self):
         for d, fs in self.taskconfig.resources_to_output.items():

@@ -15,6 +15,7 @@ import os
 import yaml
 
 from mcv import Gen
+from mcv.Process import Process
 
 
 def create_parser():
@@ -49,10 +50,13 @@ def main(config_file):
                            'executing the program, as well as a full path.' % config_file)
     config = yaml.load(open(config_file, 'r'))
     cvg = Gen.Gen(config)
-    cvg.render()
+    cvr = Process(cvg.taskConfig, cvg.docdata)
+    cvr.render()
+    print("Generated {name}".format(name = cvg.taskConfig.fullOutFileName))
+    return cvg.taskConfig.fullOutFileName
 # TODO check for variables in template not used or data not used in template. jinja2.meta.find_undeclared_variables(ast)
 
 
 if __name__ == "__main__":
     CML_ARGS = create_parser().parse_args()
-    Gen.main(CML_ARGS.CV_file)
+    main(CML_ARGS.CV_file)

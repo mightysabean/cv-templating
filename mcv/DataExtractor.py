@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
-import csv
 import yaml
 
-from mcv.mcvutils import fileext
+from mcv.mcvutils import fileext, csv2dict
 
 
-class DataExtractor():
+class DataExtractor:
     """Data extractor to feed CVGenerator
     It can be easy to modify this class for obtain the data from other sources,
     for instance, from databases."""
@@ -18,7 +17,7 @@ class DataExtractor():
         """
         self.__baseDir = basedir
         self.__data_files = datafiles
-        self.__data = self.__extractData()
+        self.__data = self.__extract_data()
 
     def get(self):
         """Devuelve el diccionario necesario para que se integre en el context a pasar
@@ -27,7 +26,7 @@ class DataExtractor():
         de jinja2."""
         return self.__data
 
-    def __extractData(self):
+    def __extract_data(self):
         """Extract data from data YAML files referenced in data section in config file"""
         # TODO raise exception and finish if something is missing or no data
         datadict = {}
@@ -38,23 +37,10 @@ class DataExtractor():
             )
             # Add otros formatos de archivo si se necesita.
             if fileext(f) == '.csv':
-                datadictsinglefile = {d: self.__csv2dict(open(f, 'r'))}
+                datadictsinglefile = {d: csv2dict(open(f, 'r'))}
             else:
                 datadictsinglefile = {d: yaml.load(open(f, 'r'))}
 
             datadict.update(datadictsinglefile)
         return datadict
 
-    def __csv2dict(self, f):
-        """Convert data in csv format to YAML list.
-
-        No se hacen comprobaciones de correccion del csv
-
-        El csv debe tener header con nombres que vayan a ser compatibles con variables
-        en el template de jinja2. Lo que se hace es una traduccion de cada fila a una
-        entrada de diccionario con keys los nombres de columna y value el de las celdas."""
-        listData = []
-        reader = csv.DictReader(f)
-        for row in reader:
-            listData.append(row)
-        return listData

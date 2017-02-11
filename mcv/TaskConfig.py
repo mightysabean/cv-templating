@@ -36,7 +36,6 @@ class TaskConfig:
 
     def __init__(self, config):
 
-    #def __map_config_section(self, cf):
         """Assign values from config section in config file to private variables"""
         # TODO raise run time exception and finish if something is missing
 
@@ -47,7 +46,7 @@ class TaskConfig:
 
         self.__check_config_section_data()
 
-        ## Fill fields
+        # Fill fields
         # base directory
         self.baseDir = self.cf['base_dir']
 
@@ -102,9 +101,6 @@ class TaskConfig:
         # self.__resources_to_build.pop('build_directory')
         self.resources_to_output = self.__resources['output']
 
-        #        self.check_resources_exists()
-
-
     def check_config_file_sections(self, dictconfig):
         """Check config section has the three main sections"""
         for k in self.__requiredSections:
@@ -134,7 +130,8 @@ class TaskConfig:
                 (self.cf['base_dir'], self.cf['output_dir']))
 
         # Exists template_file
-        if not os.path.exists(os.path.join(self.cf['base_dir'], self.cf['template_base_dir'], self.cf['template_file'])):
+        if not os.path.exists(os.path.join(
+                self.cf['base_dir'], self.cf['template_base_dir'], self.cf['template_file'])):
             raise RuntimeError(
                 'base_dir + template_dir + template_file (%s + %s + %s) in config file '
                 'is not valid. If not exists, please make it.' %

@@ -22,6 +22,7 @@ LATEX_SUBS = (
     (re.compile(r'\.\.\.+'), r'\\ldots'),
 )
 
+
 def escape_tex(value):
     newval = value
     for pattern, replacement in LATEX_SUBS:
@@ -29,10 +30,9 @@ def escape_tex(value):
     return newval
 
 
-
 def render_tex(base, template_filename, doc):
     # make new syntax
-    texenv = jinja2.Environment(loader=jinja2.FileSystemLoader(base),lstrip_blocks=True,trim_blocks=True)
+    texenv = jinja2.Environment(loader=jinja2.FileSystemLoader(base), lstrip_blocks=True, trim_blocks=True)
     texenv.block_start_string = '((*'
     texenv.block_end_string = '*))'
     texenv.variable_start_string = '((('
