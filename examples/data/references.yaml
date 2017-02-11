@@ -4,11 +4,11 @@
     tex: |
       To recommend \textit{Somebody} of \textit{Somewhere} is very easy. I just wrote these lines... and I forgot them.
     html: |
-      To recommend <emph>Somebody</emph> of <emph>Somewhere</emph> is very easy. I just wrote these lines... and I forgot them.
+      To recommend <em>Somebody</em> of <em>Somewhere</em> is very easy. I just wrote these lines... and I forgot them.
 -
   name: A. Best Boss
   text: 
     tex: |
       \textit{Somebody} of \textit{Somewhere} is the worst employee I had ever have. If nobody hires him/her/it maybe I hope he/she/it comes back.
     html: |
-      <emph>Somebody</emph> of <emph>Somewhere</emph> is the worst employee I had ever have. If nobody hires him/her/it maybe I hope he/she/it comes back.
+      <em>Somebody</em> of <em>Somewhere</em> is the worst employee I had ever have. If nobody hires him/her/it maybe I hope he/she/it comes back.

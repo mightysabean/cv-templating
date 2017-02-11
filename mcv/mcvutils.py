@@ -30,6 +30,7 @@ def merge_dicts(*dict_args):
         result.update(dictionary)
     return result
 
+
 def fileext(f):
     name,  ext = os.path.splitext(f)
     return ext

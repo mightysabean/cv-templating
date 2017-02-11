@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import csv
-import os
 
-import sys
+import os
+import csv
 import yaml
 
 from mcv.mcvutils import fileext
 
 
-class CVData():
+class DataExtractor():
     """Data extractor to feed CVGenerator
     It can be easy to modify this class for obtain the data from other sources,
     for instance, from databases."""
