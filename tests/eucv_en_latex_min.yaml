@@ -30,4 +30,4 @@ doc:  # Must be this exact name of variable.
 
 data:  # Must be this exact name of variable.
   persinfo: "pers_info-en_min.yaml"
-
+  acadinfocurses: "curses.csv"
