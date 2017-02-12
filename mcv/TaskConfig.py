@@ -137,8 +137,8 @@ class TaskConfig:
                 'is not valid. If not exists, please make it.' %
                 (self.cf['base_dir'], self.cf['template_base_dir'], self.cf['template_file']))
 
-    def check_resources_exists(self):
-        for r, fs in self.__resources_to_build.items():
-            for f in fs:
-                if not os.path.exists(os.path.join(self.__baseDir, f)):
-                    raise RuntimeError("%s did not finded as pointed in resource section %s" % (f, r))
+    # def check_resources_exists(self):
+    #     for r, fs in self.__resources_to_build.items():
+    #         for f in fs:
+    #             if not os.path.exists(os.path.join(self.__baseDir, f)):
+    #                 raise RuntimeError("%s did not finded as pointed in resource section %s" % (f, r))

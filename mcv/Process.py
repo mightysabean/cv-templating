@@ -2,9 +2,10 @@
 import os
 import shutil
 import subprocess
-from distutils.dir_util import mkpath
 from distutils.dir_util import copy_tree
-import jinjatex
+from distutils.dir_util import mkpath
+
+
 from mcv.mcvutils import copy_resources
 
 
@@ -40,7 +41,8 @@ class Process:
 
     def render_latex(self):
         """"""
-        return jinjatex.render_tex(self.taskconfig.templateBaseDir, self.taskconfig.templateFile, doc=self.docdata)
+        import mcv.jinjatex
+        return mcv.jinjatex.render_tex(self.taskconfig.templateBaseDir, self.taskconfig.templateFile, doc=self.docdata)
 
     def render_html(self):
         """"""
@@ -64,7 +66,8 @@ class Process:
                         self.taskconfig.fullTmpFileNameWOExt + ext,
                         self.taskconfig.full_output_dir))
             except Exception as e:
-                print()
+                # Avoid show as error copy of html when Latex. TODO modif comportamiento. That will no show real errors
+                pass
 
     def __copy_resources_from_temp_to_output(self):
         for d, fs in self.taskconfig.resources_to_output.items():

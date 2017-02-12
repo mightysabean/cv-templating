@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+
 import yaml
 
 from mcv.mcvutils import fileext, csv2dict

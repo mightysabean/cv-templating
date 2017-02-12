@@ -1,0 +1,5 @@
+recursive-include mcv *
+recursive-include mcv/examples/ *
+recursive-exclude mcv/examples/output *
+recursive-include mcv/tests/ *
+recursive-exclude mcv/tests/output *

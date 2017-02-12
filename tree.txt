@@ -1,0 +1,33 @@
+.
+├── CHANGES.txt
+├── docs
+│   ├── requirements.md
+│   └── tutorial.md
+├── LICENSE
+├── MANIFEST.in
+├── mcv
+│   ├── DataExtractor.py
+│   ├── examples
+│   │   ├── data
+│   │   ├── html
+│   │   ├── latex
+│   │   └── output
+│   ├── GenTask.py
+│   ├── __init__.py
+│   ├── jinjatex.py
+│   ├── mcv.py
+│   ├── mcvutils.py
+│   ├── Process.py
+│   ├── TaskConfig.py
+│   └── tests
+│       ├── curses.csv
+│       ├── eucv_en_latex_min.yaml
+│       ├── min_test.tex
+│       ├── output
+│       ├── pers_info-en_min.yaml
+│       └── test_CVGenerator.py
+├── README.md
+├── README.rst
+├── requirements.txt
+├── setup.cfg
+├── setup.py
