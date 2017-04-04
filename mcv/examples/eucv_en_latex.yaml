@@ -1,9 +1,10 @@
-# Main config file for europasscv example.
+# Main config file for cv-templating europasscv example.
 # Must contain the info used on the template.jinja.
 # Path of files must be relative to base_dir directory (see below config section).
 # Please, avoid comments between variables, especially in list and arrays.
-# This is a YAML file. Please, see xxx to get an understanding of the format.
-# In the text tutorial are explained the main things you must be aware.
+# Also, avoid the use of TABs, use spaces.
+# This is a YAML file. Please, see http://www.yaml.org/spec/1.2/spec.html to get an understanding of the format.
+# You can find the main things you must be aware in comments and in the text tutorial.
 
 config:
   base_dir: '/home/vicente/projects/pro/cv-templating/mcv/examples' # you must change this to the directory where you have your data and templates structure.
@@ -13,22 +14,22 @@ config:
   template_type: latex
   output_filename: "Someone"
   arara: true
-  resources: # Will be copied to de tmp dir inside the directories specified by name of variable. Must be this exact name of variable.
-    build: # ( src Relative to base directory, dst relative to tmp directory to build if it is the case)
+  resources: # Will be copied to de tmp dir inside the directories specified by name of variable.
+    build: # Resources to be copied to "tmp" before building final doc. "src" Relative to base directory, "dst" relative to "tmp" directory to build if it is the case.
       - ["data/figures/bobo.png", "figures/bobo.png"]
-      - ["latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to tmp folder
-    output: # Will be copied to de output folder inside a directory with the name as the variable. Must be this exact name of variable.
+      - ["latex/europasscv/resources", ""]  # if "dst" is empty, files will be copied to "tmp" folder. In this example, the program copies the content of a whole directory.
+    output: # Will be copied to de output folder inside a directory with the name as the variable.
       - ["data/figures/bobo.png", "figures/bobo.png"]
-      - ["latex/europasscv/resources", ""]  # It can be a directory, if dst is empty "" files will be copied to output folder
+      - ["latex/europasscv/resources", ""]
 
 doc:
   doc_options: "english,a4paper,nologo"
   language: "en"
   packages:
-    - babel: "english" # Only packages that is interisting to change without changing template.
+    - babel: "english" # Only packages that are interesting to change without changing template. Name of package: "parameter to package in latex"
   pdftitle: "Curriculum vitae"
   bigitem:
-    - "Personal statement"  # # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
+    - "Personal statement"  # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
     - "Something good about Bobo."
 
 data:
@@ -37,3 +38,5 @@ data:
   acadinfo: "data/acad_info-en.yaml"
   persskills: "data/pers_skills-en.yaml"
   additinfo: "data/addit_info-en.yaml"
+  references: "data/references.yaml"
+  curses: "data/acad_info_curses-en.csv"

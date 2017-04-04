@@ -1,9 +1,10 @@
-# Main config file for europasscv example.
+# Main config file for cv-templating HTML example.
 # Must contain the info used on the template.jinja.
 # Path of files must be relative to base_dir directory (see below config section).
 # Please, avoid comments between variables, especially in list and arrays.
+# Also, avoid the use of TABs, use spaces.
 # This is a YAML file. Please, see xxx to get an understanding of the format.
-# In the text tutorial are explained the main things you must be aware.
+# You can find the main things you must be aware in comments and in the text tutorial.
 
 config:
   base_dir: '/home/vicente/projects/pro/cv-templating/mcv/examples' # you must change this to the directory where you have your data and templates structure
@@ -12,22 +13,22 @@ config:
   template_file: 'flat_en.html'
   template_type: html
   output_filename: "Someone"
-  resources: # Will be copied to de tmp dir inside the directories specified by name of variable. Must be this exact name of variable.
-    build: # ( src Relative to base directory, dst relative to tmp directory to build if it is the case)
+  resources: # Will be copied to tmp dir inside the directories specified by the name of the variable.
+    build: # Resources to be copied to "tmp" before building final doc. "src" Relative to base directory, "dst" relative to "tmp" directory to build if it is the case.
       - ["data/figures/bobo.png", "images/bobo.png"]
-      - ["html/flat_en_resources", ""]  # It can be a directory, if dst is empty "" files will be copied to tmp folder
-    output: # Will be copied to de output folder inside a directory with the name as the variable. Must be this exact name of variable.
+      - ["html/flat_en_resources", ""]  # if "dst" is empty, files will be copied to "tmp" folder. In this example, the program copies the content of a whole directory.
+    output: # Will be copied to de output folder inside a directory with the name as the variable.
       - ["data/figures/bobo.png", "images/bobo.png"]
-      - ["html/flat_en_resources", "css"]  # It can be a directory, if dst is empty "" files will be copied to output folder
+      - ["html/flat_en_resources", "css"]  
 
 doc:
   language: "en"
   title: "Curriculum vitae"
   bigitem:
-    - "Personal statement"  # # In Europass could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
+    - "Personal statement"  # Also, it could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
     - "Multidisciplinar profesional ready to apply his knowledge and continue learning and improving."
 
-data:
+data: # list of data files with a variable name to refer them in the template file.
   persinfo: "data/pers_info-en.yaml"
   profinfo: "data/prof_info-en.yaml"
   acadinfo: "data/acad_info-en.yaml"
