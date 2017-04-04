@@ -20,7 +20,7 @@ In this solution, I use data stored in plain text files, facilitating the utilis
 
 ## What do you need
 
-To use this solution you need (see [installation of requirements](requirements.html) if it is needed):
+To use this solution you need (see [installation of requirements](https://victe.github.io/cv-templating/requirements.html) if it is needed):
 
 - Python (>2.7, >3.5) with modules yaml, jinja2, argparse, datetime and os installed. (Probably already installed with your Python).
 - A recent LaTeX distribution (I use texlive-2016) if you want to generate the CV in PDF format (mandatory if you want a Europass CV).
@@ -41,7 +41,7 @@ In the LaTeX case, the syntax for templating is a customization based on [this s
 
 There are examples of each type in the `examples` directory, `excvhtml.jinja` in the `html` folder and `europass-someone.tex` in the `latex` folder.
 
-See the [tutorial](tutorial.html) based on these examples showing how to proceed. You can use the structure of files and directories as a seed for your strucuture, modifying the templates provided as necessary.
+See the [tutorial](https://victe.github.io/cv-templating/tutorial.html) based on these examples showing how to proceed. You can use the structure of files and directories as a seed for your strucuture, modifying the templates provided as necessary.
 
 Atention!: If the specified combination of base directory and output directory does not exists, then the program makes a new one if the user has permission to do that.
 
