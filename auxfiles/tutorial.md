@@ -280,9 +280,9 @@ emails:
 
 The use of the data in the HTML template:
 
-<pre class='django'>
+```django
 ...
-<code>
+
 {% if persinfo.emails|length>0 %}
     <div class="col-sm-6">
         <strong>
@@ -299,9 +299,9 @@ The use of the data in the HTML template:
         </div>
     </div>
 {% endif %}
-</code>
+
 ...
-</pre>
+```
 
 Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.
 

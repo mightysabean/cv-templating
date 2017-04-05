@@ -12,7 +12,8 @@ except (IOError, ImportError):
     description = open('README.md').read()
 
 # The output in html format has extension .md to be processed by github jeckill in raw
-os.system("pandoc --from=markdown_github --to=html5 auxfiles/tutorial.md -o docs/tutorial.md")
+os.system("pandoc --from=markdown_github --to=html5 auxfiles/tutorial.md -o auxfiles/tutorial.html")
+os.system("cat auxfiles/head.html auxfiles/tutorial.html auxfiles/endpart.html >docs/tutorial.html")
 copyfile('README.md', 'docs/index.md')
 
 VERSION = '0.0.20'
