@@ -1,14 +1,14 @@
 # Tutorial
 
-The use of `cv-templating` is very easy. But you must know what are `yaml` and `jinja2` and how to use it. It is not necesary to be an expert, but a minimum of knowledge is required.
+The use of `cv-templating` is very easy. But you must know what `yaml` and `jinja2` are, and how to use it. It is not neccesary to be an expert, but a minimum of knowledge is required.
 
-The full specification of `yaml` are at [yaml specs](http://www.yaml.org/spec/1.2/spec.html) (see *chapter 2* for quick intro) or see [yaml basics](http://docs.ansible.com/ansible/YAMLSyntax.html).
+The full specification of `yaml` are at [yaml specs](http://www.yaml.org/spec/1.2/spec.html) (see *Chapter 2* for a quick intro) or see [yaml basics](http://docs.ansible.com/ansible/YAMLSyntax.html).
 
-For `jinja2` you should consult [jinja documentation](http://jinja.pocoo.org/docs/2.9/) .
+For `jinja2` you should consult [jinja documentation](http://jinja.pocoo.org/docs/2.9/).
 
 ## Install cv-templating
 
-Clone the project or download the dist file and extract their content. You can install to the system or use it without installing it. For install, you must go to the folder when you download or extract the code and do (it is convinient to use [virtual environment](https://virtualenv.pypa.io/en/stable/) ):
+Clone the project or download the [dist](https://github.com/victe/cv-templating/releases) file and extract their content. You can install to the system or use it without installing it. For install, you must go to the folder when you download or extract the code and do (it is convinient to use [virtual environment](https://virtualenv.pypa.io/en/stable/) ):
 
 If you downloaded the dist file:
 
@@ -137,46 +137,218 @@ data: # list of data files with a variable name to refer them in the template fi
 
 In the templates, you must prefix variables in your data file with the variable asigned to it in the config file. The content of the `data/pers_info-en.yaml` is:
 
+```yaml
+family_name: "Familyname"
+name: "Name"
+fullname: "Family_name, name"
+address: "One Address street"
+postal_code: "00000"
+village: "The Village"
+country: "The Country"
+telephone: "+01 234 567 890"
+mobile: "+01 234 567 890"
+emails:
+  - "someone@example.com"
+  - "name.familyname@example.com"
+
+...
+```
 
 And the use in the template file is:
 
 ```html
-...
 <h1>
 {{ persinfo.fullname }}
 </h1>
 <h2>
 {{ persinfo.profession }}
 </h2>
+
 ...
 ```
 
 The result will be:
 
+```html
+...
+...
+<h1>
+Family_name, name
+</h1>
+<h2>
+Dark wizard
+</h2>
 
+...
+```
 
 ## Templates
 
-You can use variables in the template files directly if they come from the **doc** section. If the variables come from the data section . For instance, from the `html` template in the examples:
+You can use the full power of `jinja` in your templates. You can, for instance, check if a variable is defined, or if the variable store multiples values (arrays, lists) repeat the block of text varying the contents. From the same example, the data about emails in `data/pers_info-en.yaml`:
 
+```yaml
+...
+
+emails:
+  - "someone@example.com"
+  - "name.familyname@example.com"
+
+...
+```
+
+The use in the html template:
+
+```html
+...
+
+{% if persinfo.emails|length>0 %}
+    <div class="col-sm-6">
+        <strong>
+        {%- if persinfo.emails|length>1 %}
+            Emails
+        {% else %}
+            Email
+        {% endif -%}
+        </strong>
+        <div class="email">
+            <ul>
+            {% for email in persinfo.emails %}<li>{{ email }}</li>{% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}
+
+...
+```
+
+<aside>Tip: The use of hypen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.</aside>
+
+The result is:
+
+```html
+<div class="col-sm-6">
+    <strong>Emails</strong>
+    <div class="email">
+        <ul>
+          <li>someone@example.com</li>
+          <li>name.familyname@example.com</li>
+        </ul>
+    </div>
+</div>
+```
 
 ### Latex
 
-!!!El formato de plantilla europasscv de ejemplo no es completo. Usando la clase hay más campos que los empleados.
-!!! Se usa la versión de europasscv que viene instalada con Texlive 2016. La nueva versión en Github es mejor pero hay que cambiar xxx por yyy para que se compile.
+The format of `jinja2` variables and blocks in the latex templates has been changed because the use of curly brackets in LaTeX.
+
+You must change one { or } by two (( or )).
 
 ### HTML
 
-Note: if the final objective of the html file generate is to be putted in a web page, then I suggest you don't put any sensible information in the CV. For instance, the html example provided do not include the address and telephone. For the email, it is better to add an obfuscating trap for bots, or use a new dedicated account with a good spam filter. For good spam filter I mean that it is configurable, because in this case, it is better not to have false positives, althogth that implies getting more spam in the main mail folder (but you don't want to lose some contractor request in the darkness of the spam folder).
+Note: if the final objective of the html file generate is to be putted in a web page, then I suggest you don't put any sensible information in the CV. For instance, do not include your address and telephone. For the email, it is better to add an obfuscating trap for bots, or use a new dedicated account with a good spam filter. For good spam filter I mean that it is configurable, because in this case, it is better not to have false positives, althogth that implies getting more spam in the main mail folder (but you don't want to lose some contractor request in the darkness of the spam folder).
 
 ## Tips
 
 - When modifying the template save and compile frequently to check if you do not forget to close some block. Even better if you use Git or a control version software.
 
-- When the value of your variable does not appears in the document generated, check if you has not forgotten putting your variable inside the markers used in your template (for html {{ variable }} and for latex ((( variable ))) ).
+- When the value of your variable does not appears in the document generated, check if you has forgotten putting your variable inside the markers used in your template (for html {{ variable }} and for latex ((( variable ))) ).
 
-- If you need to write a variable inside parenthesis see for example *country* in europasscv or html template examples.
+- If you need to write a variable inside parenthesis, see for example *country* in europasscv and the use of "-".
+    ```latex
+    \ecvaddress{((( persinfo.address ))), ((( persinfo.postal_code ))) ((( persinfo.village ))) ( (((- persinfo.country -))) ) }
+    ```
 
-- If you need to store some of your data already formated, then better if you make a subdivision of that data using the name of the format as name of the variable subdivision. See xxx for an example. In that case is preferable that the variable in YAML will be stored using the | format. That permits to write in several lines using the final syntax. As you are writing final code syntax, you must not escape never the variable in the template. For instance see personal skills.
+- If you need to store some of your data already formated, then better if you make a subdivision of that data using the name of the format as name of the variable subdivision. In that case is preferable that the variable in YAML will be stored using the | style. That permits to write in several lines using the final document syntax. As you are writing final code syntax, you must not escape never the variable in the template. For instance see personal skills.
 
-## Test
+  For example, in the `data/pers_info-en.yaml` file, at the end:
+
+  ```yaml
+  ...
+
+  profession: "Dark wizard"
+  about: 
+    html: |
+      I am, of course, the <strong>best in the world</strong> in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
+      When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am. 
+    latex: |
+      I am, of course, the \textbf{best in the world} in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
+      When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am.
+  
+  ...
+  ```
+
+  You write directly markup for both html and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
+
+  ```html
+  {% if persinfo.about.html is defined %}
+    <section id="about" class="row">
+      <aside class="col-sm-3">
+      <h3>About</h3>
+      </aside>
+      <div class="col-sm-9">
+      <p>{{ persinfo.about.html }}</p>
+      </div>
+    </section>
+  {% endif %}
+  ```
+
+- For use `csv` tabular data, see the example file `acad_info_curses-en.csv`:
+
+    ```csv
+    name,year
+    How to make cakes, 2000
+    How to not eat the cakes you cooked, 2001
+    ```
+
+    It is declared in the data section of the config file as `curses`, and it is used in the html template example:
+
+    ```html
+    {% if curses is defined %}
+
+    <section id="curses" class="row">
+    <aside class="col-sm-3">
+      <h3>Curses</h3>
+    </aside>
+    {% for curse in curses %}
+      <h4 class="strike-through">
+      <span>{{ curse.name }}</span>
+      <span class="date">
+      {{ curse.year }}
+      </span>
+      </h4>
+    {% endfor %}
+    </section>
+    {% endif %}
+    ```
+
+    And the result:
+
+    ```html
+    <section id="curses" class="row">
+      <aside class="col-sm-3">
+        <h3>Curses</h3>
+      </aside>
+      <h4 class="strike-through">
+      <span>How to make cakes</span>
+      <span class="date">
+        2000
+      </span>
+      </h4>
+      <h4 class="strike-through">
+      <span>How to not eat the cakes you cooked</span>
+      <span class="date">
+        2001
+      </span>
+      </h4>  
+    ```
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82399329-2', 'auto');
+  ga('send', 'pageview');
+
+</script>

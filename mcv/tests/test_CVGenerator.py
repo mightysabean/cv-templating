@@ -24,11 +24,11 @@ def load_case(pathtest, config_file):
             loads a minimal config example."""
     config = yaml.load(open(config_file, 'r'))
     config['config']['base_dir'] = pathtest
-    return mcv.mcv.GenTask(config)
+    return GenTask(config)
 
 
 def test_file_config_not_exists_then_raise_system_exit_error():
-    with pytest.raises(SystemExit):
+    with pytest.raises(RuntimeError):
         mcv.mcv.main()
 
 
@@ -91,16 +91,6 @@ def test_check_not_found_template_raise_exception():
         TaskConfig(t_cf_f)
 
 
-def test_pdf_is_generated():
-    """ If arara: true in config file with arara installed then check PDF is generated.
-    If there are resources (images for instance) specified, check they are copied to output dir and folder."""
-    cvg = load_case(path_where_run_test, minimalConfigFileLatex)
-    cvr = mcv.mcv.Process(cvg.taskConfig, cvg.docdata)
-    cvr.render()
-    name = cvg.taskConfig.fullPDFFileName
-    assert os.path.exists(name) is True
-
-
 def test_html_example_is_generated():
     config = yaml.load(open(examples_config_file_html, 'r'))
     cvg = mcv.mcv.GenTask(config)
@@ -126,7 +116,17 @@ def test_data_csvfile_is_loaded():
     assert cvg.docdata['acadinfocurses'][1]['name'] == " 4065 the csv"
 
 
-def test_main():
-    config = os.path.join(path_where_run_test, examples_config_file_latex)
-    name = mcv.mcv.makecv(config)
+def test_pdf_is_generated():
+    """ If arara: true in config file with arara installed then check PDF is generated.
+    If there are resources (images for instance) specified, check they are copied to output dir and folder."""
+    cvg = load_case(path_where_run_test, minimalConfigFileLatex)
+    cvr = mcv.mcv.Process(cvg.taskConfig, cvg.docdata)
+    cvr.render()
+    name = cvg.taskConfig.fullPDFFileName
     assert os.path.exists(name) is True
+
+
+# def test_main():
+#     config = os.path.join(path_where_run_test, examples_config_file_latex)
+#     name = mcv.mcv.makecv(config)
+#     assert os.path.exists(name) is True

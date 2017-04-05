@@ -1,7 +1,8 @@
 cv-templating
 =============
 
-Tools for automatic generation of curriculum vitae from data.
+Tool for automatic generation of curriculum vitae from data. It is a
+report generator using ``jinja2``.
 
 Motivation
 ----------
@@ -16,28 +17,33 @@ Solution
 --------
 
 We can manage the generation of the CV quickly from data conveniently
-stored using templates based in
+stored as text files using templates based in
 `jinja2 <http://jinja.pocoo.org/docs/dev/>`__.
 
 In this solution, I use data stored in plain text files, facilitating
 the utilisation of any tool for modifying them. Also, it is very
 convenient for putting your CV information under control version.
 
-Note 1: If you only need your *curriculum vitae* in only one language
-and only using one format (for instance the europass format uning
-latex), then probably is better that you edit a new document using the
-document class *europasscv* provided by tex distributions or getting the
-last version from `github
+**Note 1**: If you only need your *curriculum vitae* in only one
+language and only using one format (for instance the europass format
+using latex), then probably is better that you edit a new document using
+the document class *europasscv* provided by tex distributions or getting
+the last version from `github
 repo <https://github.com/gmazzamuto/europasscv>`__.
 
-Note 2: There are many other solutions to manage CV. But I want not a
-standard and so rigid system.
+**Note 2**: There are many other solutions to manage CV. But I want not
+a standard and so rigid system.
+
+**Note 3**: With europass, there is also the option of serialize a XML
+file for uploading to the online editor. That is extremely less flexible
+because the explicit use of a fixed data scheme.
 
 What do you need
 ----------------
 
 To use this solution you need (see `installation of
-requirements <requirements.html>`__ if it is needed):
+requirements <https://victe.github.io/cv-templating/requirements.html>`__
+if it is needed):
 
 -  Python (>2.7, >3.5) with modules yaml, jinja2, argparse, datetime and
    os installed. (Probably already installed with your Python).
@@ -81,9 +87,11 @@ There are examples of each type in the ``examples`` directory,
 ``excvhtml.jinja`` in the ``html`` folder and ``europass-someone.tex``
 in the ``latex`` folder.
 
-See the `tutorial <tutorial.html>`__ based on these examples showing how
-to proceed. You can use the structure of files and directories as a seed
-for your strucuture, modifying the templates provided as necessary.
+See the
+`tutorial <https://victe.github.io/cv-templating/tutorial.html>`__ based
+on these examples showing how to proceed. You can use the structure of
+files and directories as a seed for your strucuture, modifying the
+templates provided as necessary.
 
 Atention!: If the specified combination of base directory and output
 directory does not exists, then the program makes a new one if the user
@@ -106,24 +114,9 @@ License Version 1.3.
 
 The rest of the code, examples and tutorial follows MIT
 `licence <license.html>`__ or it has an unknown license. You must
-consider citing the authors.
-
-Next steps to do
-----------------
-
--  refactor.
--  example using inheritance of template.
--  example html.
--  example Word (workaround make html and load in Word).
--  example markdown.
--  example knitr.
--  tutorial: converting with pandoc.
--  tox, behave.
--  Dockerize.
+consider citing the authors of each part when you use their code.
 
 Notes
 -----
 
-1: YAML is more human readable than JSON or other possibilities as CSV,
-that could be better for part of the data, but not to integrate all in
-only one format.
+1: YAML is more human readable than JSON.

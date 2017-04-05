@@ -14,7 +14,7 @@ config:
   template_type: latex
   output_filename: "Someone"
   arara: true
-  resources: # Will be copied to de tmp dir inside the directories specified by name of variable.
+  resources: # Will be copied to tmp dir inside the directories specified by the name of the variable.
     build: # Resources to be copied to "tmp" before building final doc. "src" Relative to base directory, "dst" relative to "tmp" directory to build if it is the case.
       - ["data/figures/bobo.png", "figures/bobo.png"]
       - ["latex/europasscv/resources", ""]  # if "dst" is empty, files will be copied to "tmp" folder. In this example, the program copies the content of a whole directory.

@@ -31,7 +31,8 @@ class Process:
         copy_resources(self.taskconfig.baseDir, self.taskconfig.tempDir, self.taskconfig.resources_to_build)
 
         if self.taskconfig.templatetype == 'latex' and self.taskconfig.cf['arara']:
-            p = subprocess.Popen(['arara', '-v', self.taskconfig.fullTmpFileName], cwd=self.taskconfig.tempDir)
+            # p = subprocess.Popen(['arara', '-v', self.taskconfig.fullTmpFileName], cwd=self.taskconfig.tempDir)
+            p = subprocess.Popen(['arara',  self.taskconfig.fullTmpFileName], cwd=self.taskconfig.tempDir)
             p.wait()
 
         self.copy_artifacts_to_output()

@@ -40,8 +40,8 @@ Example html based on jsonresume/theme/flat
 
 =============================================================================
 
-UNKNOWN LICENCE
+PUBLIC DOMAIN
 
-Code in jinjatex.py is probably public domain as stated in the source.
+Code in jinjatex.py .
 
-merge_two_dicts and merge_dicts from http://stackoverflow.com/users/541136/aaron-hall .
+Code for merge_two_dicts and merge_dicts from http://stackoverflow.com/users/541136/aaron-hall .

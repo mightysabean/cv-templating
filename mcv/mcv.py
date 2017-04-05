@@ -18,7 +18,7 @@ from mcv.GenTask import GenTask
 from mcv.Process import Process
 
 
-def create_parser():
+def create_cml_parser():
     """Create command line parser using argparse
     @return object argparse, list of arguments (now only name of config file)
     """
@@ -40,7 +40,7 @@ def create_parser():
 
 
 def makecv(config_file):
-    if not os.path.exists(config_file):
+    if not os.path.exists(config_file) or config_file == '.':
         raise RuntimeError('Can not be found the file "%s" . The path must be '
                            'relative from where you are '
                            'executing the program, as well as a full path.' % config_file)
@@ -57,7 +57,7 @@ def main():
     where find it, and the data to pass to it.
     @return nothing, generates files.
     """
-    CML_ARGS = create_parser().parse_args()
+    CML_ARGS = create_cml_parser().parse_args()
     makecv(CML_ARGS.cv_file)
 
 # TODO check for variables in template not used or data not used in template. jinja2.meta.find_undeclared_variables(ast)

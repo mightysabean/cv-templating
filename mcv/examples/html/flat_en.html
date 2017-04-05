@@ -33,11 +33,13 @@
 
             {% if persinfo.emails|length>0 %}
                 <div class="col-sm-6">
-                    {% if persinfo.emails|length>1 %}
-                        <strong>Emails</strong>
+                    <strong>
+                    {%- if persinfo.emails|length>1 %}
+                        Emails
                     {% else %}
-                        <strong>Email</strong>
-                    {% endif %}
+                        Email
+                    {% endif -%}
+                    </strong>
                     <div class="email">
                         <ul>
                         {% for email in persinfo.emails %}<li>{{ email }}</li>{% endfor %}
@@ -71,13 +73,13 @@
             </div>
         </div>
     </section>
-    {% if persinfo.about is defined %}
+    {% if persinfo.about.html is defined %}
         <section id="about" class="row">
             <aside class="col-sm-3">
             <h3>About</h3>
             </aside>
             <div class="col-sm-9">
-            <p>{{ persinfo.about }}</p>
+            <p>{{ persinfo.about.html }}</p>
             </div>
         </section>
     {% endif %}
@@ -181,6 +183,26 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            
+        </section>
+    {% endif %}
+    {% if curses is defined %}
+        
+        <section id="curses" class="row">
+            <aside class="col-sm-3">
+                <h3>Curses</h3>
+            </aside>
+            
+            {% for curse in curses %}
+                
+                    <h4 class="strike-through">
+                    <span>{{ curse.name }}</span>
+                    <span class="date">
+                    {{ curse.year }}
+                    </span>
+                    </h4>  
+                    
             {% endfor %}
             
         </section>

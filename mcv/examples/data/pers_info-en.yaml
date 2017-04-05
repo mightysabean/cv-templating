@@ -22,10 +22,10 @@ nationality: "Nationality"
 gender: Undetermined
 image_file: "figures/bobo.png" #relative to output directory where the final file will be.
 profession: "Dark wizard"
-about: |
-  I am, of course, the <strong>best in the world</strong> in the things I do. I was born sometime ago in a place where 
-  "the rule is not born by your own means", your mother was there with you. My mother told me, 
-  this should be the last time that you born all by yourself (homage to <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
-  When I was a little kid, I also started to walk alone. When I was a teenager, 
-  you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know
-  who I am. 
+about: 
+  html: |
+    I am, of course, the <strong>best in the world</strong> in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
+    When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am. 
+  latex: |
+    I am, of course, the \textbf{best in the world} in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
+    When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am.
