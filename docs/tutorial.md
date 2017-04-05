@@ -280,7 +280,7 @@ emails:
 
 The use of the data in the HTML template:
 
-```django
+```html
 ...
 
 {% if persinfo.emails|length>0 %}
