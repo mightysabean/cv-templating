@@ -286,11 +286,11 @@ The use of the data in the HTML template:
 {% if persinfo.emails|length>0 %}
     <div class="col-sm-6">
         <strong>
-        {% if persinfo.emails|length>1 %}
+        {%- if persinfo.emails|length>1 %}
             Emails
         {% else %}
             Email
-        {% endif %}
+        {% endif -%}
         </strong>
         <div class="email">
             <ul>
@@ -303,7 +303,7 @@ The use of the data in the HTML template:
 ...
 ```
 
-<aside>Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.</aside>
+Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.
 
 The result is:
 
