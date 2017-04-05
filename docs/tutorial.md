@@ -40,7 +40,7 @@ emails:
 
 Using this template (in the python code `base/template_directory/template_file.html`):
 
-```jinja
+```django
 <!doctype html>
 <html>
     <head>
@@ -190,7 +190,7 @@ doc:
 
 And this is where you use the variable in the template file (from the config section, the file must be `flat_en.html` inside the template base dir `html` inside of the base structure in `/home/vicente/projects/pro/cv-templating/mcv/examples`):
 
-```jinja
+```django
 <!DOCTYPE html>
 <!-- Based on http://themes.jsonresume.org/theme/flat -->
 <html lang={{ language }}><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -238,7 +238,7 @@ emails:
 
 And the use in the template file is:
 
-```jinja2
+```django
 <h1>
 {{ persinfo.fullname }}
 </h1>
@@ -280,7 +280,7 @@ emails:
 
 The use of the data in the HTML template:
 
-```jinja
+```django
 ...
 
 {% if persinfo.emails|length>0 %}
@@ -377,7 +377,7 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
 
   You write markup directly for both HTML and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
 
-  ```jinja
+  ```django
   {% if persinfo.about.html is defined %}
     <section id="about" class="row">
       <aside class="col-sm-3">
@@ -400,7 +400,7 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
 
     It is declared in the data section of the config file as `curses`, and it is used in the html template example:
 
-    ```jinja
+    ```django
     {% if curses is defined %}
 
     <section id="curses" class="row">
