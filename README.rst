@@ -102,7 +102,7 @@ Making the 'omelette'
 
 You only need to map the name of the variables used in the template with
 the variables in the data files. The format of the data files follows
-`yaml <http://www.yaml.org/refcard.html>`__ [`1 <#Why%20YAML>`__].
+`yaml <http://www.yaml.org/refcard.html>`__ [ `1 <#WhyYAML>`__ ].
 
 The information to feed the templates can be structured as you want, but
 it is preferable to follow some folder structure. For instance, probably
