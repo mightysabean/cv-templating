@@ -75,7 +75,7 @@ For knowing where the program is installed, run this:
 
 And go to the directory ``mcv`` inside the result of the last command.
 Here is a directory named ``examples`` that you should review following
-the tutorial.
+the `tutorial <https://victe.github.io/cv-templating/tutorial.html>`__.
 
 To execute the program:
 
