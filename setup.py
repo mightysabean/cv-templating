@@ -9,7 +9,7 @@ try:
 except (IOError, ImportError):
     description = open('README.md').read()
 
-VERSION = '0.0.18'
+VERSION = '0.0.19'
 
 setup(
     name='cv-templating',

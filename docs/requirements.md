@@ -8,7 +8,7 @@ If you are on Linux or Mac, you already have python (probably a 2.7.x version, b
 
 ### Python modules
 
-We need `yaml`, `os`, `datetime`, `argparse` and `jinja2`. Probably they are already installed with your python distribution. If some of them are missing, the easiest way to install it is with:
+We need `yaml`, `os`, `datetime`, `argparse` and `jinja2`. Probably they are already installed with your python distribution. If you install `cv-templating` (see the [tutorial](tutorial.html), `pip` takes care of installing the dependencies. If some of them are missing, the easiest way to install it is with:
 
 On Linux or OS X:
 

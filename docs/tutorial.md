@@ -1,70 +1,140 @@
 # Tutorial
 
-The use of `cv-templating` is very easy. But you must know what `yaml` and `jinja2` are, and how to use it. It is not neccesary to be an expert, but a minimum of knowledge is required.
+The use of `cv-templating` is very easy. But you must know what `yaml` and `jinja2` are, and how to use it. It is not necessary to be an expert, but a minimum of knowledge is required.
 
 The full specification of `yaml` are at [yaml specs](http://www.yaml.org/spec/1.2/spec.html) (see *Chapter 2* for a quick intro) or see [yaml basics](http://docs.ansible.com/ansible/YAMLSyntax.html).
 
 For `jinja2` you should consult [jinja documentation](http://jinja.pocoo.org/docs/2.9/).
 
+For the objective of making a document using a template and a data file, you do not need all the `cv-templating` project. You just need writing a little script in `Python` like this (this example is for generating an HTML file), `script.py`:
+
+```python
+import yaml
+import jinja2
+
+data_file = 'your/data_file.yaml'
+template_directory = 'base/template_directory'  # where template files refer as root for to be used internally in the templates, not in the python script
+template_file = 'base/template_directory/template_file.html'
+data = yaml.load(open(data_file, 'r'))
+output_file = 'your/output_file.html'
+
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(templateBaseDir),
+                         lstrip_blocks=True, 
+                         trim_blocks=True)
+template = env.get_template(template_file)
+stream_produced = template.render(data)
+with open(output_file, 'w') as o:
+            o.write(stream_produced)
+```
+
+With a data file like this (in the python code `your/data_file.yaml`):
+
+```yaml
+title: My CV
+emails:
+  - yo@aqui.com
+  - me@here.com
+```
+
+Using this template (in the python code `base/template_directory/template_file.html`):
+
+```html
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8"/>
+      <title>{{ title }}</title>
+    </head>
+    <body>
+      <h1>{{ title }}</h1>
+      <ul>
+        {% for email in emails %}
+          <li>{{ email }}</li>
+        {% endfor %}
+      </ul>
+    </body>
+</html>
+```
+
+Executing the python `script.py`
+
+```sh
+python script.py
+```
+
+You will obtain the file `your/output_file.html`:
+
+```html
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8"/>
+      <title>My CV</title>
+    </head>
+    <body>
+      <h1>My CV</h1>
+      <ul>
+          <li>yo@aqui.com</li>
+          <li>me@here.com</li>
+      </ul>
+    </body>
+</html>
+```
+
+To do the same with LaTeX, you need to change the syntax tokens of jinja. See this [explanation](http://flask.pocoo.org/snippets/55/) that is used in `cv-templating` (se file jinjatex.py).
+
+The **cv-templating** project takes care of the type of render and checks a lot of things necessary for me. You can modify it to reach your goals.
+
 ## Install cv-templating
 
-Clone the project or download the [dist](https://github.com/victe/cv-templating/releases) file and extract their content. You can install to the system or use it without installing it. For install, you must go to the folder when you download or extract the code and do (it is convinient to use [virtual environment](https://virtualenv.pypa.io/en/stable/) ):
-
-If you downloaded the dist file:
+Download the [dist file](https://github.com/victe/cv-templating/releases) and do:
 
 ```sh
-pip install cv-templating-x.y.z.tar.gz
+pip install  cv-templating-x.y.z.tar.gz
 ```
 
-Donde x.y.z corresponderán a la versión descargada
+Where x.y.z should be the numbers of the downloaded version. It is better if you use [virtual environment](https://virtualenv.pypa.io/en/stable/).
 
-Or, if you clone the repository or extract the download file:
-
-```sh
-python setup.py install
-```
-
-If you extracted or cloned `cv-templating`, you know yet where it is, if you installed it then run this:
+For knowing where the program is installed, run this:
 
 ```sh
 python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"
 ```
 
-And go to the directory `mcv` inside the result of the last command.
+And go to the directory `mcv` inside the result of the last command. Here is a directory named `examples` that you should review following the tutorial.
 
-To execute the program if you instaled it you must do:
+To execute the program:
 
 ```sh
 mcv path/to/config/file.yaml
-```
-
-or if you downloaded:
-
-```sh
-python mcv.py path/to/config/file.yaml
 ```
 
 Where `path/to/config/file.yaml` is the name and path of a config file in `YAML` format (see below).
 
 ## Check the examples
 
-To check the examples, go to the directory of the program, then you must do, for HTML:
+To examine the examples, go to the directory of the program, then you must do, for HTML:
 
 ```sh
-python mcv.py examples/eucv_en_html.yaml
+mcv examples/eucv_en_html.yaml
 ```
+
+You can see the [HTML document generated](Someone.html).
 
 And for LaTeX:
 
 ```sh
-python mcv.py examples/eucv_en_latex.yaml
+mcv examples/eucv_en_latex.yaml
 ```
 
-The names of the config files can be anything. Althogth, it is better if is something that help you to easy remember their content. It could be your name, date and place or company you are applying.
+You can see the [PDF document generated](Someone.pdf).
+
 
 ## Config file
 
-The config file is the `yaml` file you pass as a parameter to `mcv.py` program. Each config file has three main sections: **config**, **doc**, and **data**.
+The config file is the `yaml` file you pass as a parameter to the `mcv.py` program. The names of the config files can be anything. Although, it is better if it is something that helps you to easy remember their content. It could be your name, date and place or company you are applying.
+
+Each config file has three main sections: **config**, **doc**, and **data**.
 
 ### Config section of the config file
 
@@ -87,13 +157,13 @@ config:
       - ["html/flat_en_resources", "css"]
 ```
 
-You must put in this first section, **config**,  information related to the generation, from where the program can find anything else (*base_dir*), where you want the output (*output_dir*), which template want to use (*template_file*), what kind of template is it (*type*), which is the template base directory (*template_base_dir*), and the output file name (*output_filename*). You can not change the name of these variables in the section **config**. You can not change also the name of the three main sections (config, doc and data). The content and name of the variables inside the other two section (doc and data) is up to you. You can see in the examples and this tutorial how easy is to map variables in data files with the variables in the template files.
+You must put in this first section, **config**,  information related to the generation, from where the program can find anything else (*base_dir*), where you want the output (*output_dir*), which template want to use (*template_file*), what kind of template is it (*type*), which is the template base directory (*template_base_dir*), and the output file name (*output_filename*). You can not change the name of these variables in the section **config**. You can not also change the name of the three sections (config, doc and data). The content and name of the variables inside the other two section (doc and data) are up to you. You can see how easy is to map variables in data files with the variables in the template files in the examples, and in this tutorial.
 
-The program appends the date to the content of the *output_filename* variable when the output is generated. *base_dir* refers to the directory from where the rest of the information in the config file is reachable, *template_base_dir* refers to the directory from which *jinja* can infers the position of other templates when *extends* (if you use hereditance in your templates) will be used.
+The program appends the date to the content of the *output_filename* variable when the output is generated. *base_dir* refers to the directory from where the rest of the information in the config file is reachable, *template_base_dir* relates to the directory from which *Jinja* can infer the position of other templates when *extends* (if you use heritance in your templates) will be employed.
 
 ### doc section
 
-The **doc** section is intended to be used for information related with the configuration of the document itself. For instance, to especify the paper size, orientation, title, keywords, etc. that you could easely change from one type of CV to other (just copy your config.yaml file and change the values).
+The **doc** section is intended to be used for information related to the configuration of the document itself. For instance, to specify the paper size, orientation, title, keywords, etc. that you could easily change from one type of CV to other (just copy your config.yaml file and change the values).
 
 This is the **doc** section content of the same config file used before:
 
@@ -118,7 +188,7 @@ And this is where you use the variable in the template file (from the config sec
 ...
 ```
 
-You just need to put the name of the variable between a pair of curly barckets. In the output file, the content of the variable will be substituted.
+You just need to put the name of the variable between a pair of curly brackets. In the output file, the content of the variable will be substituted.
 
 ### data section
 
@@ -138,9 +208,9 @@ data: # list of data files with a variable name to refer them in the template fi
 In the templates, you must prefix variables in your data file with the variable asigned to it in the config file. The content of the `data/pers_info-en.yaml` is:
 
 ```yaml
-family_name: "Familyname"
+family_name: "Without Name"
 name: "Name"
-fullname: "Family_name, name"
+fullname: "Without Name, Someone"
 address: "One Address street"
 postal_code: "00000"
 village: "The Village"
@@ -173,7 +243,7 @@ The result will be:
 ...
 ...
 <h1>
-Family_name, name
+Without Name, Someone
 </h1>
 <h2>
 Dark wizard
@@ -184,7 +254,7 @@ Dark wizard
 
 ## Templates
 
-You can use the full power of `jinja` in your templates. You can, for instance, check if a variable is defined, or if the variable store multiples values (arrays, lists) repeat the block of text varying the contents. From the same example, the data about emails in `data/pers_info-en.yaml`:
+You can use the full power of `Jinja` in your templates. You can, for instance, check if a variable is defined, or if the variable store multiples values (arrays, lists) repeat the block of text varying the contents. From the same example, the data about emails in `data/pers_info-en.yaml`:
 
 ```yaml
 ...
@@ -196,7 +266,7 @@ emails:
 ...
 ```
 
-The use in the html template:
+The use of the data in the HTML template:
 
 ```html
 ...
@@ -221,7 +291,7 @@ The use in the html template:
 ...
 ```
 
-<aside>Tip: The use of hypen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.</aside>
+<aside>Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.</aside>
 
 The result is:
 
@@ -239,26 +309,27 @@ The result is:
 
 ### Latex
 
-The format of `jinja2` variables and blocks in the latex templates has been changed because the use of curly brackets in LaTeX.
+The format of `jinja2` variables and blocks in the latex templates has been changed because of the use of curly brackets in LaTeX.
 
 You must change one { or } by two (( or )).
 
 ### HTML
 
-Note: if the final objective of the html file generate is to be putted in a web page, then I suggest you don't put any sensible information in the CV. For instance, do not include your address and telephone. For the email, it is better to add an obfuscating trap for bots, or use a new dedicated account with a good spam filter. For good spam filter I mean that it is configurable, because in this case, it is better not to have false positives, althogth that implies getting more spam in the main mail folder (but you don't want to lose some contractor request in the darkness of the spam folder).
+Note: if the final objective of the HTML file generated is to be put on a web page, then I suggest you don't put any sensitive information on the CV. For instance, do not include your address and telephone. For the email, it is better to add an obfuscating trap for bots or use a new dedicated account with a good spam filter. For good spam filter I mean that it is configurable, because in this case, it is better not to have false positives, although that implies getting more spam in the main mail folder (but you don't want to lose some contractor request in the darkness of the spam folder).
 
 ## Tips
 
 - When modifying the template save and compile frequently to check if you do not forget to close some block. Even better if you use Git or a control version software.
 
-- When the value of your variable does not appears in the document generated, check if you has forgotten putting your variable inside the markers used in your template (for html {{ variable }} and for latex ((( variable ))) ).
+- When the value of your variable does not appear in the document generated, check if you have forgotten to put your variable inside the markers used in your template (for HTML {{ variable }} and LaTeX ((( variable ))) ).
 
-- If you need to write a variable inside parenthesis, see for example *country* in europasscv and the use of "-".
+- If you need to write a variable inside some parenthesis, see for example *country* in europasscv and the use of "-".
     ```latex
     \ecvaddress{((( persinfo.address ))), ((( persinfo.postal_code ))) ((( persinfo.village ))) ( (((- persinfo.country -))) ) }
     ```
+- Because this workflow is in principle for your own use, you do not need to escape content of variables. If you can read about is good for you. Avoid using shell escape (\write18{}) in LaTeX and probably you are save.
 
-- If you need to store some of your data already formated, then better if you make a subdivision of that data using the name of the format as name of the variable subdivision. In that case is preferable that the variable in YAML will be stored using the | style. That permits to write in several lines using the final document syntax. As you are writing final code syntax, you must not escape never the variable in the template. For instance see personal skills.
+- If you need to store some of your data already formatted, then it is better if you make a subdivision of that data using the name of the format as the name of the variable. In this case, it is preferable that the variable in YAML will be stored using the | style. That permits to write in several lines using the final document syntax. As you are writing final code syntax and you control what is inside the data, you do not need to escape the variable in the template. For instance, see personal skills.
 
   For example, in the `data/pers_info-en.yaml` file, at the end:
 
@@ -277,7 +348,7 @@ Note: if the final objective of the html file generate is to be putted in a web 
   ...
   ```
 
-  You write directly markup for both html and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
+  You write markup directly for both HTML and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
 
   ```html
   {% if persinfo.about.html is defined %}
