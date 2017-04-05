@@ -280,8 +280,7 @@ emails:
 
 The use of the data in the HTML template:
 
-{% highlight django %}
-{% raw %}
+```django
 ...
 
 {% if persinfo.emails|length>0 %}
@@ -302,8 +301,7 @@ The use of the data in the HTML template:
 {% endif %}
 
 ...
-{% endraw %}
-{% endhighlight %}
+```
 
 Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.
 
@@ -348,96 +346,96 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
 
   For example, in the `data/pers_info-en.yaml` file, at the end:
 
-  ```yaml
-  ...
+```yaml
+...
 
-  profession: "Dark wizard"
-  about:
-    html: |
-      I am, of course, the <strong>best in the world</strong> in the things I do. 
-      I was born sometime ago in a place where "the rule is not born by your own 
-      means", your mother was there with you. My mother told me, this should be 
-      the last time that you born all by yourself (homage to 
-      <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
+profession: "Dark wizard"
+about:
+  html: |
+    I am, of course, the <strong>best in the world</strong> in the things I do. 
+    I was born sometime ago in a place where "the rule is not born by your own 
+    means", your mother was there with you. My mother told me, this should be 
+    the last time that you born all by yourself (homage to 
+    <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
 
-      When I was a little kid, I also started to walk alone. When I was a teenager, 
-      you know... After that, I never started a startup, I was never the best in 
-      anything, so, if you want to hire me, you must know who I am. 
-    latex: |
-      I am, of course, the \textbf{best in the world} in the things I do. 
-      I was born sometime ago in a place where "the rule is not born by your own 
-      means", your mother was there with you. My mother told me, this should be 
-      the last time that you born all by yourself (homage to 
-      \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
+    When I was a little kid, I also started to walk alone. When I was a teenager, 
+    you know... After that, I never started a startup, I was never the best in 
+    anything, so, if you want to hire me, you must know who I am. 
+  latex: |
+    I am, of course, the \textbf{best in the world} in the things I do. 
+    I was born sometime ago in a place where "the rule is not born by your own 
+    means", your mother was there with you. My mother told me, this should be 
+    the last time that you born all by yourself (homage to 
+    \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
 
-      When I was a little kid, I also started to walk alone. When I was a teenager, 
-      you know... After that, I never started a startup, I was never the best in 
-      anything, so, if you want to hire me, you must know who I am.
+    When I was a little kid, I also started to walk alone. When I was a teenager, 
+    you know... After that, I never started a startup, I was never the best in 
+    anything, so, if you want to hire me, you must know who I am.
 
-  ...
-  ```
+...
+```
 
   You write markup directly for both HTML and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
 
-  ```django
-  {% if persinfo.about.html is defined %}
-    <section id="about" class="row">
-      <aside class="col-sm-3">
-      <h3>About</h3>
-      </aside>
-      <div class="col-sm-9">
-      <p>{{ persinfo.about.html }}</p>
-      </div>
-    </section>
-  {% endif %}
-  ```
+```django
+{% if persinfo.about.html is defined %}
+  <section id="about" class="row">
+    <aside class="col-sm-3">
+    <h3>About</h3>
+    </aside>
+    <div class="col-sm-9">
+    <p>{{ persinfo.about.html }}</p>
+    </div>
+  </section>
+{% endif %}
+```
 
 - For use `csv` tabular data, see the example file `acad_info_curses-en.csv`:
 
-    ```csv
-    name,year
-    How to make cakes, 2000
-    How to not eat the cakes you cooked, 2001
-    ```
+```csv
+name,year
+How to make cakes, 2000
+How to not eat the cakes you cooked, 2001
+```
 
     It is declared in the data section of the config file as `curses`, and it is used in the html template example:
 
-    ```django
-    {% if curses is defined %}
+```django
+{% if curses is defined %}
 
-    <section id="curses" class="row">
-    <aside class="col-sm-3">
-      <h3>Curses</h3>
-    </aside>
-    {% for curse in curses %}
-      <h4 class="strike-through">
-      <span>{{ curse.name }}</span>
-      <span class="date">
-      {{ curse.year }}
-      </span>
-      </h4>
-    {% endfor %}
-    </section>
-    {% endif %}
-    ```
+<section id="curses" class="row">
+<aside class="col-sm-3">
+  <h3>Curses</h3>
+</aside>
+{% for curse in curses %}
+  <h4 class="strike-through">
+  <span>{{ curse.name }}</span>
+  <span class="date">
+  {{ curse.year }}
+  </span>
+  </h4>
+{% endfor %}
+</section>
+{% endif %}
+```
 
     And the result:
 
-    ```html
-    <section id="curses" class="row">
-      <aside class="col-sm-3">
-        <h3>Curses</h3>
-      </aside>
-      <h4 class="strike-through">
-      <span>How to make cakes</span>
-      <span class="date">
-        2000
-      </span>
-      </h4>
-      <h4 class="strike-through">
-      <span>How to not eat the cakes you cooked</span>
-      <span class="date">
-        2001
-      </span>
-      </h4>
-    ```
+```html
+<section id="curses" class="row">
+  <aside class="col-sm-3">
+    <h3>Curses</h3>
+  </aside>
+  <h4 class="strike-through">
+  <span>How to make cakes</span>
+  <span class="date">
+    2000
+  </span>
+  </h4>
+  <h4 class="strike-through">
+  <span>How to not eat the cakes you cooked</span>
+  <span class="date">
+    2001
+  </span>
+  </h4>
+```
