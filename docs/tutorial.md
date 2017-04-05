@@ -280,7 +280,8 @@ emails:
 
 The use of the data in the HTML template:
 
-```html
+{% highlight django %}
+{% raw %}
 ...
 
 {% if persinfo.emails|length>0 %}
@@ -301,7 +302,8 @@ The use of the data in the HTML template:
 {% endif %}
 
 ...
-```
+{% endraw %}
+{% endhighlight %}
 
 Tip: The use of a hyphen ("-") at the start or end of a block permits delete white spaces or newlines between the exterior and the interior of the block.
 
