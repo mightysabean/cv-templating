@@ -18,7 +18,7 @@ class GenTask:
         # Config section --------------------------------------------------------------------------------------------
 
         # Map values of config section to private variables of class CVGenerator for use easy in code
-        from mcv.TaskConfig import TaskConfig
+        from .TaskConfig import TaskConfig
         self.taskConfig = TaskConfig(config)
 
         # Doc section -----------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class GenTask:
 
         # Data section
         self.__data_files = config['data']
-        from mcv.DataExtractor import DataExtractor
+        from .DataExtractor import DataExtractor
         data = DataExtractor(self.taskConfig.baseDir, self.__data_files)
 
         # Add data to context

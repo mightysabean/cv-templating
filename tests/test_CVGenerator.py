@@ -3,6 +3,8 @@ import os
 import pytest
 import yaml
 
+from context import mcv
+import context
 from mcv.GenTask import GenTask
 from mcv.Process import Process
 from mcv.TaskConfig import TaskConfig
@@ -11,8 +13,8 @@ import mcv.mcv
 path_where_run_test = os.path.dirname(os.path.realpath(__file__))
 minimalConfigFileLatex = os.path.join(path_where_run_test, 'eucv_en_latex_min.yaml')
 minimalConfigFileHTML = os.path.join(path_where_run_test, 'eucv_en_html_min.yaml')
-examples_config_file_html = os.path.join(path_where_run_test, '../examples/eucv_en_html.yaml')
-examples_config_file_latex = os.path.join(path_where_run_test, '../examples/eucv_en_latex.yaml')
+examples_config_file_html = os.path.join(context.absparentpath, 'mcv/examples/eucv_en_html.yaml')
+examples_config_file_latex = os.path.join(context.absparentpath, 'mcv/examples/eucv_en_latex.yaml')
 
 
 def load_config_dict(config_file):

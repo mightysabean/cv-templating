@@ -6,7 +6,7 @@ from distutils.dir_util import copy_tree
 from distutils.dir_util import mkpath
 
 
-from mcv.mcvutils import copy_resources
+from .mcvutils import copy_resources
 
 
 class Process:

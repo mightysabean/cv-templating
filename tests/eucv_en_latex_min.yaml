@@ -1,0 +1,29 @@
+# Minimal config file for test.
+# In the text tutorial are explained the main things you must be aware.
+
+config:
+  base_dir: ''
+  output_dir: 'output/latex'
+  template_base_dir: ''
+  template_file: 'min_test.tex'
+  template_type: latex
+  output_filename: "Someone"
+  arara: true
+  resources:
+    build:
+      - ["../mcv/examples/data/figures/bobo.png", "figures/bobo.png"]
+      - ["../mcv/examples/latex/europasscv/resources", ""]
+    output:
+      - ["../mcv/examples/data/figures/bobo.png", "figures/bobo.png"]
+      - ["../mcv/examples/latex/europasscv/resources", ""]
+
+doc:
+  doc_options: "english,a4paper,nologo"
+  pdftitle: "Curriculum vitae"
+  bigitem:
+    - "Personal statement"
+    - "Something good about Bobo."
+
+data:
+  persinfo: "pers_info-en_min.yaml"
+  acadinfocurses: "curses.csv"

@@ -4,7 +4,7 @@ import os
 
 import yaml
 
-from mcv.mcvutils import fileext, csv2dict
+from .mcvutils import fileext, csv2dict
 
 
 class DataExtractor:

@@ -14,8 +14,8 @@ import os
 
 import yaml
 
-from mcv.GenTask import GenTask
-from mcv.Process import Process
+from .GenTask import GenTask
+from .Process import Process
 
 
 def create_cml_parser():

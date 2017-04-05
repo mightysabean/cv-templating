@@ -9,7 +9,7 @@ try:
 except (IOError, ImportError):
     description = open('README.md').read()
 
-VERSION = '0.0.16'
+VERSION = '0.0.18'
 
 setup(
     name='cv-templating',
@@ -17,7 +17,7 @@ setup(
     packages=find_packages(),
     package_dir={'mcv': 'mcv'},
     url='https://github.com/victe/cv-templating',
-    license='LICENSE.txt',
+    license='MIT',
     author='Vicente Ramirez Perea',
     author_email='victe@ramper.net',
 
@@ -27,7 +27,8 @@ setup(
     # Dependent packages (distributions)
     install_requires=[
         "jinja2",
-        "PyYAML", 'pytest'
+        "PyYAML",
+        "pytest"
     ],
     entry_points={
         "console_scripts": ["mcv=mcv.mcv:main"],
