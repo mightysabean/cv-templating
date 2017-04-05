@@ -2,6 +2,8 @@ import os
 
 from distutils.core import setup
 
+from shutil import copyfile
+
 from setuptools import find_packages
 
 try:
@@ -9,7 +11,11 @@ try:
 except (IOError, ImportError):
     description = open('README.md').read()
 
-VERSION = '0.0.19'
+
+
+copyfile('README.md', 'docs/index.md')
+
+VERSION = '0.0.20'
 
 setup(
     name='cv-templating',

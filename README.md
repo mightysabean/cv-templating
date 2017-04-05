@@ -59,7 +59,7 @@ Also, if you want the Europass format (for PDF only), probably you need to downl
 
 ## Making the 'omelette'
 
-You only need to map the name of the variables used in the template with the variables in the data files. The format of the data files follows [yaml](http://www.yaml.org/refcard.html) \[[1](#Why YAML)\].
+You only need to map the name of the variables used in the template with the variables in the data files. The format of the data files follows [yaml](http://www.yaml.org/refcard.html) \[ [1](#WhyYAML) \].
 
 The information to feed the templates can be structured as you want, but it is preferable to follow some folder structure. For instance, probably is a good idea to have a folder for all the data (for example, you guest, exactly: `data`). Inside some file for general information, a folder for projects and inside it a file for each project, or a folder for each (if you want to store other info related to the project as photos).
 
@@ -85,4 +85,4 @@ The rest of the code, examples and tutorial follows MIT [licence](license.html),
 
 ## Notes
 
-<a name="Why YAML">1</a>: YAML is more human readable than JSON.
+<a name="WhyYAML">1</a>: YAML is more human readable than JSON.

@@ -13,7 +13,9 @@ import yaml
 import jinja2
 
 data_file = 'your/data_file.yaml'
-template_directory = 'base/template_directory'  # where template files refer as root for to be used internally in the templates, not in the python script
+template_directory = 'base/template_directory'
+""" where template files refer as the root to be used internally in
+templates, not in the python script"""
 template_file = 'base/template_directory/template_file.html'
 data = yaml.load(open(data_file, 'r'))
 output_file = 'your/output_file.html'
@@ -38,7 +40,7 @@ emails:
 
 Using this template (in the python code `base/template_directory/template_file.html`):
 
-```html
+```jinja
 <!doctype html>
 <html>
     <head>
@@ -142,22 +144,32 @@ This is the content of the **config** section of the `eu_en_html.yaml` file in t
 
 ```yaml
 config:
-  base_dir: '/home/vicente/projects/pro/cv-templating/mcv/examples' # you must change this to the directory where you have your data and templates structure
+  base_dir: '/home/vicente/projects/pro/cv-templating/mcv/examples'
   output_dir: 'output/html'
   template_base_dir: 'html'
   template_file: 'flat_en.html'
   template_type: html
   output_filename: "Someone"
-  resources: # Will be copied to tmp dir inside the directories specified by the name of the variable.
-    build: # Resources to be copied to "tmp" before building final doc. "src" Relative to base directory, "dst" relative to "tmp" directory to build if it is the case.
+  resources:
+    build:
       - ["data/figures/bobo.png", "images/bobo.png"]
-      - ["html/flat_en_resources", ""]  # if "dst" is empty, files will be copied to "tmp" folder. In this example, the program copies the content of a whole directory.
-    output: # Will be copied to de output folder inside a directory with the name as the variable.
+      - ["html/flat_en_resources", ""]
+    output:
       - ["data/figures/bobo.png", "images/bobo.png"]
       - ["html/flat_en_resources", "css"]
 ```
 
-You must put in this first section, **config**,  information related to the generation, from where the program can find anything else (*base_dir*), where you want the output (*output_dir*), which template want to use (*template_file*), what kind of template is it (*type*), which is the template base directory (*template_base_dir*), and the output file name (*output_filename*). You can not change the name of these variables in the section **config**. You can not also change the name of the three sections (config, doc and data). The content and name of the variables inside the other two section (doc and data) are up to you. You can see how easy is to map variables in data files with the variables in the template files in the examples, and in this tutorial.
+You must put in this first section, **config**,  information related to the generation, from where the program can find anything else.
+
+- *base_dir*: you must change this to the directory where you have your data and templates structure,
+- *output_dir*: where you want the output,
+- *template_base_dir*: which is the template base directory,
+- *template_file*: which template want to use,
+- *template_type*: what kind of template is it (html or latex),
+- *output_filename*: the prefix of the output file name, date and time will be appended.
+- *resources*: files and directories to be copied, in the *build* phase from the source indicated to dest inside a tmp directory. After build, in the *output* phase, files are copied from src to *output_dir*.
+
+You can not change the name of these variables in the section **config**. You can not also change the name of the three sections (config, doc and data). The content and name of the variables inside the other two section (doc and data) are up to you. You can see how easy is to map variables in data files with the variables in the template files in the examples, and in this tutorial.
 
 The program appends the date to the content of the *output_filename* variable when the output is generated. *base_dir* refers to the directory from where the rest of the information in the config file is reachable, *template_base_dir* relates to the directory from which *Jinja* can infer the position of other templates when *extends* (if you use heritance in your templates) will be employed.
 
@@ -172,13 +184,13 @@ doc:
   language: "en"
   title: "Curriculum vitae"
   bigitem:
-    - "Personal statement"  # Also, it could be 'Job applied for', 'Position', 'Preferred job', 'Studies applied for'
+    - "Personal statement"
     - "Something good about Bobo."
 ```
 
 And this is where you use the variable in the template file (from the config section, the file must be `flat_en.html` inside the template base dir `html` inside of the base structure in `/home/vicente/projects/pro/cv-templating/mcv/examples`):
 
-```html
+```jinja
 <!DOCTYPE html>
 <!-- Based on http://themes.jsonresume.org/theme/flat -->
 <html lang={{ language }}><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -226,7 +238,7 @@ emails:
 
 And the use in the template file is:
 
-```html
+```jinja2
 <h1>
 {{ persinfo.fullname }}
 </h1>
@@ -268,7 +280,7 @@ emails:
 
 The use of the data in the HTML template:
 
-```html
+```jinja
 ...
 
 {% if persinfo.emails|length>0 %}
@@ -325,7 +337,8 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
 
 - If you need to write a variable inside some parenthesis, see for example *country* in europasscv and the use of "-".
     ```latex
-    \ecvaddress{((( persinfo.address ))), ((( persinfo.postal_code ))) ((( persinfo.village ))) ( (((- persinfo.country -))) ) }
+    \ecvaddress{((( persinfo.address ))), ((( persinfo.postal_code ))) 
+    ((( persinfo.village ))) ( (((- persinfo.country -))) ) }
     ```
 - Because this workflow is in principle for your own use, you do not need to escape content of variables. If you can read about is good for you. Avoid using shell escape (\write18{}) in LaTeX and probably you are save.
 
@@ -337,20 +350,34 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
   ...
 
   profession: "Dark wizard"
-  about: 
+  about:
     html: |
-      I am, of course, the <strong>best in the world</strong> in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
-      When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am. 
+      I am, of course, the <strong>best in the world</strong> in the things I do. 
+      I was born sometime ago in a place where "the rule is not born by your own 
+      means", your mother was there with you. My mother told me, this should be 
+      the last time that you born all by yourself (homage to 
+      <a href="https://en.wikipedia.org/wiki/Miguel_Gila">Miguel Gila</a>). 
+
+      When I was a little kid, I also started to walk alone. When I was a teenager, 
+      you know... After that, I never started a startup, I was never the best in 
+      anything, so, if you want to hire me, you must know who I am. 
     latex: |
-      I am, of course, the \textbf{best in the world} in the things I do. I was born sometime ago in a place where "the rule is not born by your own means", your mother was there with you. My mother told me, this should be the last time that you born all by yourself (homage to \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
-      When I was a little kid, I also started to walk alone. When I was a teenager, you know... After that, I never started a startup, I was never the best in anything, so, if you want to hire me, you must know who I am.
-  
+      I am, of course, the \textbf{best in the world} in the things I do. 
+      I was born sometime ago in a place where "the rule is not born by your own 
+      means", your mother was there with you. My mother told me, this should be 
+      the last time that you born all by yourself (homage to 
+      \href{https://en.wikipedia.org/wiki/Miguel_Gila}{Miguel Gila}). 
+
+      When I was a little kid, I also started to walk alone. When I was a teenager, 
+      you know... After that, I never started a startup, I was never the best in 
+      anything, so, if you want to hire me, you must know who I am.
+
   ...
   ```
 
   You write markup directly for both HTML and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
 
-  ```html
+  ```jinja
   {% if persinfo.about.html is defined %}
     <section id="about" class="row">
       <aside class="col-sm-3">
@@ -373,7 +400,7 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
 
     It is declared in the data section of the config file as `curses`, and it is used in the html template example:
 
-    ```html
+    ```jinja
     {% if curses is defined %}
 
     <section id="curses" class="row">
@@ -410,16 +437,5 @@ Note: if the final objective of the HTML file generated is to be put on a web pa
       <span class="date">
         2001
       </span>
-      </h4>  
+      </h4>
     ```
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-82399329-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
