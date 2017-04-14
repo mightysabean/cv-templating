@@ -1,0 +1,617 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &#8212; cv-templating 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Install requirements" href="requirements.html" />
+    <link rel="prev" title="cv-templating documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>Maybe you could start getting the two final documents generated:
+<a class="reference external" href="https://victe.github.io/cv-templating/Someone.html">Someone.html</a> and <a class="reference external" href="https://victe.github.io/cv-templating/Someone.pdf">Someone.pdf</a>.
+This way, you can have in mind what the code you see below will do.</p>
+<p>The use of <code class="docutils literal"><span class="pre">cv-templating</span></code> is very easy. But you must know what
+<code class="docutils literal"><span class="pre">yaml</span></code> and <code class="docutils literal"><span class="pre">jinja2</span></code> are, and how to use it. It is not necessary to
+be an expert, but a minimum of knowledge is required.</p>
+<p>The full specification of <code class="docutils literal"><span class="pre">yaml</span></code> are at <a class="reference external" href="http://www.yaml.org/spec/1.2/spec.html">yaml
+specs</a> (see <em>Chapter 2</em> for a
+quick intro) or see <a class="reference external" href="http://docs.ansible.com/ansible/YAMLSyntax.html">yaml
+basics</a>.</p>
+<p>For <code class="docutils literal"><span class="pre">jinja2</span></code> you should consult <a class="reference external" href="http://jinja.pocoo.org/docs/2.9/">jinja
+documentation</a>.</p>
+<p>For the objective of making a document using a template and a data file,
+you do not need all the <code class="docutils literal"><span class="pre">cv-templating</span></code> project. You just need writing
+a little script in <code class="docutils literal"><span class="pre">Python</span></code> like this (this example is for generating
+an HTML file), <code class="docutils literal"><span class="pre">script.py</span></code>:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">jinja2</span>
+
+<span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;your/data_file.yaml&#39;</span>
+<span class="n">template_directory</span> <span class="o">=</span> <span class="s1">&#39;base/template_directory&#39;</span>
+<span class="sd">&quot;&quot;&quot; where template files refer as the root to be used internally in</span>
+<span class="sd">templates, not in the python script&quot;&quot;&quot;</span>
+<span class="n">template_file</span> <span class="o">=</span> <span class="s1">&#39;base/template_directory/template_file.html&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">data_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;your/output_file.html&#39;</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">jinja2</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">jinja2</span><span class="o">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">templateBaseDir</span><span class="p">),</span>
+                         <span class="n">lstrip_blocks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">trim_blocks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">template_file</span><span class="p">)</span>
+<span class="n">stream_produced</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+            <span class="n">o</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stream_produced</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With a data file like this (in the python code <code class="docutils literal"><span class="pre">your/data_file.yaml</span></code>):</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">title</span><span class="p">:</span> <span class="n">My</span> <span class="n">CV</span>
+<span class="n">emails</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">yo</span><span class="nd">@aqui</span><span class="o">.</span><span class="n">com</span>
+  <span class="o">-</span> <span class="n">me</span><span class="nd">@here</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Using this template (in the python code
+<code class="docutils literal"><span class="pre">base/template_directory/template_file.html</span></code>):</p>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;/&gt;
+      &lt;title&gt;{{ title }}&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;{{ title }}&lt;/h1&gt;
+      &lt;ul&gt;
+        {% for email in emails %}
+          &lt;li&gt;{{ email }}&lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+<p>Executing the python <code class="docutils literal"><span class="pre">script.py</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>You will obtain the file <code class="docutils literal"><span class="pre">your/output_file.html</span></code>:</p>
+<div class="code html highlight-default"><div class="highlight"><pre><span></span>&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;/&gt;
+      &lt;title&gt;My CV&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;h1&gt;My CV&lt;/h1&gt;
+      &lt;ul&gt;
+          &lt;li&gt;yo@aqui.com&lt;/li&gt;
+          &lt;li&gt;me@here.com&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+<p>To do the same with LaTeX, you need to change the syntax tokens of
+jinja. See this <a class="reference external" href="http://flask.pocoo.org/snippets/55/">explanation</a>
+that is used in <code class="docutils literal"><span class="pre">cv-templating</span></code> (see file jinjatex.py).</p>
+<p>The <strong>cv-templating</strong> project takes care of the type of render and
+checks a lot of things necessary for me. You can modify it to reach your
+goals.</p>
+<div class="section" id="install-cv-templating">
+<h2>Install cv-templating<a class="headerlink" href="#install-cv-templating" title="Permalink to this headline">¶</a></h2>
+<p>Download the <a class="reference external" href="https://github.com/victe/cv-templating/releases">dist
+file</a> and do:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span>  <span class="n">cv</span><span class="o">-</span><span class="n">templating</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Where x.y.z should be the numbers of the downloaded version. It is
+better if you use <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtual
+environment</a>.</p>
+<p>For knowing where the program is installed, run this:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from distutils.sysconfig import get_python_lib; print(get_python_lib())&quot;</span>
+</pre></div>
+</div>
+<p>And go to the directory <code class="docutils literal"><span class="pre">mcv</span></code> inside the result of the last command.
+Here is a directory named <code class="docutils literal"><span class="pre">examples</span></code> that you should review following
+the tutorial.</p>
+<p>To execute the program:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">mcv</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">path/to/config/file.yaml</span></code> is the name and path of a config file
+in <code class="docutils literal"><span class="pre">YAML</span></code> format (see below).</p>
+</div>
+<div class="section" id="check-the-examples">
+<h2>Check the examples<a class="headerlink" href="#check-the-examples" title="Permalink to this headline">¶</a></h2>
+<p>To examine the examples, go to the directory of the program, then you
+must do, for HTML:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">mcv</span> <span class="n">examples</span><span class="o">/</span><span class="n">eucv_en_html</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>You can see the <a class="reference external" href="Someone.html">HTML document generated</a>.</p>
+<p>And for LaTeX:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">mcv</span> <span class="n">examples</span><span class="o">/</span><span class="n">eucv_en_latex</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>You can see the <a class="reference external" href="Someone.pdf">PDF document generated</a>.</p>
+</div>
+<div class="section" id="config-file">
+<h2>Config file<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h2>
+<p>The config file is the <code class="docutils literal"><span class="pre">yaml</span></code> file you pass as a parameter to the
+<code class="docutils literal"><span class="pre">mcv.py</span></code> program. The names of the config files can be anything.
+Although, it is better if it is something that helps you to easy
+remember their content. It could be your name, date and place or company
+you are applying.</p>
+<p>Each config file has three main sections: <strong>config</strong>, <strong>doc</strong>, and
+<strong>data</strong>.</p>
+<div class="section" id="config-section-of-the-config-file">
+<h3>Config section of the config file<a class="headerlink" href="#config-section-of-the-config-file" title="Permalink to this headline">¶</a></h3>
+<p>This is the content of the <strong>config</strong> section of the <code class="docutils literal"><span class="pre">eu_en_html.yaml</span></code>
+file in the examples directory (in all <code class="docutils literal"><span class="pre">yaml</span></code> files avoid the use of
+<em>TABs</em>):</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">config</span><span class="p">:</span>
+  <span class="n">base_dir</span><span class="p">:</span> <span class="s1">&#39;/home/vicente/projects/pro/cv-templating/mcv/examples&#39;</span>
+  <span class="n">output_dir</span><span class="p">:</span> <span class="s1">&#39;output/html&#39;</span>
+  <span class="n">template_base_dir</span><span class="p">:</span> <span class="s1">&#39;html&#39;</span>
+  <span class="n">template_file</span><span class="p">:</span> <span class="s1">&#39;flat_en.html&#39;</span>
+  <span class="n">template_type</span><span class="p">:</span> <span class="n">html</span>
+  <span class="n">output_filename</span><span class="p">:</span> <span class="s2">&quot;Someone&quot;</span>
+  <span class="n">resources</span><span class="p">:</span>
+    <span class="n">build</span><span class="p">:</span>
+      <span class="o">-</span> <span class="p">[</span><span class="s2">&quot;data/figures/bobo.png&quot;</span><span class="p">,</span> <span class="s2">&quot;images/bobo.png&quot;</span><span class="p">]</span>
+      <span class="o">-</span> <span class="p">[</span><span class="s2">&quot;html/flat_en_resources&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+    <span class="n">output</span><span class="p">:</span>
+      <span class="o">-</span> <span class="p">[</span><span class="s2">&quot;data/figures/bobo.png&quot;</span><span class="p">,</span> <span class="s2">&quot;images/bobo.png&quot;</span><span class="p">]</span>
+      <span class="o">-</span> <span class="p">[</span><span class="s2">&quot;html/flat_en_resources&quot;</span><span class="p">,</span> <span class="s2">&quot;css&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You must put in this first section, <strong>config</strong>, information related to
+the generation, from where the program can find anything else.</p>
+<ul class="simple">
+<li><em>base_dir</em>: you must change this to the directory where you have
+your data and templates structure,</li>
+<li><em>output_dir</em>: where you want the output,</li>
+<li><em>template_base_dir</em>: which is the template base directory,</li>
+<li><em>template_file</em>: which template want to use,</li>
+<li><em>template_type</em>: what kind of template is it (html or latex),</li>
+<li><em>output_filename</em>: the prefix of the output file name, date and time
+will be appended.</li>
+<li><em>resources</em>: files and directories to be copied, in the <em>build</em> phase
+from the source indicated to dest inside a tmp directory. After
+build, in the <em>output</em> phase, files are copied from src to
+<em>output_dir</em>.</li>
+</ul>
+<p>You can not change the name of these variables in the section
+<strong>config</strong>. You can not also change the name of the three sections
+(config, doc and data). The content and name of the variables inside the
+other two section (doc and data) are up to you. You can see how easy is
+to map variables in data files with the variables in the template files
+in the examples, and in this tutorial.</p>
+<p>The program appends the date to the content of the <em>output_filename</em>
+variable when the output is generated. <em>base_dir</em> refers to the
+directory from where the rest of the information in the config file is
+reachable, <em>template_base_dir</em> relates to the directory from which
+<em>Jinja</em> can infer the position of other templates when <em>extends</em> (if you
+use heritance in your templates) will be employed.</p>
+</div>
+<div class="section" id="doc-section">
+<h3>doc section<a class="headerlink" href="#doc-section" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>doc</strong> section is intended to be used for information related to
+the configuration of the document itself. For instance, to specify the
+paper size, orientation, title, keywords, etc. that you could easily
+change from one type of CV to other (just copy your config.yaml file and
+change the values).</p>
+<p>This is the <strong>doc</strong> section content of the same config file used before:</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">doc</span><span class="p">:</span>
+  <span class="n">language</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span>
+  <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;Curriculum vitae&quot;</span>
+  <span class="n">bigitem</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s2">&quot;Personal statement&quot;</span>
+    <span class="o">-</span> <span class="s2">&quot;Something good about Bobo.&quot;</span>
+</pre></div>
+</div>
+<p>And this is where you use the variable in the template file (from the
+config section, the file must be <code class="docutils literal"><span class="pre">flat_en.html</span></code> inside the template
+base dir <code class="docutils literal"><span class="pre">html</span></code> inside of the base structure in
+<code class="docutils literal"><span class="pre">/home/vicente/projects/pro/cv-templating/mcv/examples</span></code>):</p>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;!-- Based on http://themes.jsonresume.org/theme/flat --&gt;
+&lt;html lang={{ language }}&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, minimal-ui&quot;&gt;
+&lt;title&gt;{{ title }}&lt;/title&gt;
+...
+</pre></div>
+</div>
+<p>You just need to put the name of the variable between a pair of curly
+brackets. In the output file, the content of the variable will be
+substituted.</p>
+</div>
+<div class="section" id="data-section">
+<h3>data section<a class="headerlink" href="#data-section" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>data</strong> section must point to the files that have the stored data.
+You can use <code class="docutils literal"><span class="pre">yaml</span></code> files for unstructured or semi-structured data or
+<code class="docutils literal"><span class="pre">csv</span></code> files for tabular. From the same config file used before:</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">:</span> <span class="c1"># list of data files with a variable name to refer them in the template file.</span>
+  <span class="n">persinfo</span><span class="p">:</span> <span class="s2">&quot;data/pers_info-en.yaml&quot;</span>
+  <span class="n">profinfo</span><span class="p">:</span> <span class="s2">&quot;data/prof_info-en.yaml&quot;</span>
+  <span class="n">acadinfo</span><span class="p">:</span> <span class="s2">&quot;data/acad_info-en.yaml&quot;</span>
+  <span class="n">persskills</span><span class="p">:</span> <span class="s2">&quot;data/pers_skills-en.yaml&quot;</span>
+  <span class="n">additinfo</span><span class="p">:</span> <span class="s2">&quot;data/addit_info-en.yaml&quot;</span>
+  <span class="n">references</span><span class="p">:</span> <span class="s2">&quot;data/references.yaml&quot;</span>
+  <span class="n">curses</span><span class="p">:</span> <span class="s2">&quot;data/acad_info_curses-en.csv&quot;</span>
+</pre></div>
+</div>
+<p>In the templates, you must prefix variables in your data file with the
+variable asigned to it in the config file. The content of the
+<code class="docutils literal"><span class="pre">data/pers_info-en.yaml</span></code> is:</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">family_name</span><span class="p">:</span> <span class="s2">&quot;Without Name&quot;</span>
+<span class="n">name</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span>
+<span class="n">fullname</span><span class="p">:</span> <span class="s2">&quot;Without Name, Someone&quot;</span>
+<span class="n">address</span><span class="p">:</span> <span class="s2">&quot;One Address street&quot;</span>
+<span class="n">postal_code</span><span class="p">:</span> <span class="s2">&quot;00000&quot;</span>
+<span class="n">village</span><span class="p">:</span> <span class="s2">&quot;The Village&quot;</span>
+<span class="n">country</span><span class="p">:</span> <span class="s2">&quot;The Country&quot;</span>
+<span class="n">telephone</span><span class="p">:</span> <span class="s2">&quot;+01 234 567 890&quot;</span>
+<span class="n">mobile</span><span class="p">:</span> <span class="s2">&quot;+01 234 567 890&quot;</span>
+<span class="n">emails</span><span class="p">:</span>
+  <span class="o">-</span> <span class="s2">&quot;someone@example.com&quot;</span>
+  <span class="o">-</span> <span class="s2">&quot;name.familyname@example.com&quot;</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>And the use in the template file is:</p>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="p">{{</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">fullname</span> <span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span>
+<span class="p">{{</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">profession</span> <span class="p">}}</span>
+<span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The result will be:</p>
+<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="n">Without</span> <span class="n">Name</span><span class="p">,</span> <span class="n">Someone</span>
+<span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span>
+<span class="n">Dark</span> <span class="n">wizard</span>
+<span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>You can use the full power of <a class="reference external" href="http://jinja.pocoo.org/">jinja</a> in your templates. You can, for
+instance, check if a variable is defined, or if the variable store
+multiples values (arrays, lists) repeat the block of text varying the
+contents. From the same example, the data about emails in
+<code class="docutils literal"><span class="pre">data/pers_info-en.yaml</span></code>:</p>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="n">emails</span><span class="p">:</span>
+  <span class="o">-</span> <span class="s2">&quot;someone@example.com&quot;</span>
+  <span class="o">-</span> <span class="s2">&quot;name.familyname@example.com&quot;</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The use of the data in the HTML template:</p>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">emails</span><span class="o">|</span><span class="n">length</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">%</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-6&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">%-</span> <span class="k">if</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">emails</span><span class="o">|</span><span class="n">length</span><span class="o">&gt;</span><span class="mi">1</span> <span class="o">%</span><span class="p">}</span>
+            <span class="n">Emails</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">}</span>
+            <span class="n">Email</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">-%</span><span class="p">}</span>
+        <span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;email&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">emails</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">email</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+            <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Tip: The use of a hyphen (&#8220;-&#8221;) at the start or end of a block permits
+delete white spaces or newlines between the exterior and the interior of
+the block.</p>
+<p>The result is:</p>
+<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-6&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">Emails</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;email&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">someone</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="n">name</span><span class="o">.</span><span class="n">familyname</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="latex">
+<h3>Latex<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h3>
+<p>The format of <a class="reference external" href="http://jinja.pocoo.org/">jinja2</a> variables and blocks in the latex templates has
+been changed because of the use of curly brackets in LaTeX.</p>
+<p>You must change one { or } by two (( or )).</p>
+</div>
+<div class="section" id="html">
+<h3>HTML<a class="headerlink" href="#html" title="Permalink to this headline">¶</a></h3>
+<p>For html templating follow the instruction on <a class="reference external" href="http://jinja.pocoo.org/">jinja</a> documentation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">if the final objective of the HTML file is to be put on
+a web page, then I suggest you don&#8217;t put any sensitive information on
+the CV. For instance, do not include your address and telephone. For the
+email, it is better to add an obfuscating trap for bots or use a new
+dedicated account with a good spam filter. For good spam filter I mean
+that it is configurable, because in this case, it is better not to have
+false positives, although that implies getting more spam in the main
+mail folder (but you don&#8217;t want to lose some contractor request in the
+darkness of the spam folder).</p>
+</div>
+</div>
+</div>
+<div class="section" id="tips">
+<h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When modifying the template save and compile frequently to check if
+you do not forget to close some block. Even better if you use Git or
+a control version software.</li>
+<li>When the value of your variable does not appear in the document
+generated, check if you have forgotten to put your variable inside
+the markers used in your template (for HTML {{ variable }} and LaTeX
+((( variable ))) ).</li>
+<li>If you need to write a variable inside some parenthesis, see for
+example <em>country</em> in europasscv and the use of &#8220;-&#8221;.</li>
+</ul>
+<div class="code latex highlight-default"><div class="highlight"><pre><span></span>\<span class="n">ecvaddress</span><span class="p">{(((</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">address</span> <span class="p">))),</span> <span class="p">(((</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">postal_code</span> <span class="p">)))</span>
+<span class="p">(((</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">village</span> <span class="p">)))</span> <span class="p">(</span> <span class="p">(((</span><span class="o">-</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">country</span> <span class="o">-</span><span class="p">)))</span> <span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Because this workflow is in principle for your own use, you do not
+need to escape content of variables. If you can read about is good
+for you. Avoid using shell escape (<em>`write18{}`</em>) in LaTeX
+and probably you are save.</p>
+</li>
+<li><p class="first">If you need to store some of your data already formatted, then it is
+better if you make a subdivision of that data using the name of the
+format as the name of the variable. In this case, it is preferable
+that the variable in YAML will be stored using the | style. That
+permits to write in several lines using the final document syntax. As
+you are writing final code syntax and you control what is inside the
+data, you do not need to escape the variable in the template. For
+instance, see personal skills.</p>
+<p>For example, in the <code class="docutils literal"><span class="pre">data/pers_info-en.yaml</span></code> file, at the end:</p>
+</li>
+</ul>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="n">profession</span><span class="p">:</span> <span class="s2">&quot;Dark wizard&quot;</span>
+<span class="n">about</span><span class="p">:</span>
+  <span class="n">html</span><span class="p">:</span> <span class="o">|</span>
+    <span class="n">I</span> <span class="n">am</span><span class="p">,</span> <span class="n">of</span> <span class="n">course</span><span class="p">,</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">best</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">world</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">things</span> <span class="n">I</span> <span class="n">do</span><span class="o">.</span>
+    <span class="n">I</span> <span class="n">was</span> <span class="n">born</span> <span class="n">sometime</span> <span class="n">ago</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">place</span> <span class="n">where</span> <span class="s2">&quot;the rule is not born by your own</span>
+    <span class="n">means</span><span class="s2">&quot;, your mother was there with you. My mother told me, this should be</span>
+    <span class="n">the</span> <span class="n">last</span> <span class="n">time</span> <span class="n">that</span> <span class="n">you</span> <span class="n">born</span> <span class="nb">all</span> <span class="n">by</span> <span class="n">yourself</span> <span class="p">(</span><span class="n">homage</span> <span class="n">to</span>
+    <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://en.wikipedia.org/wiki/Miguel_Gila&quot;</span><span class="o">&gt;</span><span class="n">Miguel</span> <span class="n">Gila</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="p">)</span><span class="o">.</span>
+
+    <span class="n">When</span> <span class="n">I</span> <span class="n">was</span> <span class="n">a</span> <span class="n">little</span> <span class="n">kid</span><span class="p">,</span> <span class="n">I</span> <span class="n">also</span> <span class="n">started</span> <span class="n">to</span> <span class="n">walk</span> <span class="n">alone</span><span class="o">.</span> <span class="n">When</span> <span class="n">I</span> <span class="n">was</span> <span class="n">a</span> <span class="n">teenager</span><span class="p">,</span>
+    <span class="n">you</span> <span class="n">know</span><span class="o">...</span> <span class="n">After</span> <span class="n">that</span><span class="p">,</span> <span class="n">I</span> <span class="n">never</span> <span class="n">started</span> <span class="n">a</span> <span class="n">startup</span><span class="p">,</span> <span class="n">I</span> <span class="n">was</span> <span class="n">never</span> <span class="n">the</span> <span class="n">best</span> <span class="ow">in</span>
+    <span class="n">anything</span><span class="p">,</span> <span class="n">so</span><span class="p">,</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">hire</span> <span class="n">me</span><span class="p">,</span> <span class="n">you</span> <span class="n">must</span> <span class="n">know</span> <span class="n">who</span> <span class="n">I</span> <span class="n">am</span><span class="o">.</span>
+  <span class="n">latex</span><span class="p">:</span> <span class="o">|</span>
+    <span class="n">I</span> <span class="n">am</span><span class="p">,</span> <span class="n">of</span> <span class="n">course</span><span class="p">,</span> <span class="n">the</span> \<span class="n">textbf</span><span class="p">{</span><span class="n">best</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">world</span><span class="p">}</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">things</span> <span class="n">I</span> <span class="n">do</span><span class="o">.</span>
+    <span class="n">I</span> <span class="n">was</span> <span class="n">born</span> <span class="n">sometime</span> <span class="n">ago</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">place</span> <span class="n">where</span> <span class="s2">&quot;the rule is not born by your own</span>
+    <span class="n">means</span><span class="s2">&quot;, your mother was there with you. My mother told me, this should be</span>
+    <span class="n">the</span> <span class="n">last</span> <span class="n">time</span> <span class="n">that</span> <span class="n">you</span> <span class="n">born</span> <span class="nb">all</span> <span class="n">by</span> <span class="n">yourself</span> <span class="p">(</span><span class="n">homage</span> <span class="n">to</span>
+    \<span class="n">href</span><span class="p">{</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">en</span><span class="o">.</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">Miguel_Gila</span><span class="p">}{</span><span class="n">Miguel</span> <span class="n">Gila</span><span class="p">})</span><span class="o">.</span>
+
+    <span class="n">When</span> <span class="n">I</span> <span class="n">was</span> <span class="n">a</span> <span class="n">little</span> <span class="n">kid</span><span class="p">,</span> <span class="n">I</span> <span class="n">also</span> <span class="n">started</span> <span class="n">to</span> <span class="n">walk</span> <span class="n">alone</span><span class="o">.</span> <span class="n">When</span> <span class="n">I</span> <span class="n">was</span> <span class="n">a</span> <span class="n">teenager</span><span class="p">,</span>
+    <span class="n">you</span> <span class="n">know</span><span class="o">...</span> <span class="n">After</span> <span class="n">that</span><span class="p">,</span> <span class="n">I</span> <span class="n">never</span> <span class="n">started</span> <span class="n">a</span> <span class="n">startup</span><span class="p">,</span> <span class="n">I</span> <span class="n">was</span> <span class="n">never</span> <span class="n">the</span> <span class="n">best</span> <span class="ow">in</span>
+    <span class="n">anything</span><span class="p">,</span> <span class="n">so</span><span class="p">,</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">hire</span> <span class="n">me</span><span class="p">,</span> <span class="n">you</span> <span class="n">must</span> <span class="n">know</span> <span class="n">who</span> <span class="n">I</span> <span class="n">am</span><span class="o">.</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>You write markup directly for both HTML and LaTeX in two different variables behind the same parent variable `about`. You then use it in the template as:
+</pre></div>
+</div>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">about</span><span class="o">.</span><span class="n">html</span> <span class="ow">is</span> <span class="n">defined</span> <span class="o">%</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">section</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;about&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">aside</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-3&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">About</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">aside</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-9&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">persinfo</span><span class="o">.</span><span class="n">about</span><span class="o">.</span><span class="n">html</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">section</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>For use <code class="docutils literal"><span class="pre">csv</span></code> tabular data, see the example file
+<code class="docutils literal"><span class="pre">acad_info_curses-en.csv</span></code>:</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>name</td>
+<td>year</td>
+</tr>
+<tr class="row-even"><td>How to make cakes</td>
+<td>2000</td>
+</tr>
+<tr class="row-odd"><td>How to not eat the cakes you cooked</td>
+<td>2001</td>
+</tr>
+</tbody>
+</table>
+<p>It is declared in the data section of the config file as <code class="docutils literal"><span class="pre">curses</span></code>, and
+it is used in the html template example:</p>
+<div class="code jinja highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">curses</span> <span class="ow">is</span> <span class="n">defined</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="o">&lt;</span><span class="n">section</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;curses&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">aside</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-3&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Curses</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">aside</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">curse</span> <span class="ow">in</span> <span class="n">curses</span> <span class="o">%</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">h4</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;strike-through&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">curse</span><span class="o">.</span><span class="n">name</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="o">&gt;</span>
+  <span class="p">{{</span> <span class="n">curse</span><span class="o">.</span><span class="n">year</span> <span class="p">}}</span>
+  <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">section</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And the result:</p>
+<div class="code html highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">section</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;curses&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">aside</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;col-sm-3&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span><span class="n">Curses</span><span class="o">&lt;/</span><span class="n">h3</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">aside</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">h4</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;strike-through&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="n">How</span> <span class="n">to</span> <span class="n">make</span> <span class="n">cakes</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="o">&gt;</span>
+    <span class="mi">2000</span>
+  <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">h4</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;strike-through&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="n">How</span> <span class="n">to</span> <span class="ow">not</span> <span class="n">eat</span> <span class="n">the</span> <span class="n">cakes</span> <span class="n">you</span> <span class="n">cooked</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="o">&gt;</span>
+    <span class="mi">2001</span>
+  <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial</a><ul>
+<li><a class="reference internal" href="#install-cv-templating">Install cv-templating</a></li>
+<li><a class="reference internal" href="#check-the-examples">Check the examples</a></li>
+<li><a class="reference internal" href="#config-file">Config file</a><ul>
+<li><a class="reference internal" href="#config-section-of-the-config-file">Config section of the config file</a></li>
+<li><a class="reference internal" href="#doc-section">doc section</a></li>
+<li><a class="reference internal" href="#data-section">data section</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#templates">Templates</a><ul>
+<li><a class="reference internal" href="#latex">Latex</a></li>
+<li><a class="reference internal" href="#html">HTML</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">cv-templating documentation</a></li>
+      <li>Next: <a href="requirements.html" title="next chapter">Install requirements</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Vicente Ramirez Perea.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

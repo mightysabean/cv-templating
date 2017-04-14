@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cv-templating documentation &#8212; cv-templating 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cv-templating-documentation">
+<h1>cv-templating documentation<a class="headerlink" href="#cv-templating-documentation" title="Permalink to this headline">¶</a></h1>
+<p><strong>cv-templating</strong> is a tool for automatic generation of curriculum vitae
+from data. It is a report generator using <code class="docutils literal"><span class="pre">jinja2</span></code>.</p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#install-cv-templating">Install cv-templating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#check-the-examples">Check the examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#config-file">Config file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#tips">Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Install requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="requirements.html#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Indices</a></li>
+</ul>
+</div>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Update a <a class="reference external" href="https://europass.cedefop.europa.eu/editors/en/cv/compose">Europass CV
+online</a>, or
+made it for the first time, is error prone and time-consuming if you
+have several entries, or worst, if you need to put all your <em>resume</em> in
+another format (for instance in HTML) or in another language.</p>
+</div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>We can manage the generation of the CV quickly from data conveniently
+stored as text files using templates based in
+<a class="reference external" href="http://jinja.pocoo.org/docs/dev/">jinja2</a>.</p>
+<p>In this solution, I use data stored in plain text files, facilitating
+the utilisation of any tool for modifying them. Also, it is very
+convenient for putting your CV information under control version.</p>
+<p>You can see two generated examples: <a class="reference external" href="Someone.html">HTML document</a> and
+<a class="reference external" href="Someone.pdf">PDF document</a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you only need your <em>curriculum vitae</em> in only one
+language and only using one format (for instance the Europass format
+using latex), then probably is better that you edit a new document using
+the document class <em>europasscv</em> provided by tex distributions or getting
+the last version from <a class="reference external" href="https://github.com/gmazzamuto/europasscv">Github
+repo</a>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There are many other solutions to manage CV, but I want not
+a standard and rigid system.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">With Europass, there is also the option of serialising an
+XML file for uploading to the online editor. That is extremely less
+flexible because of the explicit use of a fixed data scheme.</p>
+</div>
+</div>
+<div class="section" id="what-do-you-need">
+<h2>What do you need<a class="headerlink" href="#what-do-you-need" title="Permalink to this headline">¶</a></h2>
+<p>To use this solution you need (see <a class="reference external" href="https://victe.github.io/cv-templating/requirements.html">installation of
+requirements</a>
+if it is needed):</p>
+<ul class="simple">
+<li>Python (&gt;2.7, &gt;3.5) with modules yaml, jinja2, argparse, datetime and
+os installed. (Probably already installed with your Python).</li>
+<li>A recent LaTeX distribution (I use texlive-2016) if you want to
+generate the CV in PDF format (mandatory if you want a Europass CV).</li>
+</ul>
+</div>
+<div class="section" id="install-cv-templating">
+<h2>Install cv-templating<a class="headerlink" href="#install-cv-templating" title="Permalink to this headline">¶</a></h2>
+<p>Download the <a class="reference external" href="https://github.com/victe/cv-templating/releases">dist
+file</a> and do:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span>  <span class="n">cv</span><span class="o">-</span><span class="n">templating</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>Where x.y.z should be the numbers of the downloaded version. It is
+better if you use <a class="reference external" href="https://virtualenv.pypa.io/en/stable/">virtual
+environment</a>.</p>
+<p>For knowing where the program is installed, run this:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from distutils.sysconfig import get_python_lib; print(get_python_lib())&quot;</span>
+</pre></div>
+</div>
+<p>And go to the directory <code class="docutils literal"><span class="pre">mcv</span></code> inside the result of the last command.
+Here is a directory named <code class="docutils literal"><span class="pre">examples</span></code> that you should review following
+the <a class="reference external" href="https://victe.github.io/cv-templating/tutorial.html">tutorial</a>.</p>
+<p>To execute the program:</p>
+<div class="code sh highlight-default"><div class="highlight"><pre><span></span><span class="n">mcv</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal"><span class="pre">path/to/config/file.yaml</span></code> is the name and path of a config file
+in <code class="docutils literal"><span class="pre">YAML</span></code> format (see below).</p>
+<p>It is possible that this solution works with previous versions of Python
+or Texlive, but I did not test that.</p>
+<p>Also, if you want the Europass format (for PDF only), probably you need
+to download the last version of the
+<a class="reference external" href="https://github.com/gmazzamuto/europasscv">europasscv</a> class document
+from GitHub (thanks, Giacomo Mazzamuto). Texlive distribution already
+includes the document class, but the latest version has some nice
+improvements. In the example directory. there is a version of November
+2016.</p>
+</div>
+<div class="section" id="making-the-omelette">
+<h2>Making the &#8216;omelette&#8217;<a class="headerlink" href="#making-the-omelette" title="Permalink to this headline">¶</a></h2>
+<p>You only need to map the name of the variables used in the template with
+the variables in the data files. The format of the data files follows
+<a class="reference external" href="http://www.yaml.org/refcard.html">yaml</a> <a class="footnote-reference" href="#f1" id="id1">[1]</a>.</p>
+<p>The information to feed the templates can be structured as you want, but
+it is preferable to follow some folder structure. For instance, probably
+is a good idea to have a folder for all the data (for example, you
+guest, exactly: <code class="docutils literal"><span class="pre">data</span></code>). Inside some file for general information, a
+folder for projects and inside it a file for each project, or a folder
+for each (if you want to store other info related to the project as
+photos).</p>
+<p>If you want to make an HTML-based CV, the syntax to use in the templates
+is the <a class="reference external" href="http://jinja.pocoo.org/docs/dev/templates/">Jinja standard</a>.</p>
+<p>In the LaTeX case, the syntax for templating is a customization based on
+<a class="reference external" href="http://flask.pocoo.org/snippets/55/">this snippet</a> of <a class="reference external" href="http://flask.pocoo.org/">Flask
+framework</a>.</p>
+<p>There are examples of each type in the <code class="docutils literal"><span class="pre">examples</span></code> directory,
+<code class="docutils literal"><span class="pre">excvhtml.jinja</span></code> in the <code class="docutils literal"><span class="pre">html</span></code> folder and <code class="docutils literal"><span class="pre">europass-someone.tex</span></code>
+in the <code class="docutils literal"><span class="pre">latex</span></code> folder.</p>
+<p>See the
+<a class="reference external" href="https://victe.github.io/cv-templating/tutorial.html">tutorial</a> based
+on these examples showing how to proceed. You can use the structure of
+files and directories as a seed for your structure, modifying the
+templates provided as necessary.</p>
+<p>Attention!: If the specified combination of base directory and output
+directory does not exist, then the program makes a new one if the user
+has permission to do that.</p>
+</div>
+<div class="section" id="problems-and-bugs">
+<h2>Problems and bugs<a class="headerlink" href="#problems-and-bugs" title="Permalink to this headline">¶</a></h2>
+<p>If you find something wrong, please write an
+<a class="reference external" href="https://github.com/victe/cv-templating/issues">issue</a> in the repo. I
+do not have much time to spend in this project, but I will try to
+respond to all your enquiries (maybe not so fast, please be indulgent
+with me).</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The example based on europasscv is subject to the LaTeX Project Public
+License Version 1.3.</p>
+<p>The rest of the code, examples and tutorial follows MIT
+<a class="reference external" href="license.html">licence</a>, or it has an unknown license. You must
+consider citing the authors of each part when you use their code.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>YAML is more human readable than JSON.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cv-templating documentation</a><ul>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#solution">Solution</a></li>
+<li><a class="reference internal" href="#what-do-you-need">What do you need</a></li>
+<li><a class="reference internal" href="#install-cv-templating">Install cv-templating</a></li>
+<li><a class="reference internal" href="#making-the-omelette">Making the &#8216;omelette&#8217;</a></li>
+<li><a class="reference internal" href="#problems-and-bugs">Problems and bugs</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="tutorial.html" title="next chapter">Tutorial</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Vicente Ramirez Perea.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
