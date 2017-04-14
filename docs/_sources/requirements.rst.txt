@@ -11,9 +11,9 @@ Python
 If you are on Linux or Mac, you already have python (probably a 2.7.x
 version, but if it is a 3.5.x version, it is alright). If you are a
 Windows user then `follow this
-instruction <https://www.python.org/downloads/>`__. For what flavour of
+instruction <https://www.python.org/downloads/>`_. For what flavour of
 python to install, 2 or 3, see `related
-info <https://wiki.python.org/moin/Python2orPython3>`__).
+info <https://wiki.python.org/moin/Python2orPython3>`_).
 
 Python modules
 ~~~~~~~~~~~~~~
@@ -21,7 +21,7 @@ Python modules
 We need ``yaml``, ``os``, ``datetime``, ``argparse``, ``csv`` and
 ``jinja2``. Probably they are already installed with your python
 distribution. If you install ``cv-templating`` (see the
-`tutorial <tutorial.html>`__, ``pip`` takes care of installing the
+`tutorial <tutorial.html>`_, ``pip`` takes care of installing the
 dependencies. If some of them are missing, the easiest way to install it
 is with:
 
@@ -42,4 +42,4 @@ for your platform and Python distribution for help `installing
 pip <https://packaging.python.org/installing/#requirements-for-installing-packages>`__.
 
 It is very convenient if you use `virtual
-environment <https://virtualenv.pypa.io/en/stable/>`__.
+environment <https://virtualenv.pypa.io/en/stable/>`_.

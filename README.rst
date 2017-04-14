@@ -8,7 +8,7 @@ Motivation
 ----------
 
 Update a `Europass CV
-online <https://europass.cedefop.europa.eu/editors/en/cv/compose>`__, or
+online <https://europass.cedefop.europa.eu/editors/en/cv/compose>`_, or
 made it for the first time, is error prone and time-consuming if you
 have several entries, or worst, if you need to put all your *resume* in
 another format (for instance in HTML) or in another language.
@@ -24,8 +24,8 @@ In this solution, I use data stored in plain text files, facilitating
 the utilisation of any tool for modifying them. Also, it is very
 convenient for putting your CV information under control version.
 
-You can see two generated examples: `HTML document <Someone.html>`__ and
-`PDF document <Someone.pdf>`__.
+You can see two generated examples: `Someone.html`_ and
+`Someone.pdf`_.
 
 .. note::
 
@@ -34,7 +34,7 @@ You can see two generated examples: `HTML document <Someone.html>`__ and
       using latex), then probably is better that you edit a new document using
       the document class *europasscv* provided by tex distributions or getting
       the last version from `Github
-      repo <https://github.com/gmazzamuto/europasscv>`__.
+      repo <https://github.com/gmazzamuto/europasscv>`_.
 
 .. note::
 
@@ -51,7 +51,7 @@ What do you need
 ----------------
 
 To use this solution you need (see `installation of
-requirements <https://victe.github.io/cv-templating/requirements.html>`__
+requirements <https://victe.github.io/cv-templating/requirements.html>`_
 if it is needed):
 
 -  Python (>2.7, >3.5) with modules yaml, jinja2, argparse, datetime and
@@ -63,7 +63,7 @@ Install cv-templating
 ---------------------
 
 Download the `dist
-file <https://github.com/victe/cv-templating/releases>`__ and do:
+file <https://github.com/victe/cv-templating/releases>`_ and do:
 
 .. code:: sh
 
@@ -71,7 +71,7 @@ file <https://github.com/victe/cv-templating/releases>`__ and do:
 
 Where x.y.z should be the numbers of the downloaded version. It is
 better if you use `virtual
-environment <https://virtualenv.pypa.io/en/stable/>`__.
+environment <https://virtualenv.pypa.io/en/stable/>`_.
 
 For knowing where the program is installed, run this:
 
@@ -81,7 +81,7 @@ For knowing where the program is installed, run this:
 
 And go to the directory ``mcv`` inside the result of the last command.
 Here is a directory named ``examples`` that you should review following
-the `tutorial <https://victe.github.io/cv-templating/tutorial.html>`__.
+the tutorial_.
 
 To execute the program:
 
@@ -97,7 +97,7 @@ or Texlive, but I did not test that.
 
 Also, if you want the Europass format (for PDF only), probably you need
 to download the last version of the
-`europasscv <https://github.com/gmazzamuto/europasscv>`__ class document
+`europasscv <https://github.com/gmazzamuto/europasscv>`_ class document
 from GitHub (thanks, Giacomo Mazzamuto). Texlive distribution already
 includes the document class, but the latest version has some nice
 improvements. In the example directory. there is a version of November
@@ -119,21 +119,19 @@ for each (if you want to store other info related to the project as
 photos).
 
 If you want to make an HTML-based CV, the syntax to use in the templates
-is the `Jinja standard <http://jinja.pocoo.org/docs/dev/templates/>`__.
+is the `Jinja standard <http://jinja.pocoo.org/docs/dev/templates/>`_.
 
 In the LaTeX case, the syntax for templating is a customization based on
-`this snippet <http://flask.pocoo.org/snippets/55/>`__ of `Flask
-framework <http://flask.pocoo.org/>`__.
+`this snippet <http://flask.pocoo.org/snippets/55/>`_ of `Flask
+framework <http://flask.pocoo.org/>`_.
 
 There are examples of each type in the ``examples`` directory,
 ``excvhtml.jinja`` in the ``html`` folder and ``europass-someone.tex``
 in the ``latex`` folder.
 
-See the
-`tutorial <https://victe.github.io/cv-templating/tutorial.html>`__ based
-on these examples showing how to proceed. You can use the structure of
-files and directories as a seed for your structure, modifying the
-templates provided as necessary.
+See the tutorial_ based on these examples showing how to proceed. You
+can use the structure of files and directories as a seed for your
+structure, modifying the templates provided as necessary.
 
 Attention!: If the specified combination of base directory and output
 directory does not exist, then the program makes a new one if the user
@@ -143,7 +141,7 @@ Problems and bugs
 -----------------
 
 If you find something wrong, please write an
-`issue <https://github.com/victe/cv-templating/issues>`__ in the repo. I
+`issue <https://github.com/victe/cv-templating/issues>`_ in the repo. I
 do not have much time to spend in this project, but I will try to
 respond to all your enquiries (maybe not so fast, please be indulgent
 with me).
@@ -155,10 +153,9 @@ The example based on europasscv is subject to the LaTeX Project Public
 License Version 1.3.
 
 The rest of the code, examples and tutorial follows MIT
-`licence <license.html>`__, or it has an unknown license. You must
+`licence <license.html>`_, or it has an unknown license. You must
 consider citing the authors of each part when you use their code.
 
-Notes
------
+.. rubric:: Footnotes
 
-1: YAML is more human readable than JSON.
+.. [#f1] YAML is more human readable than JSON.
