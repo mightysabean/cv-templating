@@ -24,22 +24,28 @@ In this solution, I use data stored in plain text files, facilitating
 the utilisation of any tool for modifying them. Also, it is very
 convenient for putting your CV information under control version.
 
-You can see two examples: `HTML document generated <Someone.html>`__ and
-`PDF document generated <Someone.pdf>`__.
+You can see two generated examples: `HTML document <Someone.html>`__ and
+`PDF document <Someone.pdf>`__.
 
-**Note 1**: If you only need your *curriculum vitae* in only one
-language and only using one format (for instance the Europass format
-using latex), then probably is better that you edit a new document using
-the document class *europasscv* provided by tex distributions or getting
-the last version from `Github
-repo <https://github.com/gmazzamuto/europasscv>`__.
+.. note::
 
-**Note 2**: There are many other solutions to manage CV, but I want not
-a standard and rigid system.
+      If you only need your *curriculum vitae* in only one
+      language and only using one format (for instance the Europass format
+      using latex), then probably is better that you edit a new document using
+      the document class *europasscv* provided by tex distributions or getting
+      the last version from `Github
+      repo <https://github.com/gmazzamuto/europasscv>`__.
 
-**Note 3**: With Europass, there is also the option of serialising an
-XML file for uploading to the online editor. That is extremely less
-flexible because of the explicit use of a fixed data scheme.
+.. note::
+
+      There are many other solutions to manage CV, but I want not
+      a standard and rigid system.
+
+.. note::
+
+      With Europass, there is also the option of serialising an
+      XML file for uploading to the online editor. That is extremely less
+      flexible because of the explicit use of a fixed data scheme.
 
 What do you need
 ----------------
@@ -102,7 +108,7 @@ Making the 'omelette'
 
 You only need to map the name of the variables used in the template with
 the variables in the data files. The format of the data files follows
-`yaml <http://www.yaml.org/refcard.html>`__ [ `1 <#WhyYAML>`__ ].
+`yaml <http://www.yaml.org/refcard.html>`_ [#f1]_.
 
 The information to feed the templates can be structured as you want, but
 it is preferable to follow some folder structure. For instance, probably

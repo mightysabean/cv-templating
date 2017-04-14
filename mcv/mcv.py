@@ -12,6 +12,7 @@ from __future__ import print_function
 import argparse
 import os
 
+import sys
 import yaml
 
 from .GenTask import GenTask
@@ -19,8 +20,15 @@ from .Process import Process
 
 
 def create_cml_parser():
-    """Create command line parser using argparse
-    @return object argparse, list of arguments (now only name of config file)
+    """Create command line parser
+    
+    From the CLI only can be accessed the instantiation of makecv passing to it the configuration file. 
+    
+    :option:
+    
+    :return: list of arguments
+    :rtype: object argparse
+    
     """
     cml = argparse.ArgumentParser(
         description="This program generate a .tex or .html file of a Curriculum"
@@ -64,4 +72,4 @@ def main():
 
 if __name__ == "__main__":
 
-    main()
+    sys.exit(main())

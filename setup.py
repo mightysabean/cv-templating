@@ -1,26 +1,25 @@
 import os
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
-from shutil import copyfile
-
+from distutils.dir_util import copy_tree
 from setuptools import find_packages
 
-try:
-    os.system("pandoc --from=markdown --to=rst README.md -o README.rst")
-except (IOError, ImportError):
-    description = open('README.md').read()
+with open(os.path.join(os.path.dirname(__file__), 'mcv/VERSION')) as version_file:
+    version = version_file.read().strip()
 
-# The output in html format has extension .md to be processed by github jeckill in raw
-os.system("pandoc --from=markdown_github --to=html5 auxfiles/tutorial.md -o auxfiles/tutorial.html")
-os.system("cat auxfiles/head.html auxfiles/tutorial.html auxfiles/endpart.html >docs/tutorial.html")
-copyfile('README.md', 'docs/index.md')
+# Copy build documentation to docs dir for GH.
+copy_tree('sphinx/_build/html', 'docs')
 
-VERSION = '0.0.20'
+
+#VERSION = '0.0.20'
 
 setup(
     name='cv-templating',
-    version=VERSION,
+    version=version,
     packages=find_packages(),
     package_dir={'mcv': 'mcv'},
     url='https://github.com/victe/cv-templating',
