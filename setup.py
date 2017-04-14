@@ -5,17 +5,11 @@ try:
 except ImportError:
     from distutils.core import setup
 
-from distutils.dir_util import copy_tree
 from setuptools import find_packages
 
 with open(os.path.join(os.path.dirname(__file__), 'mcv/VERSION')) as version_file:
     version = version_file.read().strip()
 
-# Copy build documentation to docs dir for GH.
-copy_tree('sphinx/_build/html', 'docs')
-
-
-#VERSION = '0.0.20'
 
 setup(
     name='cv-templating',
